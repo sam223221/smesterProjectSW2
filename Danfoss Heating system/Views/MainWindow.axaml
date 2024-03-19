@@ -9,20 +9,5 @@
         Icon="/Assets/avalonia-logo.ico"
         Title="Danfoss_Heating_system">
 
-	<StackPanel>
-		<TextBlock Text="Winter Data" FontWeight="Bold"/>
-		<ItemsControl Items="{Binding WinterData}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<TextBlock Text="{Binding TimeFrom}"/>
-					<!-- Customize as needed -->
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
-
-		<TextBlock Text="Summer Data" FontWeight="Bold"/>
-		<ItemsControl Items="{Binding SummerData}">
-			<!-- Similar to WinterData -->
-		</ItemsControl>
-	</StackPanel>
+	
 </Window>

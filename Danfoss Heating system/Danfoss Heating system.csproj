@@ -23,4 +23,11 @@
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
     <PackageReference Include="ClosedXML" Version="0.102.2" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\data.xlsx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </AvaloniaResource>
+  </ItemGroup>
 </Project>

@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Models"
   ],
-  "SelectedNode": "\\Danfoss Heating system.sln",
+  "SelectedNode": "\\Models\\ExcelDataParser.cs",
   "PreviewInSolutionExplorer": false
 }
