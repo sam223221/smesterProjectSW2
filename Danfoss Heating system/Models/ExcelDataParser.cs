@@ -1,4 +1,5 @@
 ﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,11 +18,45 @@ namespace Danfoss_Heating_system.Models
         { 
             filePath = exfilePath;
         }
-        public List<EnergyData> ParseExcel()
+
+        public List<EnergyData> ParseQuotes()
         {
-            Debug.Assert(filePath != null);
-            Debug.WriteLine("this is the file path : " + Environment.CurrentDirectory);
+            var quotesList = new List<EnergyData>();
+
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
+                var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
+                CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+                foreach (var row in rows)
+                {
+
+                    if (row.RowNumber() <= 3) continue;  // Skipping header rows
+
+                    // Assuming the quotes and their authors are in columns 10 and 11 respectively
+                    var quote = row.Cell(12).GetValue<string>();
+                    var quoteAuthor = row.Cell(13).GetValue<string>();
+
+                    if (!string.IsNullOrWhiteSpace(quote) && row.RowNumber() <= 18) // Assuming there are 15 rows of quotes starting from row 4
+                    {
+                        quotesList.Add(new EnergyData
+                        {
+                            Quotes = quote,
+                            quoteAuther = quoteAuthor
+                        });
+                    }
+                }
+            } 
+
+            return quotesList;
+        }
+
+        public List<EnergyData> ParserEnergyData()
+        {
+
             var energyDataList = new List<EnergyData>();
+             
             double electricityPriceStringWinter;    // Winter ElectricityPrice
             double electricityPriceStringSummer;    // Summer ElectricityPrice
             double heatDemandStringSummer;          // Summer HeatDemand
@@ -32,8 +67,12 @@ namespace Danfoss_Heating_system.Models
                 var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
                 var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
                 CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+
+
                 foreach (var row in rows)
                 {
+
                     if (row.RowNumber() <= 3) continue;  // Skipping header rows
 
                     // Extracting values as strings directly from the cells

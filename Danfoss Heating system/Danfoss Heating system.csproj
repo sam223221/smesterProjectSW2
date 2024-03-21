@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <None Remove="Assets\avalonia-logo.ico" />
+    <None Remove="Assets\Images\DanfossHeadquarters.jpg" />
+    <None Remove="Assets\Images\DanfossLogo.png" />
   </ItemGroup>
 
 
@@ -30,6 +32,16 @@
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
     <PackageReference Include="ClosedXML" Version="0.102.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <AvaloniaResource Update="Assets\Images\DanfossHQ.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Images\Danfoss_LOGO.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
   </ItemGroup>
 
 
