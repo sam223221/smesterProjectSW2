@@ -9,6 +9,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public ObservableCollection<EnergyData> WinterData { get; set; } = new ObservableCollection<EnergyData>();
     public ObservableCollection<EnergyData> SummerData { get; set; } = new ObservableCollection<EnergyData>();
+    public ObservableCollection<EnergyData> Quotes { get; set; } = new ObservableCollection<EnergyData>();  
 
     
     public MainWindowViewModel()
