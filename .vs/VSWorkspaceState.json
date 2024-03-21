@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Danfoss Heating system"
+    "\\Danfoss Heating system",
+    "\\Danfoss Heating system\\Assets",
+    "\\Danfoss Heating system\\Assets\\Images",
+    "\\Danfoss Heating system\\Views"
   ],
   "SelectedNode": "\\Danfoss Heating system\\Danfoss Heating system.sln",
   "PreviewInSolutionExplorer": false
