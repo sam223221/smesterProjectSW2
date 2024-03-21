@@ -22,6 +22,7 @@ namespace Danfoss_Heating_system.Models
             Debug.Assert(filePath != null);
             Debug.WriteLine("this is the file path : " + Environment.CurrentDirectory);
             var energyDataList = new List<EnergyData>();
+            var 
             double electricityPriceStringWinter;    // Winter ElectricityPrice
             double electricityPriceStringSummer;    // Summer ElectricityPrice
             double heatDemandStringSummer;          // Summer HeatDemand
@@ -32,8 +33,12 @@ namespace Danfoss_Heating_system.Models
                 var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
                 var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
                 CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+
+
                 foreach (var row in rows)
                 {
+
                     if (row.RowNumber() <= 3) continue;  // Skipping header rows
 
                     // Extracting values as strings directly from the cells
