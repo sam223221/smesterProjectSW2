@@ -68,6 +68,10 @@
             "Avalonia.Themes.Fluent": {
               "target": "Package",
               "version": "[11.0.10, )"
+            },
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.2, )"
             }
           },
           "imports": [

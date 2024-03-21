@@ -130,3 +130,11 @@ C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\obj\Deb
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\obj\Debug\net8.0\Danfoss Heating system.csproj.CopyComplete
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\obj\Debug\net8.0\Danfoss Heating system.genruntimeconfig.cache
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\obj\Debug\net8.0\ref\Danfoss Heating system.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\ClosedXML.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\DocumentFormat.OpenXml.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\ExcelNumberFormat.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\Irony.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\SixLabors.Fonts.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\System.IO.Packaging.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\XLParser.dll
+C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\Assets\data.xlsx

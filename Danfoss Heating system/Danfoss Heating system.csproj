@@ -9,8 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <AvaloniaResource Include="Assets\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\data.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\avalonia-logo.ico" />
   </ItemGroup>
 
 
@@ -22,5 +29,13 @@
     <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
     <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
     <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.10" />
+    <PackageReference Include="ClosedXML" Version="0.102.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Update="Assets\data.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
