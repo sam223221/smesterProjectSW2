@@ -1,47 +1,58 @@
-﻿using Danfoss_Heating_system.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Danfoss_Heating_system.Models;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
+using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Danfoss_Heating_system.ViewModels;
 
-public class MainWindowViewModel : ViewModelBase, INotifyPropertyChanged
+public partial class MainWindowViewModel : ObservableObject
 {
 
-    public ObservableCollection<EnergyData> WinterData { get; set; } = new ObservableCollection<EnergyData>();
-    public ObservableCollection<EnergyData> SummerData { get; set; } = new ObservableCollection<EnergyData>();
-    public string SelectedQuote { get; set; }
-    public string SelectedQuoteAuthor { get; set; }
+
+
+    [ObservableProperty]
+    private string password="Password";
+
+    [ObservableProperty]
+    private string username = "Username";
+
+    [ObservableProperty]
+    private string selectedQuote;
+
+    [ObservableProperty]
+    public string selectedQuoteAuthor;
+
+    [ObservableProperty]
+    private bool warningSign = false;
+
+    [RelayCommand]
+    private void WrongUsernameOrPassword()
+    {
+        WarningSign = true;
+    }
 
 
     public MainWindowViewModel()
     {
 
         var parser = new ExcelDataParser("Assets/data.xlsx");
-        
         var quotes  = parser.ParseQuotes();     // extracting the quotes from the excel sheet
-        var data    = parser.ParserEnergyData();// extracting the energy consumption on each date data
-
-        Random random = new Random();
-
-
 
         // Select a random quote
+        Random random = new();
         var randomQuote = quotes[random.Next(quotes.Count)];
-        SelectedQuote = randomQuote.DisplayQuotes;
-        SelectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
+        selectedQuote = randomQuote.DisplayQuotes;
+        selectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
 
         
 
-        foreach (var item in data)
-        {
-            if (item.Season == "Winter")
-                WinterData.Add(item);
-            else
-                SummerData.Add(item);
-        }
+ 
     }
+
 
 
 }

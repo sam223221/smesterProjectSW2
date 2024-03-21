@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "lNI1sl8BgxS9OJgoJKZaHWTSjZ014CBg++tm5gb69sBo9Bewr3lQVTJ61PTaac+OmbYJhDtQ59zoGZZw8J3deg==",
+  "dgSpecHash": "zAj10w/H5yyjv05Yum5a7s8BZBiv0FQ2FD7OhLKUkUphXWtSMLLsRsZLKWFvSKxxUR+rjld8dwyUx95p0mjVgA==",
   "success": true,
   "projectFilePath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
   "expectedPackageFiles": [
@@ -22,6 +22,7 @@
     "C:\\Users\\samgl\\.nuget\\packages\\avalonia.win32\\11.0.10\\avalonia.win32.11.0.10.nupkg.sha512",
     "C:\\Users\\samgl\\.nuget\\packages\\avalonia.x11\\11.0.10\\avalonia.x11.11.0.10.nupkg.sha512",
     "C:\\Users\\samgl\\.nuget\\packages\\closedxml\\0.102.2\\closedxml.0.102.2.nupkg.sha512",
+    "C:\\Users\\samgl\\.nuget\\packages\\communitytoolkit.mvvm\\8.2.2\\communitytoolkit.mvvm.8.2.2.nupkg.sha512",
     "C:\\Users\\samgl\\.nuget\\packages\\documentformat.openxml\\2.16.0\\documentformat.openxml.2.16.0.nupkg.sha512",
     "C:\\Users\\samgl\\.nuget\\packages\\dynamicdata\\7.9.5\\dynamicdata.7.9.5.nupkg.sha512",
     "C:\\Users\\samgl\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",

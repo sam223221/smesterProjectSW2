@@ -43,15 +43,37 @@
 		</TextBlock>
 		
 		<!-- Username and Password-->
-		<TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="Username" Background="WhiteSmoke"  Foreground="Black"/>
-		<TextBox x:Name="tbPassword" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="Password" Background="WhiteSmoke" Foreground="Black"/>
+		<TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="{Binding Username}" Background="WhiteSmoke"  Foreground="Black"/>
+		<TextBox x:Name="tbPassword" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="{Binding Password}" Background="WhiteSmoke" Foreground="Black"/>
 		
+		<!--Warning Sign-->
+		<TextBlock Grid.Row="5"
+				   Grid.Column="0"
+				   Width="200"
+				   Height="30"
+				   Foreground="White"
+				   Background="DarkRed"
+				   Text="Incorrect username or password.&#x0a;Please contact the IT service for help"
+				   FontSize="11"
+				   TextAlignment="Center"
+				   IsVisible="{Binding WarningSign}"
+				   />
+	
 		<!-- Login Button-->
 		<Button  Grid.Column="0" Grid.Row="6"  Height="35" Width="150" Content="Login" HorizontalContentAlignment="Center"
 				 HorizontalAlignment="Center" FontSize="18" Background="Red" Foreground="White" FontWeight="SemiBold" CornerRadius="8" BorderBrush="Black"
-			     BorderThickness="0.8"/>
+			     BorderThickness="0.8"
+				 Command="{Binding WrongUsernameOrPasswordCommand}"/>
+		
 		<!--Need help Link-->
-		<TextBlock Grid.Column="0" Grid.Row="7"  Background="Transparent" Foreground="#89CFF0" TextDecorations="Underline" FontSize="10" HorizontalAlignment="Center">
+		<TextBlock Grid.Column="0" 
+				   Grid.Row="7"  
+				   Background="Transparent" 
+				   Foreground="#89CFF0" 
+				   TextDecorations="Underline" 
+				   FontSize="10" 
+				   HorizontalAlignment="Center"
+				   >
 			<Run Text="Need help? Contact IT Service."/>
 		</TextBlock>
 

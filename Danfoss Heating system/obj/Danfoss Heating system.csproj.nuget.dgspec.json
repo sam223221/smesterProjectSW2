@@ -72,6 +72,10 @@
             "ClosedXML": {
               "target": "Package",
               "version": "[0.102.2, )"
+            },
+            "CommunityToolkit.Mvvm": {
+              "target": "Package",
+              "version": "[8.2.2, )"
             }
           },
           "imports": [
