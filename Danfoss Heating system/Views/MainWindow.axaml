@@ -8,35 +8,16 @@
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
         Title="Danfoss_Heating_system"
-		Width="1600"  
-        Height="900" 
-        CanResize="False"> 
+		Width="1920"  
+        Height="1080" 
+        CanResize="False">
 
-	<ScrollViewer>
-		<Grid ColumnDefinitions="*,*">
-			<!-- Winter Data Column -->
-			<StackPanel Grid.Column="0">
-				<TextBlock Text="Winter Data" FontWeight="Bold"/>
-				<ListBox ItemsSource="{Binding WinterData}">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding DisplayText}" />
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</StackPanel>
+	<Grid ColumnDefinitions="*,2*">
 
-			<!-- Summer Data Column -->
-			<StackPanel Grid.Column="1">
-				<TextBlock Text="Summer Data" FontWeight="Bold"/>
-				<ListBox ItemsSource="{Binding SummerData}">
-					<ListBox.ItemTemplate>
-						<DataTemplate>
-							<TextBlock Text="{Binding DisplayText}" />
-						</DataTemplate>
-					</ListBox.ItemTemplate>
-				</ListBox>
-			</StackPanel>
-		</Grid>
-	</ScrollViewer>
+		<Border Grid.Column="1">
+			<Image Source="/Assets/Images/DanfossHQ.jpg"></Image>	
+		</Border>
+		
+	</Grid>
+
 </Window>
