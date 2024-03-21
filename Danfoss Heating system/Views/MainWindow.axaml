@@ -3,21 +3,66 @@
         xmlns:vm="clr-namespace:Danfoss_Heating_system.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="Danfoss_Heating_system.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
-        Icon="/Assets/avalonia-logo.ico"
-        Title="Danfoss_Heating_system"
-		Width="1920"  
-        Height="1080" 
-        CanResize="False">
+        Title="Danfoss Heating System"
+		Width="800"
+		Height="450"
+        CanResize="False" Background="White">
 
-	<Grid ColumnDefinitions="*,2*">
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+		</Grid.ColumnDefinitions>
 
-		<Border Grid.Column="1">
-			<Image Source="/Assets/Images/DanfossHQ.jpg"></Image>	
-		</Border>
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Image Grid.Column="1" Grid.RowSpan="10" Source="/Assets/Images/DanfossHeadquarters.jpg" Stretch="UniformToFill"/>
+		<Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" BorderBrush="Red" BorderThickness="0, 0, 4,0"/>
+
+		<Image Grid.Row="0" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="/Assets/Images/DanfossLogo.png"/>
 		
+		<TextBlock Grid.Column="0" Grid.Row="2"  Background="Transparent" Foreground="Black" FontSize="10" HorizontalAlignment="Center">
+			<Run Text="Engineering" FontWeight="Normal"/>
+			<Run Text="Tommorow" FontWeight="SemiBold"/>
+		</TextBlock>
+
+		<TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="Username" Background="WhiteSmoke"  Foreground="Black"/>
+		<TextBox x:Name="tbPassword" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="Password" Background="WhiteSmoke" Foreground="Black"/>
+		<Button  Grid.Column="0" Grid.Row="6"  Height="35" Width="150" Content="Login" HorizontalContentAlignment="Center"
+				 HorizontalAlignment="Center" FontSize="18" Background="Red" Foreground="White" FontWeight="SemiBold" CornerRadius="8" BorderBrush="Black"
+			     BorderThickness="0.8"/>
+		<TextBlock Grid.Column="0" Grid.Row="7"  Background="Transparent" Foreground="#89CFF0" TextDecorations="Underline" FontSize="10" HorizontalAlignment="Center">
+			<Run Text="Need help? Contact IT Service."/>
+		</TextBlock>
+
+		<Border Background="#AA000000" Grid.Column="1" Grid.Row="2" Height="120" Width="470">
+			<TextBlock Foreground="White"
+				TextWrapping="Wrap"
+				TextAlignment="Center"
+				VerticalAlignment="Center"
+				FontSize="16" FontWeight="Light"
+			    />
+		</Border>
+
+
+
+
+
+
 	</Grid>
 
 </Window>

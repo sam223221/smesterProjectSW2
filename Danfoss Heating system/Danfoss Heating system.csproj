@@ -18,6 +18,8 @@
 
   <ItemGroup>
     <None Remove="Assets\avalonia-logo.ico" />
+    <None Remove="Assets\Images\DanfossHeadquarters.jpg" />
+    <None Remove="Assets\Images\DanfossLogo.png" />
   </ItemGroup>
 
 
