@@ -39,6 +39,9 @@
     <AvaloniaResource Update="Assets\Images\DanfossHQ.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Images\Danfoss_LOGO-removebg.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
   </ItemGroup>
 
 

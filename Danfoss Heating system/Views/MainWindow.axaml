@@ -7,9 +7,11 @@
         x:Class="Danfoss_Heating_system.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Title="Danfoss Heating System"
-		Width="800"
-		Height="450"
-        CanResize="False" Background="White">
+		MinWidth="800"
+		MinHeight="450"
+        CanResize="true" Background="White"
+		MaxHeight="800"
+		MaxWidth="1200">
 
 	<Grid>
 		<Grid.ColumnDefinitions>
@@ -33,15 +35,19 @@
 		<Image Grid.Column="1" Grid.RowSpan="10" Source="/Assets/Images/DanfossHeadquarters.jpg" Stretch="UniformToFill"/>
 		<Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" BorderBrush="Red" BorderThickness="0, 0, 4,0"/>
 
-		<Image Grid.Row="0" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="/Assets/Images/DanfossLogo.png"/>
+		<Image Grid.Row="0" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="/Assets/Images/Danfoss_LOGO-removebg.png"/>
+		
 		
 		<TextBlock Grid.Column="0" Grid.Row="2"  Background="Transparent" Foreground="Black" FontSize="10" HorizontalAlignment="Center">
 			<Run Text="Engineering" FontWeight="Normal"/>
 			<Run Text="Tommorow" FontWeight="SemiBold"/>
 		</TextBlock>
-
+		
+		<!-- Username and Password-->
 		<TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="Username" Background="WhiteSmoke"  Foreground="Black"/>
 		<TextBox x:Name="tbPassword" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="Password" Background="WhiteSmoke" Foreground="Black"/>
+		
+		<!-- Login Button-->
 		<Button  Grid.Column="0" Grid.Row="6"  Height="35" Width="150" Content="Login" HorizontalContentAlignment="Center"
 				 HorizontalAlignment="Center" FontSize="18" Background="Red" Foreground="White" FontWeight="SemiBold" CornerRadius="8" BorderBrush="Black"
 			     BorderThickness="0.8"/>
