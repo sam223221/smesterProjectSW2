@@ -12,6 +12,14 @@
     <AvaloniaResource Include="Assets\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AvaloniaResource Remove="Assets\data.xlsx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Assets\avalonia-logo.ico" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Avalonia" Version="11.0.10" />
@@ -26,8 +34,8 @@
 
 
   <ItemGroup>
-    <AvaloniaResource Update="Assets\data.xlsx">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AvaloniaResource>
+    <None Update="Assets\data.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
