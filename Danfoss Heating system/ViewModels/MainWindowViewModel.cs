@@ -45,7 +45,6 @@ public partial class MainWindowViewModel : ObservableObject
         
         foreach (var item in UserData)
         {
-            Console.WriteLine(item);
 
             if (item.UserID == Username)
             {

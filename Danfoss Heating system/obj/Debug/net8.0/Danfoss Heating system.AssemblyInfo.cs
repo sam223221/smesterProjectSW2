@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Danfoss Heating system")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7a9ce19cfc2ab428308d0df6f744f0ef61b2f702")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14a734b8de5de0924761c75006a800625266dc75")]
 [assembly: System.Reflection.AssemblyProductAttribute("Danfoss Heating system")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Danfoss Heating system")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
