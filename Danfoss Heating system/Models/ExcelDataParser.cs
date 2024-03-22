@@ -52,6 +52,42 @@ namespace Danfoss_Heating_system.Models
             return quotesList;
         }
 
+        public List<EnergyData> UserInfo()
+        {
+            var list = new List<EnergyData>();
+
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
+                var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
+                CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+                foreach (var row in rows)
+                {
+
+                    if (row.RowNumber() == 1) continue; // skip the first Row
+
+                    var userID = row.Cell(15).GetValue<string>();
+                    var userPassword = row.Cell(15).GetValue<string>();
+                    var userRole = row.Cell(15).GetValue<string>();
+
+                    if (userID != null && userPassword != null)
+                    {
+                        list.Add(new EnergyData
+                        {
+                            UserID = userID,
+                            UserPassword = userPassword,
+                            UserRole = userRole
+                        });
+                    }
+
+                }
+
+
+            }
+            return list;
+        }
+
         public List<EnergyData> ParserEnergyData()
         {
 

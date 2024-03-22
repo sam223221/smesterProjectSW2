@@ -11,8 +11,10 @@
 		Width="800"
 		Height="450"
         CanResize="False" Background="White">
+	
 
 	<Grid>
+		
 		<Grid.ColumnDefinitions>
 			<ColumnDefinition Width="*"/>
 			<ColumnDefinition Width="2*"/>
@@ -43,8 +45,20 @@
 		</TextBlock>
 		
 		<!-- Username and Password-->
-		<TextBox x:Name="tbUsername" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="{Binding Username}" Background="WhiteSmoke"  Foreground="Black"/>
-		<TextBox x:Name="tbPassword" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="{Binding Password}" Background="WhiteSmoke" Foreground="Black"/>
+		<TextBox x:Name="{Binding Username}" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="Username" Background="WhiteSmoke"  Foreground="Black"/>
+		<TextBox x:Name="{Binding Password}" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="Password" Background="WhiteSmoke" Foreground="Black"/>
+
+		<TextBlock VerticalAlignment="Center" 
+				   HorizontalAlignment="Center" 
+				   Grid.Row="5"	
+				   Background="LightGreen"
+				   Foreground="Gray"
+				   Width="200"
+				   Height="30"
+				   TextAlignment="Center"
+				   IsVisible="{Binding SignInSucceed}"
+				   Text="Log In successful">
+		</TextBlock>
 		
 		<!--Warning Sign-->
 		<TextBlock Grid.Row="5"

@@ -15,6 +15,11 @@ namespace Danfoss_Heating_system.Models
         public string Season { get; set; }
         public string Quotes {  get; set; }
         public string quoteAuther { get; set; }
+        public string UserID { get; set; }
+        public string UserPassword { get; set; }
+        public string UserRole { get; set; }
+
+
 
 
         public string DisplayText => $"On the Day: {TimeFrom:D} From {TimeFrom:HH:mm} To: {TimeTo:HH:mm}, The Heat demand: {HeatDemand.ToString("0.000")}, Price: {ElectricityPrice:C}";
