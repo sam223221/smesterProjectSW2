@@ -11,6 +11,9 @@
 		Width="800"
 		Height="450"
         CanResize="False" Background="White">
+	<Application.DataTemplates>
+		<local:ViewLocator/>
+	</Application.DataTemplates>
 	
 
 	<Grid>

@@ -13,10 +13,8 @@ using DocumentFormat.OpenXml.Office2010.CustomUI;
 
 namespace Danfoss_Heating_system.ViewModels;
 
-public partial class MainWindowViewModel : ObservableObject
+public partial class MainWindowViewModel : ViewModelBase
 {
-
-    
 
     [ObservableProperty]
     private string password="";

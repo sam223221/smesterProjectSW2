@@ -22,3 +22,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
 [C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/WellcomePage.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
