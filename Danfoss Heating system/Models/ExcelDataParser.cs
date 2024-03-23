@@ -67,9 +67,9 @@ namespace Danfoss_Heating_system.Models
 
                     if (row.RowNumber() == 1) continue; // skip the first Row
 
-                    var userID = row.Cell(15).GetValue<string>();
-                    var userPassword = row.Cell(15).GetValue<string>();
-                    var userRole = row.Cell(15).GetValue<string>();
+                    var userID          = row.Cell(15).GetValue<string>();
+                    var userPassword    = row.Cell(16).GetValue<string>();
+                    var userRole        = row.Cell(17).GetValue<string>();
 
                     if (userID != null && userPassword != null)
                     {

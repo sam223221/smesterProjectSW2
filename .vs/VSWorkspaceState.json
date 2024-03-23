@@ -4,8 +4,10 @@
     "\\Danfoss Heating system",
     "\\Danfoss Heating system\\Assets",
     "\\Danfoss Heating system\\Assets\\Images",
+    "\\Danfoss Heating system\\Models",
+    "\\Danfoss Heating system\\ViewModels",
     "\\Danfoss Heating system\\Views"
   ],
-  "SelectedNode": "\\Danfoss Heating system\\Danfoss Heating system.sln",
+  "SelectedNode": "\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
   "PreviewInSolutionExplorer": false
 }
