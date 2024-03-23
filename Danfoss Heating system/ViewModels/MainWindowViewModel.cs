@@ -47,11 +47,13 @@ public partial class MainWindowViewModel : ObservableObject
         {
             Console.WriteLine(item);
 
+            // checks if the Login was successful
             if (item.UserID == Username)
             {
                 if (item.UserPassword == Password)
                 {
                     UserLogin = item;
+                    Debug.WriteLine("Login successful");
                     SignInSucceed = true;
                     WarningSign = false;
                     return;
@@ -70,15 +72,13 @@ public partial class MainWindowViewModel : ObservableObject
         var quotes  = parser.ParseQuotes();     // extracting the quotes from the excel sheet
         
 
-        // Select a random quote
+        // Select a random quote and display it
         Random random = new();
-        var randomQuote = quotes[random.Next(quotes.Count)];
-        selectedQuote = randomQuote.DisplayQuotes;
+
+        var randomQuote     = quotes[random.Next(quotes.Count)];
+        selectedQuote       = randomQuote.DisplayQuotes;
         selectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
 
-        
-
- 
     }
 
 
