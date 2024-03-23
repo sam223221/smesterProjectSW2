@@ -19,10 +19,10 @@ public partial class MainWindowViewModel : ObservableObject
     
 
     [ObservableProperty]
-    private string password="Password";
+    private string password="";
 
     [ObservableProperty]
-    private string username = "Username";
+    private string username = "";
 
     [ObservableProperty]
     private string selectedQuote;
@@ -49,14 +49,16 @@ public partial class MainWindowViewModel : ObservableObject
 
             if (item.UserID == Username)
             {
-                if (item.UserPassword== Password)
+                if (item.UserPassword == Password)
                 {
                     UserLogin = item;
                     SignInSucceed = true;
+                    WarningSign = false;
                     return;
                 }
             }
         }
+        SignInSucceed = false;
         WarningSign = true;
     }
 

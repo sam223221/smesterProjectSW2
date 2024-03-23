@@ -1,6 +1,7 @@
 ﻿using ClosedXML.Excel;
 using DocumentFormat.OpenXml.Spreadsheet;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -38,12 +39,19 @@ namespace Danfoss_Heating_system.Models
                     var quote = row.Cell(12).GetValue<string>();
                     var quoteAuthor = row.Cell(13).GetValue<string>();
 
-                    if (!string.IsNullOrWhiteSpace(quote) && row.RowNumber() <= 18) // Assuming there are 15 rows of quotes starting from row 4
+                    if (!string.IsNullOrWhiteSpace(quote) && !string.IsNullOrWhiteSpace(quoteAuthor)) // Assuming there are 15 rows of quotes starting from row 4
                     {
                         quotesList.Add(new EnergyData
                         {
                             Quotes = quote,
                             quoteAuther = quoteAuthor
+                        });
+                    }else if (!string.IsNullOrWhiteSpace(quote))
+                    {
+                        quotesList.Add(new EnergyData
+                        {
+                            Quotes = quote,
+                            quoteAuther = "Anonymous Auther"
                         });
                     }
                 }
@@ -67,11 +75,11 @@ namespace Danfoss_Heating_system.Models
 
                     if (row.RowNumber() == 1) continue; // skip the first Row
 
-                    var userID = row.Cell(15).GetValue<string>();
-                    var userPassword = row.Cell(15).GetValue<string>();
-                    var userRole = row.Cell(15).GetValue<string>();
+                    var userID          = row.Cell(15).GetValue<string>(); // Gather User ID to check 
+                    var userPassword    = row.Cell(16).GetValue<string>(); // Gather Password to check
+                    var userRole        = row.Cell(17).GetValue<string>(); // Gather the Role to direct the UI
 
-                    if (userID != null && userPassword != null)
+                    if (!string.IsNullOrWhiteSpace(userID) || !string.IsNullOrWhiteSpace(userPassword))
                     {
                         list.Add(new EnergyData
                         {
