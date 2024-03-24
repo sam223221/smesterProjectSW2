@@ -11,10 +11,7 @@
 		Width="800"
 		Height="450"
         CanResize="False" Background="White">
-	<Application.DataTemplates>
-		<local:ViewLocator/>
-	</Application.DataTemplates>
-	
+
 
 	<Grid>
 		
@@ -51,7 +48,7 @@
 		<TextBox Text="{Binding Username}" Grid.Column="0" Grid.Row="3" Height="20" Width="200" Watermark="Username" Background="WhiteSmoke"  Foreground="Black"/>
 		<TextBox Text="{Binding Password}" Grid.Column="0" Grid.Row="4"  Height="20" Width="200" Watermark="Password" Background="WhiteSmoke" Foreground="Black"/>
 
-		<TextBlock VerticalAlignment="Center" 
+		<TextBox   VerticalAlignment="Center" 
 				   HorizontalAlignment="Center"
 				   Grid.Row="5"	
 				   Background="LightGreen"
@@ -60,8 +57,8 @@
 				   Height="30"
 				   TextAlignment="Center"
 				   IsVisible="{Binding SignInSucceed}"
-				   Text="Log In successful">
-		</TextBlock>
+				   Text="Log In successful"/>
+		
 		
 		<!--Warning Sign-->
 		<TextBlock Grid.Row="5"
