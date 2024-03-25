@@ -9,11 +9,10 @@ public partial class LoginWindow : Window
 
     public LoginWindow()
     {
-        var viewModel = new LoginWindowViewModel();
-        DataContext = viewModel;
-        viewModel.LoginWindow = this;
         InitializeComponent();
-        
+
+        LoginWindowViewModel viewModel = new LoginWindowViewModel();
+        viewModel.LoginWindow = this;
     }
 
 }

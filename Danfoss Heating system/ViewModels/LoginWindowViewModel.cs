@@ -10,6 +10,7 @@ namespace Danfoss_Heating_system.ViewModels;
 
 public partial class LoginWindowViewModel : ViewModelBase
 {
+
     public Window LoginWindow {  get; set; }  
 
 
@@ -59,9 +60,9 @@ public partial class LoginWindowViewModel : ViewModelBase
 
     public void MainWindowOpen()
     {
+        LoginWindow.Close();
         var mainWindow = new MainWindow();
         mainWindow.Show();
-        LoginWindow.Close();
     }
 
 
