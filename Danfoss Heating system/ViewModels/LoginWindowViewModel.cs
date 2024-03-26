@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Danfoss_Heating_system.Interfaces;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using Danfoss_Heating_system.Views;
@@ -11,8 +12,7 @@ namespace Danfoss_Heating_system.ViewModels;
 public partial class LoginWindowViewModel : ViewModelBase
 {
 
-    public Window LoginWindow {  get; set; }  
-
+    private Window closeable;
 
     [ObservableProperty]
     private string password="";
@@ -60,15 +60,17 @@ public partial class LoginWindowViewModel : ViewModelBase
 
     public void MainWindowOpen()
     {
-        LoginWindow.Close();
+        // Close the login window and open the main window 
+        
         var mainWindow = new MainWindow();
         mainWindow.Show();
+        closeable.Close();
     }
 
 
-    public LoginWindowViewModel()
+    public LoginWindowViewModel(Window Cloneable)
     {
-
+        closeable = Cloneable;
         var parser = new ExcelDataParser("Assets/data.xlsx");
         var quotes  = parser.ParseQuotes();     // extracting the quotes from the excel sheet
         
