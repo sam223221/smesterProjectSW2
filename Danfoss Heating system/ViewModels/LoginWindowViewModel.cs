@@ -67,8 +67,8 @@ public partial class LoginWindowViewModel : ViewModelBase
         };
 
         //Closes and opens login page and main window
-        closeable.Close();
         mainWindow.Show();
+        closeable.Close();
     }
 
 
