@@ -41,13 +41,13 @@ public partial class LoginWindowViewModel : ViewModelBase
         
         foreach (var item in UserData)
         {
-            Console.WriteLine(item);
 
             // checks if the Login was successful
             if (item.UserID == Username)
             {
                 if (item.UserPassword == Password)
                 {
+                    SignInSucceed = true;
                     UserLogin = item;
                     Debug.WriteLine("Login successful");
                     MainWindowOpen();

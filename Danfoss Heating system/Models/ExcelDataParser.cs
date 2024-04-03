@@ -79,7 +79,7 @@ namespace Danfoss_Heating_system.Models
                     var userPassword    = row.Cell(16).GetValue<string>(); // Gather Password to check
                     var userRole        = row.Cell(17).GetValue<string>(); // Gather the Role to direct the UI
 
-                    if (!string.IsNullOrWhiteSpace(userID) || !string.IsNullOrWhiteSpace(userPassword))
+                    if (!string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(userPassword))
                     {
                         list.Add(new EnergyData
                         {
