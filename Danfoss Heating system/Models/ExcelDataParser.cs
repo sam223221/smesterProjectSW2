@@ -26,7 +26,7 @@ namespace Danfoss_Heating_system.Models
 
             using (var workbook = new XLWorkbook(filePath))
             {
-                var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
+                var worksheet = workbook.Worksheet("SDM");  // Making sure we are always using the right sheet
                 var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
                 CultureInfo DanishInfo = new CultureInfo("da-DK");
 
@@ -66,7 +66,7 @@ namespace Danfoss_Heating_system.Models
 
             using (var workbook = new XLWorkbook(filePath))
             {
-                var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
+                var worksheet = workbook.Worksheet("SDM");  // Making sure we are always using the right sheet
                 var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
                 CultureInfo DanishInfo = new CultureInfo("da-DK");
 
@@ -108,7 +108,7 @@ namespace Danfoss_Heating_system.Models
 
             using (var workbook = new XLWorkbook(filePath))
             {
-                var worksheet = workbook.Worksheet(1);  // Assuming data is in the first sheet
+                var worksheet = workbook.Worksheet("SDM");  // Making sure we are always using the right sheet
                 var rows = worksheet.RangeUsed().RowsUsed();  // Skip header rows
                 CultureInfo DanishInfo = new CultureInfo("da-DK");
 
