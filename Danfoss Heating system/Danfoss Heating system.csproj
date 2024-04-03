@@ -57,4 +57,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ViewModels\UserMainPage\" />
+  </ItemGroup>
 </Project>

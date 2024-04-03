@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Danfoss_Heating_system.ViewModels.NewFolder;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,23 +13,16 @@ namespace Danfoss_Heating_system.ViewModels
         [ObservableProperty]
         private object currentContent;
 
-        [ObservableProperty]
-        private string role ="bob what is this";
-
         public MainWindowViewModel(string roles) 
         {
-            Role = roles;
-            
+            //sets the view within the window to the current role that is logging in
             switch (roles)
             {
                 case "Admin":
-                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel() };
+                    CurrentContent = new AdminView();
                     break;
                 case "User":
                     CurrentContent = new UserView();
-                    break;
-                default:
-                    // Handle default or unknown role
                     break;
             }
         }
