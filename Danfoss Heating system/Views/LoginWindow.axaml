@@ -1,0 +1,141 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Danfoss_Heating_system.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="Danfoss_Heating_system.Views.LoginWindow"
+		x:DataType="vm:LoginWindowViewModel"
+        Title="Danfoss Heating System"
+		Icon="/Assets/Images/DanfossLogo.ico"
+		Width="800"
+		Height="450"
+        CanResize="False" Background="White">
+
+
+	<Grid>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="2*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<!--Danfoss HQ backgound-->
+		<Image Grid.Column="1" Grid.RowSpan="10" Source="/Assets/Images/DanfossHeadquarters.jpg" Stretch="UniformToFill"/>
+		<Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="10" BorderBrush="Red" BorderThickness="0, 0, 4,0"/>
+		
+		<!--Danfoss Logo and text under-->
+		<Image Grid.Row="0" Grid.RowSpan="2"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="/Assets/Images/DanfossLogo.png"/>
+		<TextBlock Grid.Column="0" Grid.Row="2"  Background="Transparent" Foreground="Black" FontSize="10" HorizontalAlignment="Center">
+			<Run Text="Engineering" FontWeight="Normal"/>
+			<Run Text="Tommorow" FontWeight="SemiBold"/>
+		</TextBlock>
+		
+		<!-- Username and Password-->
+		<TextBox Text="{Binding Username}" 
+				 Grid.Column="0" 
+				 Grid.Row="3" 
+				 Height="20" 
+				 Width="200" 
+				 Watermark="Username" 
+				 Background="Gray"  
+				 Foreground="White"
+				 />
+		
+		<TextBox Text="{Binding Password}" 
+				 Grid.Column="0" 
+				 Grid.Row="4"  
+				 Height="20" 
+				 Width="200" 
+				 Watermark="Password" 
+				 Background="Gray" 
+				 Foreground="White"
+				 />
+
+		<!--SignIn successful sign-->
+		<TextBox   VerticalAlignment="Center" 
+				   HorizontalAlignment="Center"
+				   Grid.Row="5"	
+				   Background="LightGreen"
+				   Foreground="Gray"
+				   Width="200"
+				   Height="30"
+				   TextAlignment="Center"
+				   IsVisible="{Binding SignInSucceed}"
+				   Text="LogIn successful"/>
+		
+		
+		<!--Warning Sign-->
+		<TextBlock Grid.Row="5"
+				   Grid.Column="0"
+				   Width="200"
+				   Height="30"
+				   Foreground="White"
+				   Background="DarkRed"
+				   Text="Incorrect username or password.&#x0a;Please contact the IT service for help"
+				   FontSize="11"
+				   TextAlignment="Center"
+				   IsVisible="{Binding WarningSign}"
+				   />
+	
+		<!-- Login Button-->
+		<Button  Grid.Column="0" Grid.Row="6"  Height="35" Width="150" Content="Login" HorizontalContentAlignment="Center"
+				 HorizontalAlignment="Center" FontSize="18" Background="Red" Foreground="White" FontWeight="SemiBold" CornerRadius="8" BorderBrush="Black"
+			     BorderThickness="0.8"
+				 Command="{Binding WrongUsernameOrPasswordCommand}"/>
+		
+		<!--Need help Link-->
+		<TextBlock Grid.Column="0" 
+				   Grid.Row="7"  
+				   Background="Transparent" 
+				   Foreground="#89CFF0" 
+				   TextDecorations="Underline" 
+				   FontSize="10" 
+				   HorizontalAlignment="Center"
+				   >
+			<Run Text="Need help? Contact IT Service."/>
+		</TextBlock>
+
+		<!--Quotes are dosplayed-->
+		<Border Background="#AA000000" Grid.Column="1" Grid.Row="2" Height="120" Width="470">
+			<Grid RowDefinitions="*,Auto">
+				
+				<TextBlock Grid.Row="0"
+						   Margin="8"
+						   Foreground="White"
+						   TextWrapping="Wrap"
+					       TextAlignment="Center"
+						   VerticalAlignment="Center"
+						   FontSize="16" FontWeight="Bold"
+						   Text="{Binding SelectedQuote}"/>
+
+				<TextBlock Grid.Row="1"
+						   FontSize="12"
+						   Foreground="White"
+						   HorizontalAlignment="Right"
+						   Margin="15"
+						   Text="{Binding SelectedQuoteAuthor}"/>
+			</Grid>
+		</Border>
+
+
+
+
+
+
+	</Grid>
+
+</Window>

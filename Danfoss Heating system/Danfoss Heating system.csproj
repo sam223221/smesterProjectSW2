@@ -46,8 +46,20 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\LoginWindow.axaml.cs">
+      <DependentUpon>LoginWindow.axaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
     <None Update="Assets\data.xlsx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="ViewModels\UserMainPage\" />
   </ItemGroup>
 </Project>

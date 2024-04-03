@@ -1,86 +1,30 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using Danfoss_Heating_system.Models;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System;
-using System.Threading.Tasks;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.Generic;
-using System.Reactive.Disposables;
-using System.Diagnostics;
-using DocumentFormat.OpenXml.Office2010.CustomUI;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Danfoss_Heating_system.ViewModels;
-
-public partial class MainWindowViewModel : ObservableObject
+namespace Danfoss_Heating_system.ViewModels
 {
-
-    
-
-    [ObservableProperty]
-    private string password="";
-
-    [ObservableProperty]
-    private string username = "";
-
-    [ObservableProperty]
-    private string selectedQuote;
-
-    [ObservableProperty]
-    public string selectedQuoteAuthor;
-
-    [ObservableProperty]
-    private bool warningSign = false;
-    
-    [ObservableProperty]
-    private bool signInSucceed = false;
-
-    [RelayCommand]
-    private void WrongUsernameOrPassword()
+    public partial class MainWindowViewModel : ViewModelBase
     {
-        var parser = new ExcelDataParser("Assets/data.xlsx");
-        var UserData = parser.UserInfo();
-        EnergyData UserLogin;
-        
-        foreach (var item in UserData)
-        {
-            Console.WriteLine(item);
 
-            // checks if the Login was successful
-            if (item.UserID == Username)
+        [ObservableProperty]
+        private object currentContent;
+
+        public MainWindowViewModel(string roles) 
+        {
+            //sets the view within the window to the current role that is logging in
+            switch (roles)
             {
-                if (item.UserPassword == Password)
-                {
-                    UserLogin = item;
-                    Debug.WriteLine("Login successful");
-                    SignInSucceed = true;
-                    WarningSign = false;
-                    return;
-                }
+                case "Admin":
+                    CurrentContent = new AdminView();
+                    break;
+                case "User":
+                    CurrentContent = new UserView();
+                    break;
             }
         }
-        SignInSucceed = false;
-        WarningSign = true;
     }
-
-
-    public MainWindowViewModel()
-    {
-
-        var parser = new ExcelDataParser("Assets/data.xlsx");
-        var quotes  = parser.ParseQuotes();     // extracting the quotes from the excel sheet
-        
-
-        // Select a random quote and display it
-        Random random = new();
-
-        var randomQuote     = quotes[random.Next(quotes.Count)];
-        selectedQuote       = randomQuote.DisplayQuotes;
-        selectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
-
-    }
-
-
-
 }
