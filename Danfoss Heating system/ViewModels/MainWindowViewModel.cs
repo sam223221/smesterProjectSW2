@@ -13,9 +13,12 @@ namespace Danfoss_Heating_system.ViewModels
         [ObservableProperty]
         private ViewModelBase contentViewModel;
 
+        [ObservableProperty]
+        private string role ="bob what is this";
+
         public MainWindowViewModel(string roles) 
         {
-           
+            Role = roles;           
         }
     }
 }

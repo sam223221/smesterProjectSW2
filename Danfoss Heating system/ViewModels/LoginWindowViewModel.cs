@@ -50,7 +50,7 @@ public partial class LoginWindowViewModel : ViewModelBase
                     SignInSucceed = true;
                     UserLogin = item;
                     Debug.WriteLine("Login successful");
-                    MainWindowOpen();
+                    MainWindowOpen(item.UserRole);
                     return;
                 }
             }
@@ -58,11 +58,12 @@ public partial class LoginWindowViewModel : ViewModelBase
         WarningSign = true;
     }
 
-    public void MainWindowOpen()
+    public void MainWindowOpen(string userRole)
     {
         // Close the login window and open the main window 
         
         var mainWindow = new MainWindow();
+        mainWindow.DataContext = new MainWindowViewModel(userRole);
         mainWindow.Show();
         closeable.Close();
     }
