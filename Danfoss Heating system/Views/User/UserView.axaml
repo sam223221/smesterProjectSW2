@@ -3,11 +3,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Danfoss_Heating_system.UserView">
-	
-	
-	<TextBlock Text="Wellcome to User page"
-			 VerticalAlignment="Center"
-			 HorizontalAlignment="Center"/>
-	
+             x:Class="Danfoss_Heating_system.UserView"
+			 Background="White">
+
+
+	<Border Background="Cyan" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBlock Text="Welcome to User"
+				   Foreground="Black"
+				   FontWeight="Bold"
+				   FontSize="14"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   TextAlignment="Center"/>
+	</Border>
+
+
 </UserControl>

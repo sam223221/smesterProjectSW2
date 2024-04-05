@@ -4,12 +4,50 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+		Width="800"
+		Height="450"
         x:Class="Danfoss_Heating_system.Views.MainWindow"
 		x:DataType="vm:MainWindowViewModel"
 		Title="Danfoss Heating System"
 		Icon="/Assets/Images/DanfossLogo.ico">
 
-	<ContentControl Content="{Binding CurrentContent}"/>
+
+	<Grid>
+
+		<!-- Row definitions -->
+		<Grid.RowDefinitions>
+
+			<RowDefinition Height="Auto"/> <!-- makes only space for the heigt of the bar -->
+			<RowDefinition Height="*"/> <!-- gives the remaining space to the content view -->
+			
+		</Grid.RowDefinitions>
+		
+		<!-- Top Bar for navigation -->
+		<Border Grid.Row="0" Background="Gray" Padding=" 10">
+
+			<Grid>
+				<Grid.ColumnDefinitions>
+					
+					<ColumnDefinition Width="Auto"/>
+					<ColumnDefinition Width="*"/>
+					<ColumnDefinition Width="Auto"/>
+					
+				</Grid.ColumnDefinitions>
+				
+				<Button Grid.Column="0" Content="Navigatioin"/>
+				
+				<Button Grid.Column="2" 
+						Content="Log out"
+						Command="{Binding logoutCommand}"/>
+				
+			</Grid>
+			
+		</Border>
+
+		<!-- Main content Area -->
+		<ContentControl Grid.Row="1" Content="{Binding CurrentContent}"/>
+	</Grid>
+
 
 
 </Window>

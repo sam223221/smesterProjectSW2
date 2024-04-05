@@ -3,8 +3,9 @@
     "",
     "\\Models",
     "\\ViewModels",
-    "\\Views"
+    "\\Views",
+    "\\Views\\User"
   ],
-  "SelectedNode": "\\ViewModels\\MainWindowViewModel.cs",
+  "SelectedNode": "\\Danfoss Heating system.sln",
   "PreviewInSolutionExplorer": false
 }

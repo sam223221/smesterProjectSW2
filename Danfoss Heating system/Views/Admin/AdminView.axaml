@@ -5,16 +5,17 @@
 			 Width="1000"
 			 Height="450"
              mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="450"
-             x:Class="Danfoss_Heating_system.AdminView">
+             x:Class="Danfoss_Heating_system.AdminView"
+			 Background="White">
 
-	<StackPanel>
-		
-    <TextBlock Text="Wellcome to admin page"
-			   VerticalAlignment="Center"
-			   HorizontalAlignment="Center"
-			   />
-		
-	</StackPanel>
-	
-	
+	<Border Background="Cyan" Padding="20" HorizontalAlignment="Center" VerticalAlignment="Center">
+		<TextBlock Text="Welcome to Admin"
+				   Foreground="Black"
+				   FontWeight="Bold"
+				   FontSize="14"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   TextAlignment="Center"/>
+	</Border>
+   
 </UserControl>

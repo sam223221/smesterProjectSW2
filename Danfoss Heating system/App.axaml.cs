@@ -18,8 +18,7 @@ public partial class App : Application
         if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
             var loginWindow = new LoginWindow();
-            loginWindow.DataContext = new LoginWindowViewModel(loginWindow); // Pass the window as IClosable
-
+            loginWindow.DataContext = new LoginWindowViewModel(loginWindow); // Passes the window so it can be manipulated
             desktop.MainWindow = loginWindow;
         }
 

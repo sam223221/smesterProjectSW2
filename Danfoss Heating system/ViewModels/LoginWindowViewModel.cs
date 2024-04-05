@@ -61,10 +61,9 @@ public partial class LoginWindowViewModel : ViewModelBase
     public void MainWindowOpen(string userRole)
     {
         //Create Main window and sets the data context
-        var mainWindow = new MainWindow()
-        {
-            DataContext = new MainWindowViewModel(userRole)
-        };
+        var mainWindow = new MainWindow();
+        mainWindow.DataContext = new MainWindowViewModel(userRole, mainWindow);
+        
 
         //Closes and opens login page and main window
         mainWindow.Show();
