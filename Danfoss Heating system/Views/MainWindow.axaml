@@ -9,7 +9,8 @@
         x:Class="Danfoss_Heating_system.Views.MainWindow"
 		x:DataType="vm:MainWindowViewModel"
 		Title="Danfoss Heating System"
-		Icon="/Assets/Images/DanfossLogo.ico">
+		Icon="/Assets/Images/DanfossLogo.ico"
+		CanResize="False">
 
 
 	<Grid>

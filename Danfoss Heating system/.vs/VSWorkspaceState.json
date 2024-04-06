@@ -3,6 +3,7 @@
     "",
     "\\Models",
     "\\ViewModels",
+    "\\ViewModels\\UserMainPage",
     "\\Views",
     "\\Views\\User"
   ],

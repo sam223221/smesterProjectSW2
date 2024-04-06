@@ -43,10 +43,10 @@ namespace Danfoss_Heating_system.ViewModels
             switch (roles)
             {
                 case "Admin":
-                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel() };
+                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
                     break;
                 case "User":
-                    CurrentContent = new UserView() { DataContext = new UserMainPageViewModel() };
+                    CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
                     break;
             }
         }
