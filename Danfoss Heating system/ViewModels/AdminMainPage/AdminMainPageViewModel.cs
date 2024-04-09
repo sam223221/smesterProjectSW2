@@ -16,9 +16,6 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
 
         private MainWindowViewModel viewchange;
 
-        public AdminMainPageViewModel()
-        {
-        }
 
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
@@ -28,7 +25,7 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         [RelayCommand]
         private void GoToUser()
         {
-            viewchange.CurrentContent = new AdminSecoundScreen();
+            viewchange.CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(viewchange)};
         }
 
     }
