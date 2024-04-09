@@ -15,8 +15,8 @@ namespace Danfoss_Heating_system.Models
     public class ExcelDataParser
     {
         private string filePath;
-        public ExcelDataParser(string exfilePath) 
-        { 
+        public ExcelDataParser(string exfilePath)
+        {
             filePath = exfilePath;
         }
 
@@ -46,7 +46,7 @@ namespace Danfoss_Heating_system.Models
                             Quotes = quote,
                             quoteAuther = quoteAuthor
                         });
-                    }else if (!string.IsNullOrWhiteSpace(quote))
+                    } else if (!string.IsNullOrWhiteSpace(quote))
                     {
                         quotesList.Add(new EnergyData
                         {
@@ -55,7 +55,7 @@ namespace Danfoss_Heating_system.Models
                         });
                     }
                 }
-            } 
+            }
 
             return quotesList;
         }
@@ -75,9 +75,9 @@ namespace Danfoss_Heating_system.Models
 
                     if (row.RowNumber() == 1) continue; // skip the first Row
 
-                    var userID          = row.Cell(15).GetValue<string>(); // Gather User ID to check 
-                    var userPassword    = row.Cell(16).GetValue<string>(); // Gather Password to check
-                    var userRole        = row.Cell(17).GetValue<string>(); // Gather the Role to direct the UI
+                    var userID = row.Cell(15).GetValue<string>(); // Gather User ID to check 
+                    var userPassword = row.Cell(16).GetValue<string>(); // Gather Password to check
+                    var userRole = row.Cell(17).GetValue<string>(); // Gather the Role to direct the UI
 
                     if (!string.IsNullOrWhiteSpace(userID) && !string.IsNullOrWhiteSpace(userPassword))
                     {
@@ -100,7 +100,7 @@ namespace Danfoss_Heating_system.Models
         {
 
             var energyDataList = new List<EnergyData>();
-             
+
             double electricityPriceStringWinter;    // Winter ElectricityPrice
             double electricityPriceStringSummer;    // Summer ElectricityPrice
             double heatDemandStringSummer;          // Summer HeatDemand
@@ -120,32 +120,32 @@ namespace Danfoss_Heating_system.Models
                     if (row.RowNumber() <= 3) continue;  // Skipping header rows
 
                     // Extracting values as strings directly from the cells
-                    var timeFromStringWinter            = row.Cell(1).GetValue<DateTime>();   // Winter TimeFrom
-                    var timeToStringWinter              = row.Cell(2).GetValue<DateTime>();   // Winter TimeTo
+                    var timeFromStringWinter = row.Cell(1).GetValue<DateTime>();   // Winter TimeFrom
+                    var timeToStringWinter = row.Cell(2).GetValue<DateTime>();   // Winter TimeTo
                     double.TryParse(row.Cell(3).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringWinter);          // Winter HeatDemand                                                                            
                     double.TryParse(row.Cell(4).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringWinter);    // Winter HeatDemand
 
                     energyDataList.Add(new EnergyData
                     {
-                        TimeFrom            = timeFromStringWinter,
-                        TimeTo              = timeToStringWinter,
-                        HeatDemand          = heatDemandStringWinter,
-                        ElectricityPrice    = electricityPriceStringWinter,
-                        Season              = "Winter"
+                        TimeFrom = timeFromStringWinter,
+                        TimeTo = timeToStringWinter,
+                        HeatDemand = heatDemandStringWinter,
+                        ElectricityPrice = electricityPriceStringWinter,
+                        Season = "Winter"
                     });
 
-                    var timeFromStringSummer            = row.Cell(6).GetValue<DateTime>();   // Summer TimeFrom
-                    var timeToStringSummer              = row.Cell(7).GetValue<DateTime>();   // Summer TimeTo
-                    double.TryParse(row.Cell(8).GetValue<String>(),NumberStyles.Any, DanishInfo, out heatDemandStringSummer);          // Winter HeatDemand
-                    double.TryParse(row.Cell(9).GetValue<String>(),NumberStyles.Any, DanishInfo, out electricityPriceStringSummer);    // Winter HeatDemand
+                    var timeFromStringSummer = row.Cell(6).GetValue<DateTime>();   // Summer TimeFrom
+                    var timeToStringSummer = row.Cell(7).GetValue<DateTime>();   // Summer TimeTo
+                    double.TryParse(row.Cell(8).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringSummer);          // Winter HeatDemand
+                    double.TryParse(row.Cell(9).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringSummer);    // Winter HeatDemand
 
                     energyDataList.Add(new EnergyData
                     {
-                        TimeFrom            = timeFromStringSummer,
-                        TimeTo              = timeToStringSummer,
-                        HeatDemand          = heatDemandStringSummer,
-                        ElectricityPrice    = electricityPriceStringSummer,
-                        Season              = "Summer"
+                        TimeFrom = timeFromStringSummer,
+                        TimeTo = timeToStringSummer,
+                        HeatDemand = heatDemandStringSummer,
+                        ElectricityPrice = electricityPriceStringSummer,
+                        Season = "Summer"
                     });
                 }
 
@@ -153,6 +153,46 @@ namespace Danfoss_Heating_system.Models
 
             return energyDataList;
         }
-    }
 
+        public List<EnergyData> ParserProductionUnits()
+        {
+            var productionUnitList = new List<EnergyData>();
+
+            double maxHeat;
+            double maxElectricity;
+            double productionCost;
+            double co2Emissions;
+            double gasConsumption;
+
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet("SDM");
+                var rows = worksheet.RangeUsed().RowsUsed();
+                CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+                foreach (var row in rows)
+                {
+                    if (row.RowNumber() <= 3) continue; //Skipping header rows
+                    var name = row.Cell(20).GetValue<String>();
+                    double.TryParse(row.Cell(21).GetValue<String>(), NumberStyles.Any, DanishInfo, out maxHeat);
+                    double.TryParse(row.Cell(22).GetValue<String>(), NumberStyles.Any, DanishInfo, out maxElectricity);
+                    double.TryParse(row.Cell(23).GetValue<String>(), out productionCost);
+                    double.TryParse(row.Cell(24).GetValue<String>(), out co2Emissions);
+                    double.TryParse(row.Cell(25).GetValue<String>(), NumberStyles.Any, DanishInfo, out gasConsumption);
+
+                    productionUnitList.Add(new EnergyData
+                    {
+                        Name = name,
+                        MaxHeat = maxHeat,
+                        MaxElectricity = maxElectricity,
+                        ProductionCost = productionCost,
+                        CO2Emission = co2Emissions,
+                        GasConsumption = gasConsumption,
+                    });
+                }
+            }
+            return productionUnitList;
+        } 
+    }
+    
 }
