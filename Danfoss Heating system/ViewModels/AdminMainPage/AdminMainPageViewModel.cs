@@ -16,15 +16,19 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
 
         private MainWindowViewModel viewchange;
 
+        public AdminMainPageViewModel()
+        {
+        }
+
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
             viewchange = mv;
         }
 
         [RelayCommand]
-        private void UserView()
+        private void GoToUser()
         {
-            viewchange.CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(viewchange) };
+            viewchange.CurrentContent = new AdminSecoundScreen();
         }
 
     }

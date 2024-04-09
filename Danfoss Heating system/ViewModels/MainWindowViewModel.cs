@@ -50,5 +50,6 @@ namespace Danfoss_Heating_system.ViewModels
                     break;
             }
         }
+
     }
 }

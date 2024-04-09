@@ -2,10 +2,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 Width="800"
-			 Height="450"
+             xmlns:vm="using:Danfoss_Heating_system.ViewModels.AdminMainPage"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Danfoss_Heating_system.AdminView"
+			 x:DataType="vm:AdminMainPageViewModel"
 			 Background="White">
 
 	<Grid>
@@ -20,6 +20,7 @@
 					Content="Go to user"
 					Background="Black"
 					Foreground="White"
+					Command="{Binding GoToUserCommand}"
 					/>
 		</Border>
 		

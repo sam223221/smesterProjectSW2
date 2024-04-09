@@ -3,8 +3,10 @@
     "",
     "\\Models",
     "\\ViewModels",
+    "\\ViewModels\\AdminMainPage",
     "\\ViewModels\\UserMainPage",
     "\\Views",
+    "\\Views\\Admin",
     "\\Views\\User"
   ],
   "SelectedNode": "\\Danfoss Heating system.sln",
