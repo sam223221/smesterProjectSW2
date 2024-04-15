@@ -46,9 +46,10 @@
 				<ColumnDefinition/>
 			</Grid.ColumnDefinitions>
 
-			<!-- here: path to danfosswhitelogo
-			<Image Source="" Height="45" Width="175" Grid.Column="0" Margin="25, 0, 0, 0"/>
-			-->
+		
+			<Image Source="C:\Users\ksuch\OneDrive\Dokumenty\GitHub\smesterProjectSW2\Danfoss Heating system\Assets\Images\DanfossWhiteLogo.png" 
+				   Height="45" Width="175" Grid.Column="0" Margin="25, 0, 0, 0"/>
+			
 
 			<TextBlock Text="Home"
 					   Foreground="White"
@@ -87,9 +88,8 @@
 					   Grid.ColumnSpan="2"
 					   />
 
-		<!--	here: path to logouticon
-		<Image Source="" Width="130" Height="35" Cursor="Hand" Grid.Column="18"/>
-				   -->
+			<Image Source="C:\Users\ksuch\OneDrive\Dokumenty\GitHub\smesterProjectSW2\Danfoss Heating system\Assets\Images\LogoutIcon.png"
+			Width="130" Height="35" Cursor="Hand" Grid.Column="18"/>
 
 		</Grid>
 

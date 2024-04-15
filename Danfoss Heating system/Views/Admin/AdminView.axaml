@@ -12,6 +12,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="*"/>
 			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
 		</Grid.RowDefinitions>
 
 		<Border Background="Green">
@@ -33,5 +34,21 @@
 					   VerticalAlignment="Center"
 					   TextAlignment="Center"/>
 		</Border>
+
+		<Border Grid.Row="2" Background="#F30000"  HorizontalAlignment="Center" VerticalAlignment="Center">
+			<Button x:Name="optTestingButton"
+					   Content="Optimization Test"
+					   Foreground="White"
+					   FontWeight="Bold"
+					   FontSize="14"
+					   HorizontalAlignment="Center"
+					   VerticalAlignment="Center"
+					   HorizontalContentAlignment="Center"
+					   VerticalContentAlignment="Center"
+					   Height="50"
+					   Width="200"
+					  />
+		</Border>
+		
 	</Grid>
 </UserControl>
