@@ -1,37 +1,22 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\",
+  "WorkspaceRootPath": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\models\\energydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\energydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\dokumenty\\github\\smesterprojectsw2\\danfoss heating system\\viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\dokumenty\\github\\smesterprojectsw2\\danfoss heating system\\viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\dokumenty\\github\\smesterprojectsw2\\danfoss heating system\\views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:app.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\dokumenty\\github\\smesterprojectsw2\\danfoss heating system\\views\\optimization\\optimizationwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\optimization\\optimizationwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -41,7 +26,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 618,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,108 +43,56 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{99a11807-c5db-4877-ad35-09b56a044005}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 516,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "EnergyData.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\EnergyData.cs",
-              "RelativeDocumentMoniker": "Models\\EnergyData.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\EnergyData.cs",
-              "RelativeToolTip": "Models\\EnergyData.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA1wBwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T13:44:29.673Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ExcelDataParser.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
-              "RelativeDocumentMoniker": "Models\\ExcelDataParser.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
-              "RelativeToolTip": "Models\\ExcelDataParser.cs",
-              "ViewState": "AQIAAKAAAAAAAAAAAAD4v7kAAAAqAAAA",
+              "Title": "AdminMainPageViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
+              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
+              "RelativeToolTip": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T13:42:25.663Z",
+              "WhenOpened": "2024-04-15T09:48:34.44Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoginWindowViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModels\\LoginWindowViewModel.cs",
+              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
+              "RelativeToolTip": "ViewModels\\LoginWindowViewModel.cs",
+              "ViewState": "AQIAADoAAAAAAAAAAAAQwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T09:48:08.853Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "MainViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
-              "RelativeDocumentMoniker": "..\\..\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
-              "RelativeToolTip": "..\\..\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-06T20:19:20.242Z"
+              "Title": "LoginWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.axaml",
+              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
+              "RelativeToolTip": "Views\\LoginWindow.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-15T09:44:42.923Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AdminMainPageViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
-              "RelativeToolTip": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAB4AAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-06T20:14:27.397Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LoginWindowViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\LoginWindowViewModel.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
-              "RelativeToolTip": "ViewModels\\LoginWindowViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-06T20:14:26.206Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AdminView.axaml",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminView.axaml",
-              "RelativeDocumentMoniker": "Views\\Admin\\AdminView.axaml",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminView.axaml",
-              "RelativeToolTip": "Views\\Admin\\AdminView.axaml",
+              "Title": "OptimizationWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\OptimizationWindow.axaml",
+              "RelativeDocumentMoniker": "Views\\Optimization\\OptimizationWindow.axaml",
+              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Dokumenty\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\OptimizationWindow.axaml",
+              "RelativeToolTip": "Views\\Optimization\\OptimizationWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-06T20:14:08.126Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "LoginWindow.axaml",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
-              "RelativeDocumentMoniker": "Views\\LoginWindow.axaml",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
-              "RelativeToolTip": "Views\\LoginWindow.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-06T20:14:05.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "App.axaml.cs",
-              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\App.axaml.cs",
-              "RelativeDocumentMoniker": "App.axaml.cs",
-              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\App.axaml.cs",
-              "RelativeToolTip": "App.axaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-06T19:47:03.276Z"
+              "WhenOpened": "2024-04-15T09:45:54.663Z",
+              "EditorCaption": ""
             }
           ]
         }

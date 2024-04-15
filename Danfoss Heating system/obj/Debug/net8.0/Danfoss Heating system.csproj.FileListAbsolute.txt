@@ -280,3 +280,5 @@ C:\Users\ksuch\OneDrive\Dokumenty\GitHub\smesterProjectSW2\Danfoss Heating syste
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\CommunityToolkit.Mvvm.dll
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\obj\Debug\net8.0\Danfoss .8BEBB6A6.Up2Date
 C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\System.Management.Automation.dll
+C:\Users\ksuch\OneDrive\Dokumenty\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\CommunityToolkit.Mvvm.dll
+C:\Users\ksuch\OneDrive\Dokumenty\GitHub\smesterProjectSW2\Danfoss Heating system\bin\Debug\net8.0\System.Management.Automation.dll
