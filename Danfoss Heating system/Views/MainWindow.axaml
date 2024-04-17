@@ -24,27 +24,23 @@
 		</Grid.RowDefinitions>
 		
 		<!-- Top Bar for navigation -->
-		<Border Grid.Row="0" Background="Gray" Padding=" 10">
-
-			<Grid>
-				<Grid.ColumnDefinitions>
-					
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="Auto"/>
-					
-				</Grid.ColumnDefinitions>
-				
-				<Button Grid.Column="0" Content="Navigatioin"/>
-				
-				<Button Grid.Column="2" 
-						Content="Log out"
-						Command="{Binding logoutCommand}"/>
-				
-			</Grid>
-			
-		</Border>
-
+		<Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#F30000" Height="40">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="130"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="30"/>
+				<ColumnDefinition Width="30"/>
+			</Grid.ColumnDefinitions>
+			<Image Grid.Column="0" Source="/Assets/Images/danfosslogowhite1.png" Width="90" Height="90" Margin="0,0,20,0"/>
+			<Label Grid.Column="1" Content="FAQ"  FontSize="25" Foreground="White" Margin="120,0,0,0"/>
+			<Label Grid.Column="2" Content="Help"  FontSize="25" Foreground="White" Margin="30,0,0,0"/>
+			<Label Grid.Column="3" Content="Settings"  FontSize="25" Foreground="White" Margin="0,0,0,0"/>
+			<Image Grid.Column="4" Source="/Assets/Images/bob.png" Margin="0,0,20,0" Width="30"></Image>
+			<Image Grid.Column="5" Source="/Assets/Images/exitIcon.png"></Image>
+		</Grid>
+		
 		<!-- Main content Area -->
 		<ContentControl Grid.Row="1" Content="{Binding CurrentContent}"/>
 	</Grid>

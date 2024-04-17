@@ -17,8 +17,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\bob.png" />
     <None Remove="Assets\Images\DanfossHeadquarters.jpg" />
     <None Remove="Assets\Images\DanfossLogo.png" />
+    <None Remove="Assets\Images\danfosslogowhite.PNG" />
+    <None Remove="Assets\Images\danfosslogowhite1.png" />
+    <None Remove="Assets\Images\development.png" />
+    <None Remove="Assets\Images\evaluation.png" />
+    <None Remove="Assets\Images\exitIcon.png" />
+    <None Remove="Assets\Images\performance.png" />
   </ItemGroup>
 
 
@@ -47,6 +54,9 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\Admin\AdminSecoundScreen.axaml.cs">
+      <DependentUpon>AdminSecoundScreen.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LoginWindow.axaml.cs">
       <DependentUpon>LoginWindow.axaml</DependentUpon>
     </Compile>
