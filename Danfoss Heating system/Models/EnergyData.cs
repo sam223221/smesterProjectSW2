@@ -22,10 +22,10 @@ namespace Danfoss_Heating_system.Models
 
         public string Name { get; set; }
         public double MaxHeat { get; set; }
-        public double? MaxElectricity { get; set; }
+        public double MaxElectricity { get; set; }
         public double ProductionCost { get; set; }
-        public double? CO2Emission { get; set; }
-        public double? GasConsumption { get; set; }
+        public double CO2Emission { get; set; }
+        public double GasConsumption { get; set; }
 
 
         public string DisplayText => $"On the Day: {TimeFrom:D} From {TimeFrom:HH:mm} To: {TimeTo:HH:mm}, The Heat demand: {HeatDemand.ToString("0.000")}, Price: {ElectricityPrice:C}";

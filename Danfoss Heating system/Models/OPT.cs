@@ -68,7 +68,8 @@ internal class OPT
             if (item.TimeFrom >= from && item.TimeTo <= to)
             {
 
-
+                /*---- adding the best co2 friendly ----*/
+                
 
 
 
@@ -91,19 +92,18 @@ internal class OPT
         return optimizationData;
     }
 
-
-
-    // cheapestHeatDemandUsage is a method that will be called from the MainOPT method
-    private List<OPTProp> cheapestHeatDemandUsage(double heatdemand, List<EnergyData> motorUnits)
+    private List<OPTProp> bestCO2Friendly(double heatdemand, List<EnergyData> motorUnits)
     {
         var list = new List<OPTProp>();
         var units = new List<EnergyData>();
         double productionPrice = 0;
+        double co2Emission = 0;
 
         // Loop through the motor units and check if the heat demand is greater than 0
         for (int i = 0; i < motorUnits.Count && heatdemand > 0; i++)
         {
             productionPrice += motorUnits[i].ProductionCost;
+            co2Emission += motorUnits[i].CO2Emission;
             heatdemand -= motorUnits[i].MaxHeat;
             units.Add(motorUnits[i]);
         }
@@ -111,7 +111,35 @@ internal class OPT
         list.Add(new OPTProp
         {
             ProductionPrice = productionPrice,
-            MotorUsage = units
+            MotorUsage = units,
+            CO2Emission = co2Emission
+        });
+
+        return list;
+    }
+
+    // cheapestHeatDemandUsage is a method that will be called from the MainOPT method
+    private List<OPTProp> cheapestHeatDemandUsage(double heatdemand, List<EnergyData> motorUnits)
+    {
+        var list = new List<OPTProp>();
+        var units = new List<EnergyData>();
+        double productionPrice = 0;
+        double co2Emission = 0;
+
+        // Loop through the motor units and check if the heat demand is greater than 0
+        for (int i = 0; i < motorUnits.Count && heatdemand > 0; i++)
+        {
+            productionPrice += motorUnits[i].ProductionCost;
+            co2Emission += motorUnits[i].CO2Emission;
+            heatdemand -= motorUnits[i].MaxHeat;
+            units.Add(motorUnits[i]);
+        }
+        // Add the data to the list
+        list.Add(new OPTProp
+        {
+            ProductionPrice = productionPrice,
+            MotorUsage = units,
+            CO2Emission = co2Emission
         });
 
 
