@@ -38,7 +38,7 @@
 						<Border BorderBrush="Red" BorderThickness="2"></Border>
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
 							<Image Source="/Assets/Images/adminicon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
-							<Button Width="110" HorizontalAlignment="Center" Command="{Binding GoToUserCommand}" Foreground="Black">Go to Admin</Button>
+							<Button Width="110" HorizontalAlignment="Center" Foreground="Black">Go to Admin</Button>
 						</StackPanel>
 					</Grid>
 
