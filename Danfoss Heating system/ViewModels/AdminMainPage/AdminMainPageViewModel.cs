@@ -8,6 +8,8 @@ using Danfoss_Heating_system.Views;
 using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.CodeAnalysis;
+using Danfoss_Heating_system.ViewModels.OPT;
 
 namespace Danfoss_Heating_system.ViewModels.AdminMainPage
 {
@@ -25,7 +27,7 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         [RelayCommand]
         private void GoToUser()
         {
-            viewchange.CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(viewchange)};
+            viewchange.CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(viewchange)};
         }
 
     }

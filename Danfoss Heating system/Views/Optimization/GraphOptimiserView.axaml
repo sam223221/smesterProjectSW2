@@ -1,0 +1,160 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.OPT"
+             mc:Ignorable="d" d:DesignWidth="1980" d:DesignHeight="1020"
+             x:Class="Danfoss_Heating_system.GraphOptimiserView"
+			 x:DataType="vm:GraphOptimiserViewModel">
+
+
+	<Grid>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="2*"/>
+			<ColumnDefinition Width="1*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<!-- Header -->
+
+		<Grid Background="#F30000"
+			  Grid.Row="0" Grid.ColumnSpan="2">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+
+
+
+		</Grid>
+
+		<!-- Optimization Section -->
+
+		<Grid Background="#FFFFFF"
+			  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
+
+		</Grid>
+
+		<!-- Optimization Data -->
+
+		<Grid Background="#E5E0E0"
+			  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
+
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="5"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+
+			<Border Grid.Column="0" Grid.RowSpan="18" Background="#F30000" Width="5"/>
+
+
+			<Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
+				<ComboBox Foreground="White" Background="Transparent" Width="380" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" FontSize="24" SelectedIndex="0" MaxDropDownHeight="100" CornerRadius="20">
+					<ComboBoxItem>Winter (8.02 - 15.02)</ComboBoxItem>
+					<ComboBoxItem>Summer (8.07 - 15.07)</ComboBoxItem>
+				</ComboBox>
+			</Border>
+
+			<Border Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
+				<ComboBox Foreground="White" Background="Transparent" Width="380" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" FontSize="24" SelectedIndex="0" MaxDropDownHeight="850" CornerRadius="20">
+					<ComboBoxItem>8.02.2023 -> 00.00 - 01.00</ComboBoxItem>
+					<ComboBoxItem>hour2</ComboBoxItem>
+					<ComboBoxItem>hour3</ComboBoxItem>
+					<ComboBoxItem>hour4</ComboBoxItem>
+					<ComboBoxItem>hour5</ComboBoxItem>
+					<ComboBoxItem>hour6</ComboBoxItem>
+					<ComboBoxItem>hour7</ComboBoxItem>
+					<ComboBoxItem>hour8</ComboBoxItem>
+					<ComboBoxItem>hour9</ComboBoxItem>
+					<ComboBoxItem>hour10</ComboBoxItem>
+				</ComboBox>
+			</Border>
+
+			<TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="Transparent" FontSize="32" FontWeight="Bold">
+				Optimization of:
+			</TextBlock>
+
+			<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Spacing="20" HorizontalAlignment="Center">
+
+				<Button Content="Costs" Background="#F30000" Width="195" Height="60" CornerRadius="24" FontSize="24" FontWeight="SemiBold"
+						Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black"/>
+
+				<Button Content="CO2 Emissions" Background="#F30000" Width="195" Height="60" CornerRadius="24" FontSize="24" FontWeight="SemiBold"
+						Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black"/>
+
+			</StackPanel>
+
+			<TextBlock Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="Transparent" FontSize="32" FontWeight="Bold">
+				Optimization Data:
+			</TextBlock>
+
+			<StackPanel Grid.Column="1" Grid.Row="11" Spacing="30" Orientation="Vertical">
+
+				<Border Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
+					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+						Total Heat Usage:
+					</TextBlock>
+				</Border>
+
+				<Border Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
+					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+						Total Production Cost:
+					</TextBlock>
+				</Border>
+
+				<Border Grid.Column="1" Grid.Row="14" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
+					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
+						Total CO2 Emissions:
+					</TextBlock>
+				</Border>
+
+			</StackPanel>
+
+		</Grid>
+
+
+	</Grid>
+</UserControl>

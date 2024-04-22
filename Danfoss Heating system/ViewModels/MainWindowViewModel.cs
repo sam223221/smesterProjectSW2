@@ -16,7 +16,7 @@ namespace Danfoss_Heating_system.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        private Window _window;
+        public Window _window;
 
 
         [ObservableProperty]
