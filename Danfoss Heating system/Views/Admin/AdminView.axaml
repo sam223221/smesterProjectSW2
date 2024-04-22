@@ -51,6 +51,7 @@
 							<Button Width="110" 
 									HorizontalAlignment="Center" 
 									Foreground="Black"
+									Command="{Binding GoToAdminCommand}"
 									Content="Go to Admin"
 									/>
 						
@@ -79,7 +80,7 @@
 							
 							<Button Width="90" 
 									HorizontalAlignment="Center" 
-									Command="{Binding GoToUserCommand}" 
+									Command="" 
 									Foreground="Black"
 									Content="Go to user"/>
 						

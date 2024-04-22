@@ -22,10 +22,12 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
             viewchange = mv;
+            viewchange._window.Width = 800;
+            viewchange._window.Height = 450-70;
         }
 
         [RelayCommand]
-        private void GoToUser()
+        private void GoToAdmin()
         {
             viewchange.CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(viewchange)};
         }

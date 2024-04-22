@@ -15,30 +15,18 @@
 		CanResize="True">
 
 
-	<Grid>
-
-		<!-- Row definitions -->
-		<Grid.RowDefinitions>
-
-			<RowDefinition Height="Auto"/> <!-- makes only space for the heigt of the bar -->
-			<RowDefinition Height="*"/> <!-- gives the remaining space to the content view -->
-			
-		</Grid.RowDefinitions>
+	<Grid RowDefinitions="Auto,*">
 		
 		<!-- Top Bar for navigation -->
 		<Border Grid.Row="0" Background="Gray" Padding=" 10">
 
-			<Grid>
-				<Grid.ColumnDefinitions>
-					
-					<ColumnDefinition Width="Auto"/>
-					<ColumnDefinition Width="*"/>
-					<ColumnDefinition Width="Auto"/>
-					
-				</Grid.ColumnDefinitions>
+			<Grid ColumnDefinitions="Auto,*,Auto">
 				
-				<Button Grid.Column="0" Content="Navigatioin"/>
+				<!-- Navigation button -->
+				<Button Grid.Column="0" 
+						Content="Navigatioin"/>
 				
+				<!-- Log out button -->
 				<Button Grid.Column="2" 
 						Content="Log out"
 						Command="{Binding logoutCommand}"/>
@@ -49,6 +37,7 @@
 
 		<!-- Main content Area -->
 		<ContentControl Grid.Row="1" Content="{Binding CurrentContent}"/>
+	
 	</Grid>
 
 
