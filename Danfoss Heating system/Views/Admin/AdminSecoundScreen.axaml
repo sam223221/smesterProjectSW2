@@ -17,12 +17,12 @@
 
 		<!--Main grid - row definitions-->
 		<Grid.RowDefinitions>
-			<RowDefinition Height="40"></RowDefinition>
+			<RowDefinition Height="20"></RowDefinition>
 			<RowDefinition></RowDefinition>
 		</Grid.RowDefinitions>
 
 	<!--Main area-->
-		<Grid Grid.Row="1" Grid.ColumnSpan="2" Height="410">
+		<Grid Grid.Row="1" Grid.ColumnSpan="2" Height="430">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="*"/>
@@ -32,31 +32,16 @@
 				<ImageBrush Opacity="50" Stretch="UniformToFill" Source="/Assets/Images/DanfossHQ.jpg"/>
 			</Grid.Background>
 
-			<Border Grid.Row="0" IsVisible="{Binding IsSidebarVisible}" x:Name="SideBar" Width="50" Grid.RowSpan="2" HorizontalAlignment="Left" Background="Gray" BorderBrush="Aqua">
-			
-				<StackPanel>
-					<Button Background="Transparent" Width="50" Height="55" Margin="0,20,0,0">
-						<Image VerticalAlignment="Center" Source="/Assets/Images/evaluation.png" Width="30" Height="40"></Image>
-					</Button>
-					<Button Background="Transparent" Width="50" Height="55" Margin="0,20,0,0">
-						<Image Source="/Assets/Images/performance.png" VerticalAlignment="Center" Width="30" Height="40" ></Image>
-					</Button>
-					<Button Background="Transparent" Width="50" Height="55" Margin="0,20,0,0">
-						<Image Source="/Assets/Images/development.png" VerticalAlignment="Center" Width="30" Height="40"></Image>
-					</Button>
-					<Button Background="Transparent" Width="50" Height="55" Margin="0,20,0,0">
-						<Image Source="/Assets/Images/evaluation.png" VerticalAlignment="Center" Width="30" Height="40"></Image>
-
-					</Button>
-				</StackPanel>
-			</Border>
-			<ToggleButton IsChecked="{Binding IsSidebarVisible, Mode=TwoWay}" Grid.RowSpan="2" Width="10" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="49,0,0,0"> </ToggleButton>
+			<StackPanel Grid.RowSpan="2" Orientation="Horizontal">
+				<Image Source="/Assets/Images/chart1.png" Width="200" Height="250" Opacity="0.7" Stretch="UniformToFill" Margin="140,30,0,20"/>
+				<Image Source="/Assets/Images/graph1.png" Width="300" Height="250" Opacity="0.7" Stretch="UniformToFill" Margin="100,30,0,20"/>
+			</StackPanel>
 			
 			<Label Content="Welcome back admin" FontSize="20" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="White"></Label>
 			
 			<Border Grid.Row="2" Grid.RowSpan="2" Background="#4CFFFFFF" Width="29" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 				<StackPanel Orientation="Horizontal">
-				<Button Grid.Row="2" HorizontalAlignment="Left" Margin="250,0,0,40" Content="Go to graph" VerticalAlignment="Bottom" Width="100" Foreground="White" Background="Black"/>
+				<Button Grid.Row="2" HorizontalAlignment="Left" Margin="200,0,0,40" Content="Go to graph" VerticalAlignment="Bottom" Width="100" Foreground="White" Background="Black"/>
 				<Button VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="240,0,0,40" Grid.Row="3" Content="Go to chart" Width="100" Foreground="White" Background="Black"/>
 				</StackPanel>
 			</Border>

@@ -12,16 +12,17 @@
 		Icon="/Assets/Images/DanfossLogo.ico"
 		CanResize="False">
 
-
 	<Grid>
-
 		<!-- Row definitions -->
 		<Grid.RowDefinitions>
 
-			<RowDefinition Height="Auto"/> <!-- makes only space for the heigt of the bar -->
+			<RowDefinition Height="40"/> <!-- makes only space for the heigt of the bar -->
 			<RowDefinition Height="*"/> <!-- gives the remaining space to the content view -->
 			
 		</Grid.RowDefinitions>
+		
+		<!-- Main content Area -->
+		<ContentControl Grid.Row="1" Content="{Binding CurrentContent}"/>
 		
 		<!-- Top Bar for navigation -->
 		<Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#F30000" Height="40">
@@ -33,16 +34,43 @@
 				<ColumnDefinition Width="30"/>
 				<ColumnDefinition Width="30"/>
 			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Background="Transparent" Width="110" Height="40" Margin="10,0,20,0">
 			<Image Grid.Column="0" Source="/Assets/Images/danfosslogowhite1.png" Width="90" Height="90" Margin="0,0,20,0"/>
-			<Label Grid.Column="1" Content="FAQ"  FontSize="25" Foreground="White" Margin="120,0,0,0"/>
-			<Label Grid.Column="2" Content="Help"  FontSize="25" Foreground="White" Margin="30,0,0,0"/>
-			<Label Grid.Column="3" Content="Settings"  FontSize="25" Foreground="White" Margin="0,0,0,0"/>
-			<Image Grid.Column="4" Source="/Assets/Images/bob.png" Margin="0,0,20,0" Width="30"></Image>
-			<Image Grid.Column="5" Source="/Assets/Images/exitIcon.png"></Image>
+			</Button>
+		    <Button Background="Transparent" Grid.Column="1" Width="70" Height="48" Margin="90,0,0,0">
+			<Label Content="FAQ"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			</Button>
+			<Button Background="Transparent" Grid.Column="2" Width="77" Height="48" Margin="40,0,0,0">
+			<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			</Button>
+			<Button Background="Transparent" Grid.Column="3" Width="130" Height="48" Margin="-20,0,0,0">
+			<Label Content="Settings"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			</Button>
+			<Button Background="Transparent" Grid.Column="4" Width="40" Height="48" Margin="-10,0,13,0">
+			<Image Source="/Assets/Images/bob.png" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
+			</Button>
+			<Button Background="Transparent" Grid.Column="5" Width="40" Height="48" Margin="0,0,10,0">
+			<Image Source="/Assets/Images/exitIcon.png" VerticalAlignment="Center" Width="44" Height="35" HorizontalAlignment="Center"></Image>
+				</Button>
 		</Grid>
+
+		<Border x:Name="SideBar" Grid.Row="1" Margin="0,20,0,20" IsVisible="{Binding IsSidebarVisible}" Width="50" Grid.RowSpan="2" HorizontalAlignment="Left" Background="#e00404" BorderBrush="Aqua" Opacity="0.7">
+			<StackPanel>
+			<ItemsControl ItemsSource="{Binding Buttons}">
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+						<Button Width="{Binding Width}" Height="55" Margin="0,30,0,0">
+							<Image Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}"/>
+						</Button>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+			</StackPanel>
+		</Border>
+		<ToggleButton IsChecked="{Binding IsSidebarVisible, Mode=TwoWay}" Grid.RowSpan="2" Width="10" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="{Binding ToggleButtonMargin}"> </ToggleButton>
+		
 		
 		<!-- Main content Area -->
-		<ContentControl Grid.Row="1" Content="{Binding CurrentContent}"/>
 	</Grid>
 
 
