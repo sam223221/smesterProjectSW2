@@ -5,7 +5,6 @@ using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.ViewModels.AdminMainPage;
 using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Danfoss_Heating_system.Views;
-using Danfoss_Heating_system.Views.Optimization;
 using System;
 
 using System.Collections.Generic;
@@ -17,7 +16,7 @@ namespace Danfoss_Heating_system.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        private Window _window;
+        public Window _window;
 
 
         [ObservableProperty]

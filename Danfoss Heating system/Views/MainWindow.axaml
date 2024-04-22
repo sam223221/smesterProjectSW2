@@ -10,7 +10,9 @@
 		x:DataType="vm:MainWindowViewModel"
 		Title="Danfoss Heating System"
 		Icon="/Assets/Images/DanfossLogo.ico"
-		CanResize="False">
+		MinHeight="450"
+		MinWidth="800"
+		CanResize="True">
 
 
 	<Grid>
