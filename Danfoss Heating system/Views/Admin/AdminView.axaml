@@ -33,25 +33,56 @@
 				
 					<Grid Grid.Column="0" Background="Blue" Width="400" Height="378" HorizontalAlignment="Left">
 						    <Grid.Background>
-							<ImageBrush Source="/Assets/Images/DanfossCompany1.png" Stretch="UniformToFill"/>
+								<ImageBrush Source="/Assets/Images/DanfossCompany1.png" 
+											Stretch="UniformToFill"/>
+							
 							</Grid.Background>
-						<Border BorderBrush="Red" BorderThickness="2"></Border>
+						
+						<Border BorderBrush="Red" BorderThickness="2"/>
+						
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-							<Image Source="/Assets/Images/adminicon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="90" Height="90"></Image>
-							<Button Width="110" HorizontalAlignment="Center" Foreground="Black">Go to Admin</Button>
+							
+							<Image Source="/Assets/Images/adminicon.png" 
+								   HorizontalAlignment="Center" 
+								   VerticalAlignment="Center" 
+								   Width="90" 
+								   Height="90"/>
+							
+							<Button Width="110" 
+									HorizontalAlignment="Center" 
+									Foreground="Black"
+									Content="Go to Admin"
+									/>
+						
 						</StackPanel>
 					</Grid>
 
 				<!--Right Side-->
 
 					<Grid Grid.Column="1" Background="Blue" Width="400" Height="378" HorizontalAlignment="Right">
+						
 						<Grid.Background>
-						<ImageBrush Source="/Assets/Images/DanfossCompany2.png" Stretch="UniformToFill"/>
+							<ImageBrush Source="/Assets/Images/DanfossCompany2.png" 
+										Stretch="UniformToFill"/>
+						
 						</Grid.Background>
-						<Border BorderBrush="Red" BorderThickness="2"></Border>
+						
+						<Border BorderBrush="Red" BorderThickness="2"/>
+						
 						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"> 
-							<Image Source="/Assets/Images/usericon.png" HorizontalAlignment="Center" VerticalAlignment="Center" Width="105" Height="105" Margin="-10"></Image>
-							<Button Width="90" HorizontalAlignment="Center" Command="{Binding GoToUserCommand}" Foreground="Black">Go to User</Button>
+							<Image Source="/Assets/Images/usericon.png" 
+								   HorizontalAlignment="Center" 
+								   VerticalAlignment="Center" 
+								   Width="105" 
+								   Height="105" 
+								   Margin="-10"/>
+							
+							<Button Width="90" 
+									HorizontalAlignment="Center" 
+									Command="{Binding GoToUserCommand}" 
+									Foreground="Black"
+									Content="Go to user"/>
+						
 						</StackPanel>
 					</Grid>
 
