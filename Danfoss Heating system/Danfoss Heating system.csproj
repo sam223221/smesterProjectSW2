@@ -47,6 +47,9 @@
 
 
   <ItemGroup>
+    <Compile Update="Views\Admin\AdminView.axaml.cs">
+      <DependentUpon>AdminView.axaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\LoginWindow.axaml.cs">
       <DependentUpon>LoginWindow.axaml</DependentUpon>
     </Compile>

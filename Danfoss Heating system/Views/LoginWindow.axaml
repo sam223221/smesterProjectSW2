@@ -7,7 +7,6 @@
         x:Class="Danfoss_Heating_system.Views.LoginWindow"
 		x:DataType="vm:LoginWindowViewModel"
         Title="Danfoss Heating System"
-		Icon="/Assets/Images/DanfossLogo.ico"
 		Width="800"
 		Height="450"
         CanResize="False" Background="White">
