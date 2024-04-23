@@ -86,7 +86,4 @@ public partial class LoginWindowViewModel : ViewModelBase
         selectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
 
     }
-
-
-
 }

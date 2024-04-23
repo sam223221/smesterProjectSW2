@@ -11,7 +11,7 @@ namespace Danfoss_Heating_system
 {
     public class MyButtonModel
     {
-        public string ImageSource { get; set; }
+        public string ImageSource { get; set; } = "avares://Danfoss_Heating_system/Assets/Images/development.png";
         public double Width { get; set; } = 50;
         public string Background { get; set; } = "Blue";
 

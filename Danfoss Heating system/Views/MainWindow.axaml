@@ -11,7 +11,13 @@
 		Title="Danfoss Heating System"
 		Icon="/Assets/Images/DanfossLogo.ico"
 		CanResize="False">
-
+	
+	<Window.Styles>
+	<Style Selector="Button:pointerover /template/ ContentPresenter">
+		<Setter Property="Background" Value="Transparent"/>
+	</Style>
+	</Window.Styles>
+	
 	<Grid>
 		<!-- Row definitions -->
 		<Grid.RowDefinitions>
@@ -37,19 +43,19 @@
 			<Button Grid.Column="0" Background="Transparent" Width="110" Height="40" Margin="10,0,20,0">
 			<Image Grid.Column="0" Source="/Assets/Images/danfosslogowhite1.png" Width="90" Height="90" Margin="0,0,20,0"/>
 			</Button>
-		    <Button Background="Transparent" Grid.Column="1" Width="70" Height="48" Margin="90,0,0,0">
+		    <Button Background="Transparent" Grid.Column="1" Width="70" Height="44" Margin="90,-5,0,0">
 			<Label Content="FAQ"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
-			<Button Background="Transparent" Grid.Column="2" Width="77" Height="48" Margin="40,0,0,0">
-			<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+			<Button Background="Transparent" Grid.Column="2" Width="77" Height="45" Margin="40,-5,0,0">
+			<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 			</Button>
-			<Button Background="Transparent" Grid.Column="3" Width="130" Height="48" Margin="-20,0,0,0">
+			<Button Background="Transparent" Grid.Column="3" Width="130" Height="48" Margin="-20,-5,0,0">
 			<Label Content="Settings"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
-			<Button Background="Transparent" Grid.Column="4" Width="40" Height="48" Margin="-10,0,13,0">
+			<Button Background="Transparent" Grid.Column="4" Width="40" Height="43" Margin="-10,0,13,0">
 			<Image Source="/Assets/Images/bob.png" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
 			</Button>
-			<Button Background="Transparent" Grid.Column="5" Width="40" Height="48" Margin="0,0,10,0">
+			<Button Background="Transparent" Grid.Column="5" Width="40" Height="43" Margin="0,0,10,0">
 			<Image Source="/Assets/Images/exitIcon.png" VerticalAlignment="Center" Width="44" Height="35" HorizontalAlignment="Center"></Image>
 				</Button>
 		</Grid>
@@ -60,7 +66,7 @@
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
 						<Button Width="{Binding Width}" Height="55" Margin="0,30,0,0">
-							<Image Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}"/>
+							<Image Opacity="1" IsVisible="True" Source="{Binding ImageSource}" Width="{Binding ImageWidth}" Height="{Binding ImageHeight}"/>
 						</Button>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>

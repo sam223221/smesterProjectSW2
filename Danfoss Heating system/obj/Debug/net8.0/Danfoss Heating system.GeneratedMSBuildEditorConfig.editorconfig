@@ -13,24 +13,21 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Danfoss_Heating_system
-build_property.ProjectDir = C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\
+build_property.ProjectDir = C:\Users\kubak\OneDrive\Pulpit\Danfoss Heating System\smesterProjectSW2\Danfoss Heating system\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/App.axaml]
+[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminSecoundScreen.axaml]
+[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminView.axaml]
+[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/LoginWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/LoginWindow.axaml]
+[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/User/UserView.axaml]
+[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/User/UserView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

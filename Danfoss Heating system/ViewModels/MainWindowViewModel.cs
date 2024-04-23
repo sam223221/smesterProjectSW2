@@ -48,7 +48,7 @@ namespace Danfoss_Heating_system.ViewModels
             switch (roles)
             {
                 case "Admin":
-                    CurrentContent = new AdminSecoundScreen() { DataContext = new AdminMainPageViewModel(this) };
+                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
                     break;
                 case "User":
                     CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
@@ -57,10 +57,10 @@ namespace Danfoss_Heating_system.ViewModels
 
             Buttons = new ObservableCollection<MyButtonModel>
             {
-                new MyButtonModel{ ImageSource = "/Assets/Images/evaluation.png", Width = 50, Background = "Blue", ImageHeight = 40, ImageWidth = 40},
-                new MyButtonModel{ ImageSource="/Assets/Images/performance.png", Width = 50, Background="Blue", ImageHeight = 40, ImageWidth = 40},
-                new MyButtonModel{ ImageSource = "/Assets/Images/evaluation.png", Width = 50, Background = "Blue", ImageHeight = 40, ImageWidth = 40},
-                new MyButtonModel{ ImageSource="/Assets/Images/performance.png", Width = 50, Background="Transparent", ImageHeight = 40, ImageWidth = 40}
+                new MyButtonModel { ImageSource = "avares://Danfoss_Heating_system/Assets/Images/performance.png", Width = 50, Background = "Blue", ImageHeight = 40, ImageWidth = 40},
+                new MyButtonModel { ImageSource = "/Assets/Images/performance.png", Width = 50, Background="Blue", ImageHeight = 40, ImageWidth = 40},
+                new MyButtonModel { ImageSource = "/Assets/Images/evaluation.png", Width = 50, Background = "Blue", ImageHeight = 40, ImageWidth = 40},
+                new MyButtonModel { ImageSource = "/Assets/Images/performance.png", Width = 50, Background="Transparent", ImageHeight = 40, ImageWidth = 40}
             };
         }
         private bool _isSidebarVisible = true; // Initialize as visible.

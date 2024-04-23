@@ -20,9 +20,6 @@ build_property.EnableGeneratedComInterfaceComImportInterop =
 [C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminSecoundScreen.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Users/kubak/OneDrive/Pulpit/Danfoss Heating System/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
