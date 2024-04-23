@@ -54,6 +54,7 @@ namespace Danfoss_Heating_system.ViewModels
                     CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
                     break;
             }
+
             Buttons = new ObservableCollection<MyButtonModel>
             {
                 new MyButtonModel{ ImageSource = "/Assets/Images/evaluation.png", Width = 50, Background = "Blue", ImageHeight = 40, ImageWidth = 40},
