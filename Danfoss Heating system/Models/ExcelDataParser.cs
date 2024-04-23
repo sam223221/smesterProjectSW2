@@ -123,7 +123,7 @@ namespace Danfoss_Heating_system.Models
                     var timeFromStringWinter = row.Cell(1).GetValue<DateTime>();   // Winter TimeFrom
                     var timeToStringWinter = row.Cell(2).GetValue<DateTime>();   // Winter TimeTo
                     double.TryParse(row.Cell(3).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringWinter);          // Winter HeatDemand                                                                            
-                    double.TryParse(row.Cell(4).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringWinter);    // Winter HeatDemand
+                    double.TryParse(row.Cell(4).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringWinter);    // Winter ElectricityPrice
 
                     energyDataList.Add(new EnergyData
                     {
@@ -137,7 +137,7 @@ namespace Danfoss_Heating_system.Models
                     var timeFromStringSummer = row.Cell(6).GetValue<DateTime>();   // Summer TimeFrom
                     var timeToStringSummer = row.Cell(7).GetValue<DateTime>();   // Summer TimeTo
                     double.TryParse(row.Cell(8).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringSummer);          // Winter HeatDemand
-                    double.TryParse(row.Cell(9).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringSummer);    // Winter HeatDemand
+                    double.TryParse(row.Cell(9).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringSummer);    // Winter ElectricityPrice
 
                     energyDataList.Add(new EnergyData
                     {

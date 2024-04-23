@@ -33,7 +33,7 @@ namespace Danfoss_Heating_system.ViewModels
 
             var loginWindow = new LoginWindow();
             loginWindow.DataContext = new LoginWindowViewModel(loginWindow); // Passes the window so it can be manipulated
-
+            
             loginWindow.Show();
             _window.Close();
         }

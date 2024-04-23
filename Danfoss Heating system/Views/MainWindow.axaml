@@ -54,7 +54,7 @@
 				</Button>
 		</Grid>
 
-		<Border x:Name="SideBar" Grid.Row="1" Margin="0,20,0,20" IsVisible="{Binding IsSidebarVisible}" Width="50" Grid.RowSpan="2" HorizontalAlignment="Left" Background="#e00404" BorderBrush="Aqua" Opacity="0.7">
+		<Border x:Name="SideBar" Grid.Row="1" Margin="0,0,0,0" IsVisible="{Binding IsSidebarVisible}" Width="50" Grid.RowSpan="2" HorizontalAlignment="Left" Background="#e00404" BorderBrush="Aqua" Opacity="0.7">
 			<StackPanel>
 			<ItemsControl ItemsSource="{Binding Buttons}">
 			<ItemsControl.ItemTemplate>

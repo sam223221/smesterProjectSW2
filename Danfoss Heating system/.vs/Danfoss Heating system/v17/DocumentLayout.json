@@ -3,76 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\admin\\adminsecoundscreen.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminsecoundscreen.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\mybuttonmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:mybuttonmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\booleantowidthconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:booleantowidthconverter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\assets\\images\\performance.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:assets\\images\\performance.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:app.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\danfoss heating system.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:danfoss heating system.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\mainwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\mainwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\loginwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\viewlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewlocator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\mainwindowviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\viewmodelbase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\loginwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\usermainpage\\usermainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -83,12 +39,32 @@
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\user\\userview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\views\\admin\\adminsecoundscreen.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminsecoundscreen.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\loginwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\kubak\\onedrive\\pulpit\\danfoss heating system\\smesterprojectsw2\\danfoss heating system\\views\\admin\\adminview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\admin\\adminview.axaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\models\\energydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\energydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
@@ -123,24 +99,37 @@
         },
         {
           "DockedWidth": 516,
-          "SelectedChildIndex": 10,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "BooleanToWidthConverter.cs",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\BooleanToWidthConverter.cs",
-              "RelativeDocumentMoniker": "BooleanToWidthConverter.cs",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\BooleanToWidthConverter.cs",
-              "RelativeToolTip": "BooleanToWidthConverter.cs",
+              "DocumentIndex": 13,
+              "Title": "AdminView.axaml.cs",
+              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminView.axaml.cs",
+              "RelativeDocumentMoniker": "Views\\Admin\\AdminView.axaml.cs",
+              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminView.axaml.cs",
+              "RelativeToolTip": "Views\\Admin\\AdminView.axaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T17:48:54.843Z",
+              "WhenOpened": "2024-04-23T11:37:34.486Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
+              "Title": "ViewModelBase.cs",
+              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\ViewModelBase.cs",
+              "RelativeDocumentMoniker": "ViewModels\\ViewModelBase.cs",
+              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\ViewModelBase.cs",
+              "RelativeToolTip": "ViewModels\\ViewModelBase.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-23T11:29:18.602Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "AdminView.axaml",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminView.axaml",
               "RelativeDocumentMoniker": "Views\\Admin\\AdminView.axaml",
@@ -153,31 +142,31 @@
             {
               "$type": "Document",
               "DocumentIndex": 9,
-              "Title": "performance.png - PNG [512x512, 32 bit, PNG]",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Assets\\Images\\performance.png",
-              "RelativeDocumentMoniker": "Assets\\Images\\performance.png",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Assets\\Images\\performance.png - PNG [512x512, 32 bit, PNG]",
-              "RelativeToolTip": "Assets\\Images\\performance.png - PNG [512x512, 32 bit, PNG]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
-              "WhenOpened": "2024-04-22T17:46:31.309Z",
-              "EditorCaption": " - PNG [512x512, 32 bit, PNG]"
+              "Title": "AdminSecoundScreen.axaml",
+              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminSecoundScreen.axaml",
+              "RelativeDocumentMoniker": "Views\\Admin\\AdminSecoundScreen.axaml",
+              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminSecoundScreen.axaml",
+              "RelativeToolTip": "Views\\Admin\\AdminSecoundScreen.axaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-04-23T11:12:00.478Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainWindowViewModel.cs",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\MainWindowViewModel.cs",
               "RelativeToolTip": "ViewModels\\MainWindowViewModel.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAUwDgAAAAKAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAwwEgAAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-14T16:27:35.824Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "MainWindow.axaml",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\MainWindow.axaml",
               "RelativeDocumentMoniker": "Views\\MainWindow.axaml",
@@ -189,46 +178,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "ViewLocator.cs",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewLocator.cs",
-              "RelativeDocumentMoniker": "ViewLocator.cs",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewLocator.cs",
-              "RelativeToolTip": "ViewLocator.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-22T17:10:17.299Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "LoginWindowViewModel.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\LoginWindowViewModel.cs",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\LoginWindowViewModel.cs",
               "RelativeToolTip": "ViewModels\\LoginWindowViewModel.cs",
-              "ViewState": "AQIAAD0AAAAAAAAAAAAgwAAAAAAAAAAA",
+              "ViewState": "AQIAADwAAAAAAAAAAAA5wB4AAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-06T20:14:26.206Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "MyButtonModel.cs",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\MyButtonModel.cs",
-              "RelativeDocumentMoniker": "MyButtonModel.cs",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\MyButtonModel.cs",
-              "RelativeToolTip": "MyButtonModel.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAAAsAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-21T11:43:08.94Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "MainWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\MainWindow.axaml.cs",
               "RelativeDocumentMoniker": "Views\\MainWindow.axaml.cs",
@@ -241,44 +204,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "ViewModelBase.cs",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\ViewModelBase.cs",
-              "RelativeDocumentMoniker": "ViewModels\\ViewModelBase.cs",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\ViewModelBase.cs",
-              "RelativeToolTip": "ViewModels\\ViewModelBase.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAxAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T16:30:54.673Z"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "AdminSecoundScreen.axaml",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminSecoundScreen.axaml",
-              "RelativeDocumentMoniker": "Views\\Admin\\AdminSecoundScreen.axaml",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\Admin\\AdminSecoundScreen.axaml",
-              "RelativeToolTip": "Views\\Admin\\AdminSecoundScreen.axaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-21T10:47:59.096Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "Danfoss Heating system.csproj",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
-              "RelativeDocumentMoniker": "Danfoss Heating system.csproj",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
-              "RelativeToolTip": "Danfoss Heating system.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-04-15T16:15:31.733Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "LoginWindow.axaml",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
               "RelativeDocumentMoniker": "Views\\LoginWindow.axaml",
@@ -290,20 +216,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 12,
               "Title": "AdminMainPageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
               "RelativeToolTip": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAACUAAAAAAAAA",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAACQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-06T20:14:27.397Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 10,
               "Title": "LoginWindow.axaml.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml.cs",
               "RelativeDocumentMoniker": "Views\\LoginWindow.axaml.cs",
@@ -311,24 +237,12 @@
               "RelativeToolTip": "Views\\LoginWindow.axaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T16:15:47.061Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "app.manifest",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\app.manifest",
-              "RelativeDocumentMoniker": "app.manifest",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\app.manifest",
-              "RelativeToolTip": "app.manifest",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
-              "WhenOpened": "2024-04-15T14:08:20.938Z",
+              "WhenOpened": "2024-04-15T16:15:47.061Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 1,
               "Title": "App.axaml",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\App.axaml",
               "RelativeDocumentMoniker": "App.axaml",
@@ -340,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 7,
               "Title": "UserMainPageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\UserMainPage\\UserMainPageViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\UserMainPage\\UserMainPageViewModel.cs",
@@ -348,47 +262,37 @@
               "RelativeToolTip": "ViewModels\\UserMainPage\\UserMainPageViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-14T18:25:59.734Z"
+              "WhenOpened": "2024-04-14T18:25:59.734Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 8,
               "Title": "UserView.axaml",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\User\\UserView.axaml",
               "RelativeDocumentMoniker": "Views\\User\\UserView.axaml",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Views\\User\\UserView.axaml",
               "RelativeToolTip": "Views\\User\\UserView.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-15T14:08:01.496Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-15T14:08:18.374Z",
+              "WhenOpened": "2024-04-15T14:08:01.496Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 15,
               "Title": "ExcelDataParser.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
               "RelativeDocumentMoniker": "Models\\ExcelDataParser.cs",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
               "RelativeToolTip": "Models\\ExcelDataParser.cs",
-              "ViewState": "AQIAAKMAAAAAAAAAAAD4v7kAAAAqAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwBYAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T13:42:25.663Z"
+              "WhenOpened": "2024-04-07T13:42:25.663Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 16,
               "Title": "MainViewModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
               "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\..\\samgl\\Documents\\GitHub\\UNI-HomeWork\\Danfoss heating\\ViewModels\\MainViewModel.cs",
@@ -400,19 +304,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 14,
               "Title": "EnergyData.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Models\\EnergyData.cs",
               "RelativeDocumentMoniker": "Models\\EnergyData.cs",
               "ToolTip": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Models\\EnergyData.cs",
               "RelativeToolTip": "Models\\EnergyData.cs",
-              "ViewState": "AQIAAAoAAAAAAAAAAAA1wBwAAAAAAAAA",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAEwB8AAAAkAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-07T13:44:29.673Z"
+              "WhenOpened": "2024-04-07T13:44:29.673Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 17,
               "Title": "App.axaml.cs",
               "DocumentMoniker": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\App.axaml.cs",
               "RelativeDocumentMoniker": "App.axaml.cs",
