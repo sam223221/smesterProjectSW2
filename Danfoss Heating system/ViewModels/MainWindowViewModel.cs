@@ -22,6 +22,9 @@ namespace Danfoss_Heating_system.ViewModels
         [ObservableProperty]
         private int sideBarWidth = 0;
 
+        
+        public string userName;
+
 
         private bool _isSideBarOpen = false;
 
@@ -44,17 +47,41 @@ namespace Danfoss_Heating_system.ViewModels
 
 
 
-
-        public MainWindowViewModel(string roles, Window window)
+        public MainWindowViewModel(EnergyData item, Window window)
         {
 
             this.window = window;
-
-
-
+            userName = item.UserID;
 
             //sets the view within the window to the current role that is logging in
-            switch (roles)
+            switch (item.UserRole)
+            {
+                case "Admin":
+                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
+                    AdminNavigationBar();
+                    break;
+                case "User":
+                    CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
+                    break;
+            }
+
+        }
+
+
+        private void AdminNavigationBar()
+        {
+            NavigationButtons = new ObservableCollection<MyButtonModel>
+            {
+                new MyButtonModel("User", ReactiveCommand.Create<string>(AdminNavigationExe)),
+                new MyButtonModel("Admin", ReactiveCommand.Create<string>(AdminNavigationExe)),
+            };
+        }
+
+        private void AdminNavigationExe(string parameter)
+        {
+            Debug.WriteLine("This is the input : " + parameter);
+
+            switch (parameter)
             {
                 case "Admin":
                     CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
@@ -62,16 +89,12 @@ namespace Danfoss_Heating_system.ViewModels
                 case "User":
                     CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
                     break;
+
             }
 
-            NavigationButtons = new ObservableCollection<MyButtonModel>
-            {
-                new MyButtonModel { ButtonName = "Admin"}
-            };
-
+            _isSideBarOpen= false;
+            SideBarWidth = 0;
         }
-
-
 
 
         [RelayCommand]

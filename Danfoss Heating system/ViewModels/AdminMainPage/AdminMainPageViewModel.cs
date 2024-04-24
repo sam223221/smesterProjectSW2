@@ -23,10 +23,13 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
 
         private MainWindowViewModel viewchange;
 
+        [ObservableProperty]
+        private string userName;
 
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
             viewchange = mv;
+            userName = "welcome back " + mv.userName;
         }
 
 

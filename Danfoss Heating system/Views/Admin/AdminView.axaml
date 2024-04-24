@@ -37,12 +37,34 @@
 				<Image Source="/Assets/Images/graph1.png" Width="300" Height="250" Opacity="1" Stretch="UniformToFill" Margin="100,30,0,20"/>
 			</StackPanel>
 			
-			<Label Content="Welcome back admin" FontSize="20" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="White"></Label>
+			<Label Content="{Binding UserName}" FontSize="20" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="White"/>
 			
 			<Border Grid.Row="2" Grid.RowSpan="2" Background="Transparent" Width="29" VerticalAlignment="Bottom" HorizontalAlignment="Left">
 				<StackPanel Orientation="Horizontal">
-				<Button Grid.Row="2" HorizontalAlignment="Left" Margin="200,0,0,40" Content="Go to graph" VerticalAlignment="Bottom" Width="100" Foreground="White" Background="Black"/>
-				<Button VerticalAlignment="Bottom" HorizontalAlignment="Right"  Margin="240,0,0,40" Grid.Row="3" Content="Go to chart" Width="100" Foreground="White" Background="Black"/>
+				
+					<!-- Go to Graph -->
+					<Button Grid.Row="2" 
+							HorizontalAlignment="Left" 
+							Margin="200,0,0,40" 
+							Content="Go to graph" 
+							VerticalAlignment="Bottom" 
+							Width="100" 
+							Foreground="White" 
+							Background="Black"
+							Command="{Binding GoToUserCommand}"
+							/>
+					
+					<!-- Go to Chart -->
+					<Button VerticalAlignment="Bottom" 
+							HorizontalAlignment="Right"  
+							Margin="240,0,0,40" 
+							Grid.Row="3" 
+							Content="Go to chart" 
+							Width="100" 
+							Foreground="White" 
+							Background="Black"
+							/>
+					
 				</StackPanel>
 			</Border>
 			
