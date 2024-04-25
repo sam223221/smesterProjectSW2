@@ -104,6 +104,7 @@
 				   TextDecorations="Underline" 
 				   FontSize="10" 
 				   HorizontalAlignment="Center"
+				   PointerPressed="TextBlock_PointerPressed"
 				   >
 			<Run Text="Need help? Contact IT Service."/>
 		</TextBlock>
@@ -130,6 +131,17 @@
 			</Grid>
 		</Border>
 
+		<Border x:Name="InfoPupup" Background="#a30008" Padding="10" CornerRadius="5"
+				HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.9" IsVisible="False" ZIndex="100" Grid.Row="6" Grid.Column="2" Height="140">
+			<TextBlock TextAlignment="Center">
+				<Run Text="Information for IT service"/>
+				<LineBreak/>
+			    <LineBreak/>
+				<Run Text="+45 123 456 78"/>
+				<LineBreak/>
+				<Run Text="danfoss@gmail.com"/>
+			</TextBlock>
+		</Border>
 	</Grid>
 
 </Window>

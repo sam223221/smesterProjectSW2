@@ -2,92 +2,73 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:vm="using:Danfoss_Heating_system.ViewModels.AdminMainPage"
+			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.AdminMainPage"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             Width="800" Height="450"
-			 x:Class="Danfoss_Heating_system.AdminView"
-			 x:DataType="vm:AdminMainPageViewModel"
-			 Background="White">
-	
+             x:Class="Danfoss_Heating_system.AdminView"
+             x:DataType="vm:AdminMainPageViewModel">
 
-	<Grid RowDefinitions="Auto, Auto, *">
-			<!--Title Bar-->
-			
-			<Grid Grid.Row="0" Background="White" Height="70" ColumnDefinitions="*">
-				<StackPanel>
-					<Image Height="70" HorizontalAlignment="Center" VerticalAlignment="Bottom" Source="/Assets/Images/DanfossLogo.png"/>
+<!-- Main grid-->
+	<Grid>
+		<!--Main grid - column definitions-->
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="50"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
 
-				</StackPanel>
-			</Grid>
-			
-			<!--Seperating Line-->
-			
-			<Grid Grid.Row="1" Background="Red" Height="2">
-			
-			</Grid>
+		<!--Main grid - row definitions-->
+		<Grid.RowDefinitions>
+			<RowDefinition Height="20"></RowDefinition>
+			<RowDefinition></RowDefinition>
+		</Grid.RowDefinitions>
 
-			<!--Main Area-->
+	<!--Main area-->
+		<Grid Grid.Row="1" Grid.ColumnSpan="2" Height="430">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
 			
-			<Grid Grid.Row="2" ColumnDefinitions="*, *">
-				<!--Left Side-->
+			<Grid.Background>
+				<ImageBrush Opacity="50" Stretch="UniformToFill" Source="/Assets/Images/DanfossHQ.jpg"/>
+			</Grid.Background>
+
+			<StackPanel Grid.RowSpan="2" Orientation="Horizontal">
+				<Image Source="/Assets/Images/chart1.png" Width="200" Height="250" Opacity="1" Stretch="UniformToFill" Margin="140,30,0,20"/>
+				<Image Source="/Assets/Images/graph1.png" Width="300" Height="250" Opacity="1" Stretch="UniformToFill" Margin="100,30,0,20"/>
+			</StackPanel>
+			
+			<Label Content="{Binding UserName}" FontSize="20" HorizontalAlignment="Center" Margin="0,15,0,0" Foreground="White"/>
+			
+			<Border Grid.Row="2" Grid.RowSpan="2" Background="Transparent" Width="29" VerticalAlignment="Bottom" HorizontalAlignment="Left">
+				<StackPanel Orientation="Horizontal">
 				
-					<Grid Grid.Column="0" Background="Blue" Width="400" Height="378" HorizontalAlignment="Left">
-						    <Grid.Background>
-								<ImageBrush Source="/Assets/Images/DanfossCompany1.png" 
-											Stretch="UniformToFill"/>
-							
-							</Grid.Background>
-						
-						<Border BorderBrush="Red" BorderThickness="2"/>
-						
-						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-							
-							<Image Source="/Assets/Images/adminicon.png" 
-								   HorizontalAlignment="Center" 
-								   VerticalAlignment="Center" 
-								   Width="90" 
-								   Height="90"/>
-							
-							<Button Width="110" 
-									HorizontalAlignment="Center" 
-									Foreground="Black"
-									Content="Go to Admin"
-									/>
-						
-						</StackPanel>
-					</Grid>
+					<!-- Go to Graph -->
+					<Button Grid.Row="2" 
+							HorizontalAlignment="Left" 
+							Margin="200,0,0,40" 
+							Content="Go to graph" 
+							VerticalAlignment="Bottom" 
+							Width="100" 
+							Foreground="White" 
+							Background="Black"
+							Command="{Binding GoToUserCommand}"
+							/>
+					
+					<!-- Go to Chart -->
+					<Button VerticalAlignment="Bottom" 
+							HorizontalAlignment="Right"  
+							Margin="240,0,0,40" 
+							Grid.Row="3" 
+							Content="Go to chart" 
+							Width="100" 
+							Foreground="White" 
+							Background="Black"
+							/>
+					
+				</StackPanel>
+			</Border>
+			
+		</Grid>
 
-				<!--Right Side-->
-
-					<Grid Grid.Column="1" Background="Blue" Width="400" Height="378" HorizontalAlignment="Right">
-						
-						<Grid.Background>
-							<ImageBrush Source="/Assets/Images/DanfossCompany2.png" 
-										Stretch="UniformToFill"/>
-						
-						</Grid.Background>
-						
-						<Border BorderBrush="Red" BorderThickness="2"/>
-						
-						<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"> 
-							<Image Source="/Assets/Images/usericon.png" 
-								   HorizontalAlignment="Center" 
-								   VerticalAlignment="Center" 
-								   Width="105" 
-								   Height="105" 
-								   Margin="-10"/>
-							
-							<Button Width="90" 
-									HorizontalAlignment="Center" 
-									Command="{Binding GoToUserCommand}" 
-									Foreground="Black"
-									Content="Go to user"/>
-						
-						</StackPanel>
-					</Grid>
-
-			</Grid>
 	</Grid>
-
-
 </UserControl>

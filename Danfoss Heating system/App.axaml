@@ -4,7 +4,7 @@
              xmlns:local="using:Danfoss_Heating_system"
              RequestedThemeVariant="Default">
              <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
-
+	
     <Application.DataTemplates>
         <local:ViewLocator/>
     </Application.DataTemplates>

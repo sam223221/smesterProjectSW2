@@ -17,8 +17,17 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Images\bob.png" />
+    <None Remove="Assets\Images\chart1.PNG" />
     <None Remove="Assets\Images\DanfossHeadquarters.jpg" />
     <None Remove="Assets\Images\DanfossLogo.png" />
+    <None Remove="Assets\Images\danfosslogowhite.PNG" />
+    <None Remove="Assets\Images\danfosslogowhite1.png" />
+    <None Remove="Assets\Images\development.png" />
+    <None Remove="Assets\Images\evaluation.png" />
+    <None Remove="Assets\Images\exitIcon.png" />
+    <None Remove="Assets\Images\graph1.PNG" />
+    <None Remove="Assets\Images\performance.png" />
   </ItemGroup>
 
 
