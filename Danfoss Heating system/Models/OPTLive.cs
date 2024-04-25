@@ -7,8 +7,7 @@ using System.Reactive;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Danfoss_Heating_system.Models 
-{ 
+namespace Danfoss_Heating_system.Models;
 
 
 /* 
@@ -25,55 +24,62 @@ outputs: list:
 6. total cost     
 7. current emmitions  manuale
 */
+
+
+
+
 internal class OPTLive
 {
-    ExcelDataParser ExcelDataParser;
-    string filepath;
+        ExcelDataParser ExcelDataParser;
+        
 
         Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
-       public OPTLive(string filePath)
+
+        public OPTLive(string filePath)
         {
-            this.filepath = filePath;
             this.ExcelDataParser = new ExcelDataParser(filePath);
         }
 
+
         public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> UsingMachines(double predictedHeatDemand)
         {
-          var productionUnits = ExcelDataParser.ParserProductionUnits();
-            
+            var productionUnits = ExcelDataParser.ParserProductionUnits();
+         
+             
 
             foreach (var unit in productionUnits) 
             {
+                var localOPTProp = new OPTLiveProp(unit);
 
-            var localOPTProp = new OPTLiveProp(unit);
-                localOPTProp.remainingHeatDemand = predictedHeatDemand; //10
-            
-                if(unit.MaxHeat <= localOPTProp.remainingHeatDemand)
-                   {
-                    localOPTProp.isUnitEnabled = true;
-                localOPTProp.remainingHeatDemand -= unit.MaxHeat;//6
-               localOPTProp.usingHeatDemand = unit.MaxHeat;
-                localOPTProp.usingCO2Emission = unit.CO2Emission * localOPTProp.usingHeatDemand;
-               optimalizationDataStatus.Add(unit.Name, (localOPTProp.isUnitEnabled, localOPTProp));
-                   }
+
+                if(unit.MaxHeat <= predictedHeatDemand)
+                {
+                    localOPTProp.isUnitEnabled          = true;
+                    predictedHeatDemand                 -= unit.MaxHeat;
+                    localOPTProp.usingHeatDemand        = unit.MaxHeat;
+                    localOPTProp.usingCO2Emission       = unit.CO2Emission * localOPTProp.usingHeatDemand;
+                    
+                    optimalizationDataStatus.Add(unit.Name, (localOPTProp.isUnitEnabled, localOPTProp));
+                }
 
                else
-                 {
-                  if(localOPTProp.remainingHeatDemand > -0.3)
+               {
+                    if(predictedHeatDemand > 0)
                     {
-                    localOPTProp.isUnitEnabled = true;
-                    optimalizationDataStatus.Add(unit.Name, (localOPTProp.isUnitEnabled, localOPTProp));
-                     localOPTProp.usingHeatDemand = unit.MaxHeat - localOPTProp.remainingHeatDemand;
+                        localOPTProp.isUnitEnabled = true;
+                        localOPTProp.usingHeatDemand = unit.MaxHeat - localOPTProp.remainingHeatDemand;
                         localOPTProp.usingCO2Emission = localOPTProp.usingHeatDemand * unit.CO2Emission;
+
+                        optimalizationDataStatus.Add(unit.Name, (localOPTProp.isUnitEnabled, localOPTProp));
                     }
-                  else
+                    else
                     {
-                    localOPTProp.isUnitEnabled = false;
+                        localOPTProp.isUnitEnabled = false;
                     }
-                 }
+               }
+            }
+            return optimalizationDataStatus;
         }
-        return optimalizationDataStatus;
-    }
 
     public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> LowestCost()
     {
@@ -110,6 +116,4 @@ internal class OPTLive
             }
             return TotalCO2Emmition;
         }
-}
-
 }
