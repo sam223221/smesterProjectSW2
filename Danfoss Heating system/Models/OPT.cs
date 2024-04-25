@@ -146,5 +146,60 @@ internal class OPT
         return list;
     }
 
+    private double predictHeatDemand(int hourDemandCell, bool winter, string excelFilePath)
+    {
+        //Predicted heat demand
+        double predHeatDemand = 0;
+        //Offset of cells in the excel sheet
+        int offset = 4;
+
+        string cellOne = "D4";
+        string cellTwo = "D4";
+        string cellThr = "D4";
+
+        //Reference to the excel sheet
+        var workbook = new XLWorkbook(excelFilePath);
+
+
+        //Setting the references to the excel cells
+        if (winter)
+        {
+            cellOne = "D" + (hourDemandCell - 24).ToString();
+            cellTwo = "D" + (hourDemandCell - 48).ToString();
+            cellThr = "D" + (hourDemandCell - 72).ToString();
+        } else
+        {
+            cellOne = "I" + (hourDemandCell - 24).ToString();
+            cellTwo = "I" + (hourDemandCell - 48).ToString();
+            cellThr = "I" + (hourDemandCell - 72).ToString();
+        }
+    
+
+        //This if statement makes the method return 0 as a heat demand if the data is insufficient
+        if (hourDemandCell >= 24 + offset)
+        {
+            //Getting the data from the excel cells
+            double demand24 = Convert.ToDouble((string)workbook.Cell(cellOne).Value);
+            double demand48 = Convert.ToDouble((string)workbook.Cell(cellTwo).Value);
+            double demand72 = Convert.ToDouble((string)workbook.Cell(cellThr).Value);
+
+            // This is here so that if we don't have enough heat demand data for past days, the program won't die
+            if (hourDemandCell >= 72 + offset)
+            {
+                predHeatDemand = demand24 + demand48 + demand72 / 3;
+            }
+            else if (hourDemandCell >= 48 + offset)
+            {
+                predHeatDemand = demand24 + demand48 / 2;
+            }
+            else
+            {
+                predHeatDemand = demand24;
+            }
+        }
+
+        return predHeatDemand;
+    }
+
 }
 
