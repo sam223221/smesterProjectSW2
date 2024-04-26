@@ -41,11 +41,11 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         // color states of the summer and winter buttons
         [ObservableProperty]
-        private string summerFontWeight = "Bold";
+        private string summerFontWeight = "Normal";
         [ObservableProperty]
         private string summerBackground = "Gray";
         [ObservableProperty]
-        private string winterFontWeight = "Normal";
+        private string winterFontWeight = "Bold";
         [ObservableProperty]
         private string winterBackground = "Green";
 
@@ -95,7 +95,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string eCOFriendlyFontWeight = "Normal";
         [ObservableProperty]
-        private string eCOFriendlyBackground = "Silver";
+        private string eCOFriendlyBackground = "Gray";
         private bool LowCost = true;
         private bool ECOFriendly = false;
 
@@ -138,11 +138,18 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             {
                 LowCostWeight = "Bold";
                 LowCostBackground = "Green";
+                return;
             }
             if (LowCost != true && ECOFriendly != false)
             {
                 LowCostWeight = "Normal";
                 LowCostBackground = "Gray";
+                return;
+            }
+            else
+            {
+                LowCost = !LowCost;
+                return;
             }
         }
 
@@ -155,11 +162,18 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             {
                 ECOFriendlyFontWeight = "Bold";
                 ECOFriendlyBackground = "Green";
+                return;
             }
             if (ECOFriendly != true && LowCost != false)
             {
                 ECOFriendlyFontWeight = "Normal";
                 ECOFriendlyBackground = "Gray";
+                return;
+            }
+            else
+            {
+                ECOFriendly = !ECOFriendly;
+                return;
             }
 
         }
@@ -185,19 +199,13 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [RelayCommand]
         private void ManualMode(string? answer)
         {
+            ManualModeVisible = !ManualModeVisible;
+
             if (answer == "Yes")
             {
-                viewChange.CurrentContent = new ManualModeLiveOptimiserView();
+                viewChange.CurrentContent = new ManualModeLiveOptimiserView() { DataContext = new ManualModeLiveOptimiserViewModel(viewChange)};
                 return;
             }
-            else if (answer == "No")
-            {
-                ManualModeVisible = false;
-                return;
-            }
-
-            ManualModeVisible = true;
-
         }
 
         // constructor for the live optimiser view model

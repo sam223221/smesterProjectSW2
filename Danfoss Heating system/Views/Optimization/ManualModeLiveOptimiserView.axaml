@@ -2,6 +2,1196 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Danfoss_Heating_system.ManualModeLiveOptimiserView">
+			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.OPT"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             x:Class="Danfoss_Heating_system.ManualModeLiveOptimiserView"
+			 x:DataType="vm:ManualModeLiveOptimiserViewModel"
+			 Background="White">
+
+	<Grid 
+		RowDefinitions="2*,*,*" 
+		ColumnDefinitions="*,Auto">
+
+		<!-- warning sign when changing back to Auto-->
+		<Border 
+			Width="700"
+			Height="400"
+			Grid.ColumnSpan="2"
+			Grid.RowSpan="3"
+			VerticalAlignment="Center"
+			HorizontalAlignment="Center"
+			BorderBrush="Red"
+			BorderThickness="5"
+			ZIndex="2"
+			Background="Red"
+			CornerRadius="30"
+			IsVisible="{Binding AutoModeSwitch}">
+
+			<Grid 
+				RowDefinitions="2*,*">
+
+				<StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+					<TextBlock 
+						Text="Are you sure you want to leave Manual Mode?" 
+						FontSize="25" FontWeight="Bold" Margin="20" Foreground="White" HorizontalAlignment="Center"/>
+					<TextBlock 
+						Text="When you leave manual mode everything will go to Auto agian!" 
+						FontSize="20" FontWeight="Bold" Margin="20" Foreground="White" HorizontalAlignment="Center"/>
+					<TextBlock 
+						Text="nothing will be saved" 
+						FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center"/>
+				</StackPanel>
+
+
+					<Grid 
+						ColumnDefinitions="*,*" 
+						Grid.Row="1">
+
+						
+						<Border 
+							Width="100"
+							Height="50"
+							CornerRadius="50"
+							Background="LightSeaGreen"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Grid.Column="0">
+							
+							<Button 
+								FontSize="25"
+								Width="100"
+								Height="50"
+								CornerRadius="50"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Background="Green"
+								Grid.Column="0"
+								Command="{Binding AutoModeCommand}"
+								CommandParameter="yes">
+								
+								<TextBlock 
+									Text="yes"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									Foreground="White"/>
+							</Button>
+						</Border>
+						
+						
+						<Border 
+							Width="100"
+							Height="50"
+							CornerRadius="50"
+							Background="RosyBrown"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Grid.Column="1">
+							
+							<Button 
+								FontSize="25"
+								Width="100"
+								Height="50"
+								CornerRadius="50"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Background="DarkRed"
+								Grid.Column="1"
+								Command="{Binding AutoModeCommand}">
+								
+								<TextBlock 
+									Text="NO"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									Foreground="White"/>
+							</Button>
+						</Border>
+						
+					</Grid>
+			</Grid>			
+		</Border>
+		<Grid 
+			ColumnDefinitions="*,*,*,*"
+			RowDefinitions="3*,*"
+			Grid.Row="0"
+			Grid.Column="0">
+			
+			<!-- Gas Boiler -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="5"
+				BorderBrush="{Binding GasBoilerState}"
+				Width="380"
+				Height="300"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Grid.Column="0"
+				Grid.Row="0">
+
+				<Border.Background >
+					<ImageBrush 
+						Source="\Assets\Images\GasBoilerPic.png" 
+						Stretch="UniformToFill"/>
+				</Border.Background>
+					   
+			</Border>
+			
+			<!-- Oil Boiler -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="5"
+				BorderBrush="{Binding OilBoilerState}"
+				Width="380"
+				Height="300"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Grid.Column="1"
+				Grid.Row="0">
+
+				<Border.Background>
+					<ImageBrush 
+						Source="\Assets\Images\OilBoilerPic.png" 
+						Stretch="UniformToFill"/>
+				</Border.Background>
+
+			</Border>
+			
+			
+			<!-- Gas Motor -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="5"
+				BorderBrush="{Binding GasMotorState}"
+				Width="380"
+				Height="300"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Grid.Column="2"
+				Grid.Row="0">
+
+				<Border.Background>
+					<ImageBrush
+						Source="\Assets\Images\GasMotorPic.png" 
+						Stretch="UniformToFill"/>
+				</Border.Background>
+			</Border>
+			
+			<!-- Electric Boiler -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="5"
+				BorderBrush="{Binding ElectricBoilerState}"
+				Width="380"
+				Height="300"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Bottom"
+				Grid.Column="3"
+				Grid.Row="0">
+
+				<Border.Background>
+					<ImageBrush 
+						Source="\Assets\Images\ElectricBoilerPic.png" 
+						Stretch="UniformToFill"/>
+				</Border.Background>
+				
+			</Border>
+			
+			
+			<!-- bulbs under the pictures -->
+			
+			<!-- Under Gas Boiler -->
+
+			<StackPanel 
+				Orientation="Horizontal"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Grid.Column="0"
+				Grid.Row="1">
+
+				<Ellipse 
+					Width="50"
+					Height="50"
+					Fill="{Binding GasBoilerState}"
+					HorizontalAlignment="Center"
+					Margin="10,0,0,0"
+					Stroke="Black"
+					StrokeThickness="3"/>
+
+				<Border 
+					Background="Green"
+					Width="70"
+					Height="50"
+					CornerRadius="10"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					Margin="10">
+					
+					<Button 
+						Width="70"
+						Height="50"
+						CornerRadius="10"
+						>
+						<TextBlock 
+							Text="ON"
+							FontSize="20"
+							FontWeight="Bold"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"/>
+					</Button>
+					
+					
+				</Border>
+					
+				<Border 
+					Width="30"
+					Height="30"
+					HorizontalAlignment="Center"
+					Background="White"
+					Margin="10,0,0,0"
+					Grid.Column="0"
+					Grid.Row="1"
+					BorderBrush="LightGray"
+					BorderThickness="4"
+					CornerRadius="25"
+					ToolTip.Placement="BottomEdgeAlignedLeft">
+					
+					<ToolTip.Tip>
+						<StackPanel 
+							Width="250">
+							<TextBlock 
+								Text="Gas Boiler"
+								FontSize="25"
+								FontWeight="Bold"
+								Foreground="White"
+								HorizontalAlignment="Center"/>
+							
+							<TextBlock 
+								Text="" 
+								FontSize="20"/>
+							<TextBlock 
+								Text="{Binding GasBoilerOperationPercent , StringFormat='Current Operation is : {0}% '}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasBoilerOperationCost , StringFormat='CurrentCost is : {0}kr'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasBoilerOperationCO2 , StringFormat='Current CO2 emmitions : {0}kg'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasBoilerOperation , StringFormat='Boiler is currently : {0}'}" FontSize="15"/>
+
+						</StackPanel>
+					</ToolTip.Tip>
+
+
+					<TextBlock 
+						Text="i"
+						FontSize="25"
+						Background="White"
+						FontStyle="Oblique"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="LightGray"/>					
+				</Border>
+			</StackPanel>
+
+			<!--Under Oil BOiler -->
+
+			<StackPanel 
+				Orientation="Horizontal"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Grid.Column="1"
+				Grid.Row="1">
+				
+				<Ellipse 
+					Width="50"
+					Height="50"
+					Fill="{Binding OilBoilerState}"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Margin="10,0,0,0"
+					Stroke="Black"
+					StrokeThickness="3"/>
+
+				<Border
+					Background="Green"
+					Width="70"
+					Height="50"
+					CornerRadius="10"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					Margin="10">
+
+					<Button
+						Width="70"
+						Height="50"
+						CornerRadius="10">
+						
+						<TextBlock
+							Text="ON"
+							FontSize="20"
+							FontWeight="Bold"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"/>
+					</Button>
+				</Border>
+				
+				<Border 
+					Width="30"
+					Height="30"
+					HorizontalAlignment="Center"
+					Background="White"
+					Margin="10,0,0,0"
+					BorderBrush="LightGray"
+					BorderThickness="4"
+					CornerRadius="25"
+					ToolTip.Placement="BottomEdgeAlignedLeft">
+					
+					<ToolTip.Tip>
+						<StackPanel 
+							Width="250">
+							<TextBlock 
+								Text="Oil Boiler"
+								FontSize="25"
+								FontWeight="Bold"
+								Foreground="White"
+								HorizontalAlignment="Center"/>
+							
+							<TextBlock 
+								Text="" FontSize="20"/>
+							<TextBlock 
+								Text="{Binding OilBoilerOperationPercent ,	StringFormat='Current Operation is : {0}% '}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding OilBoilerOperationCost ,		StringFormat='CurrentCost is : {0}kr'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding OilBoilerOperationCO2 ,		StringFormat='Current CO2 emmitions : {0}kg'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding OilBoilerOperation ,		StringFormat='Boiler is currently : {0}'}" FontSize="15"/>
+
+						</StackPanel>
+					</ToolTip.Tip>
+					<TextBlock 
+						Text="i"
+						FontSize="25"
+						FontStyle="Oblique"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="LightGray"/>
+				</Border>
+			</StackPanel>
+
+			<!-- Under Gas Motor -->
+
+			<StackPanel 
+				Orientation="Horizontal"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Grid.Column="2"
+				Grid.Row="1">
+			
+				<Ellipse 
+					Width="50"
+					Height="50"
+					Fill="{Binding GasMotorState}"
+					HorizontalAlignment="Center"
+					Margin="10,0,0,0"
+					Stroke="Black"
+					StrokeThickness="3"/>
+				
+				<Border
+					Background="Green"
+					Width="70"
+					Height="50"
+					CornerRadius="10"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					Margin="10">
+
+					<Button
+						Width="70"
+						Height="50"
+						CornerRadius="10">
+
+						<TextBlock
+							Text="ON"
+							FontSize="20"
+							FontWeight="Bold"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"/>
+					</Button>
+				</Border>
+				
+				<Border 
+					Width="30"
+					Height="30"
+					HorizontalAlignment="Center"
+					Background="White"
+					Margin="10,0,0,0"
+					BorderBrush="LightGray"
+					BorderThickness="4"
+					CornerRadius="25"
+					ToolTip.Placement="BottomEdgeAlignedLeft">
+					<ToolTip.Tip>
+						<StackPanel 
+							Width="250">
+							<TextBlock 
+								Text="Gas Motor"
+								FontSize="25"
+								FontWeight="Bold"
+								Foreground="White"
+								HorizontalAlignment="Center"/>
+							
+							<TextBlock 
+								Text="" FontSize="20"/>
+							<TextBlock 
+								Text="{Binding GasMotorOperationPercent ,	StringFormat='Current Operation is : {0}% '}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasMotorOperationCost ,		StringFormat='CurrentCost is : {0}kr'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasMotorOperationCO2 ,		StringFormat='Current CO2 emmitions : {0}kg'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding GasMotorOperation ,		StringFormat='Boiler is currently : {0}'}" FontSize="15"/>
+
+
+						</StackPanel>
+					</ToolTip.Tip>
+					<TextBlock 
+						Text="i"
+						FontSize="25"
+						FontStyle="Oblique"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="LightGray"/>
+				</Border>
+			</StackPanel>
+			
+			<!-- Under Electric Boiler -->
+
+			<StackPanel 
+				Orientation="Horizontal"
+				HorizontalAlignment="Center"
+				VerticalAlignment="Top"
+				Grid.Column="3"
+				Grid.Row="1">
+				
+				<Ellipse 
+					Width="50"
+					Height="50"
+					Fill="{Binding ElectricBoilerState}"
+					HorizontalAlignment="Center"
+					Margin="10,0,0,0"
+					Stroke="Black"
+					StrokeThickness="3"/>
+
+				<Border
+					Background="Green"
+					Width="70"
+					Height="50"
+					CornerRadius="10"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Top"
+					Margin="10">
+
+					<Button
+						Width="70"
+						Height="50"
+						CornerRadius="10">
+
+						<TextBlock
+							Text="ON"
+							FontSize="20"
+							FontWeight="Bold"
+							Foreground="White"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"/>
+					</Button>
+				</Border>
+
+				<Border 
+					Width="30"
+					Height="30"
+					HorizontalAlignment="Center"
+					Background="White"
+					Margin="10,0,0,0"
+					BorderBrush="LightGray"
+					BorderThickness="4"
+					CornerRadius="25"
+					ToolTip.Placement="BottomEdgeAlignedLeft">
+					
+					<ToolTip.Tip>
+						<StackPanel 
+							Width="250">
+							<TextBlock 
+								Text="Electric Boiler"
+								FontSize="25"
+								FontWeight="Bold"
+								Foreground="White"
+								HorizontalAlignment="Center"/>
+							<TextBlock 
+								Text="" FontSize="20"/>
+							<TextBlock 
+								Text="{Binding ElectricBoilerOperationPercent ,	StringFormat='Current Operation is : {0}% '}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding ElectricBoilerOperationCost ,		StringFormat='CurrentCost is : {0}kr'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding ElectricBoilerOperationCO2 ,		StringFormat='Current CO2 emmitions : {0}kg'}" FontSize="15"/>
+							<TextBlock 
+								Text="{Binding ElectricBoilerOperation ,		StringFormat='Boiler is currently : {0}'}" FontSize="15"/>
+
+
+						</StackPanel>
+					</ToolTip.Tip>
+					<TextBlock 
+						Text="i"
+						FontSize="25"
+						FontStyle="Oblique"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="LightGray"/>
+				</Border>
+			</StackPanel>
+		</Grid>
+		
+		
+		
+		
+		<!-- HeatDemand displayed -->
+
+		<Grid 
+			Grid.Row="1"
+			ColumnDefinitions="*,Auto,*">
+			
+			<!-- Current HeatDemand -->
+			<StackPanel 
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Grid.Column="0"
+				Orientation="Vertical">
+				
+				<TextBlock 
+					Text="Current Heat Demand"
+					FontSize="25"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Black"
+					Margin="-10"/>
+
+				<Border 
+					CornerRadius="25"
+					BorderThickness="4"
+					BorderBrush="Black"
+					Width="400"
+					Height="100"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Grid.Column="0"
+					Margin="20"
+						>
+					<TextBlock 
+						Text="{Binding HeatDemandCurrent}"
+						FontSize="30"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"/>
+				</Border>
+			</StackPanel>
+
+			<!-- Clock -->
+			<StackPanel 
+				Grid.Column="1"
+				Margin="0,50,0,0">
+
+				<!-- Upper Clock -->
+				<TextBlock 
+					Text="05:00"
+					FontSize="40"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="LightGray"/>
+				
+				<!-- Center Clock -->
+				<TextBlock 
+					Text="06:00"
+					FontSize="50"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Black"/>
+				
+				<!-- Lower Clock -->
+				<TextBlock 
+					Text="07:00"
+					FontSize="40"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Gray"/>
+			
+			</StackPanel>
+
+			<!-- Predicted HeatDemand and current production -->
+
+
+			<StackPanel 
+				Grid.Column="2"
+				Orientation="Horizontal"
+				HorizontalAlignment="Center">
+
+				<!-- Current Production Area -->
+				<StackPanel 
+					Orientation="Vertical"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+					
+					<TextBlock 
+						Text="Current Production"
+						FontSize="25"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						Margin="-10"/>
+					
+					<Border 
+						CornerRadius="25"
+						BorderThickness="4"
+						BorderBrush="Black"
+						Width="300"
+						Height="100"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Margin="20">
+
+						<TextBlock 
+							Text="{Binding HeatDemandPrediction}"
+							FontSize="30"
+							FontWeight="Bold"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Foreground="Black"/>
+					</Border>	
+				</StackPanel>				
+				
+				<!-- Prediction Area -->
+				<StackPanel 
+					Orientation="Vertical"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+					
+					<TextBlock 
+						Text="Predicted Demand"
+						FontSize="25"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						Margin="-10"/>
+					
+					<Border 
+						CornerRadius="25"
+						BorderThickness="4"
+						BorderBrush="Black"
+						Width="300"
+						Height="100"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Margin="20">
+
+						<TextBlock 
+							Text="{Binding HeatDemandPrediction}"
+							FontSize="30"
+							FontWeight="Bold"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Foreground="Black"/>
+					</Border>	
+				</StackPanel>
+			</StackPanel>
+		</Grid>
+
+		
+		
+		
+		
+		
+		
+		<!-- Manual and Auto Buttons -->
+		<Grid 
+			Grid.Row="2"
+			ColumnDefinitions="*,*">
+
+			<!-- Manual button -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="2"
+				BorderBrush="Black"
+				Height="50"
+				Width="200"
+				Grid.Column="0"
+				Background="LightGreen">
+				
+				<Button 
+					Content="Maual"
+					FontSize="30"
+					Width="200"
+					Height="50"
+					CornerRadius="50"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Green">
+					
+					<TextBlock
+						Text="Mauel"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						/>
+				</Button>
+			</Border>
+			
+			<!-- Auto button -->
+			<Border 
+				CornerRadius="50"
+				BorderThickness="2"
+				BorderBrush="Black"
+				Background="LightGray"
+				Height="50"
+				Width="200"
+				Grid.Column="1">
+
+				<Button 
+					FontSize="30"
+					Width="200"
+					Height="50"
+					CornerRadius="50"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Background="Gray"
+					Command="{Binding AutoModeCommand}">
+					
+					<TextBlock
+						Text="Auto"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"/>
+					
+				</Button>
+			</Border>
+
+		</Grid>
+
+		
+		
+		
+		
+		
+		
+		
+		
+			<!-- Open and close sidebar-->
+			<Button 
+				HorizontalAlignment="Right"
+				VerticalAlignment="Center"
+				Grid.Column="0"
+				Grid.RowSpan="3"
+				Margin=""
+				Height="50"
+				Width="10"
+				Background="Gray"
+				Command="{Binding SideBarToggleCommand}"/>
+	
+		
+			<Border 
+				Grid.Column="1"
+				Grid.RowSpan="3"
+				CornerRadius="50"
+				BorderThickness="2"
+				BorderBrush="Black"
+				Height="920"
+				Width="{Binding SideBarWidth}"
+				Margin="10"
+				Background="LightGray">
+			
+			
+				<StackPanel 
+					VerticalAlignment="Top" 
+					IsVisible="{Binding SideBarOpen}">
+				
+					<!--Graph-->
+					<Border 
+						Height="200"
+						Width="250"
+						BorderThickness="3"
+						BorderBrush="Black"
+						Margin="0,30"
+						CornerRadius="25"
+						IsVisible="{Binding SideBarOpen}">
+					
+			</Border>
+				
+				
+				<!-- Buttons for lowest cost and ECO friendly -->
+				<StackPanel 
+					Orientation="Horizontal" 
+					HorizontalAlignment="Center" >
+					
+					<!-- Lowest cost Button -->
+					<Border 
+						Background="{Binding LowCostBackground}"
+						Width="120"
+						Height="40"
+						Margin="5">
+
+						<Button 
+							Background="{Binding LowCostBackground}"
+							Width="120"
+							Height="40"
+							Command="{Binding LowCostTrueCommand}">
+
+							<TextBlock 
+								Text="lowest cost"
+								FontWeight="{Binding LowCostWeight}"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontSize="16"/>
+						</Button>
+					</Border>
+					<!-- ECO Friuendly Buttton -->
+
+					<Border 
+						Background="{Binding ECOFriendlyBackground}"
+						Width="120"
+						Height="40"
+						Margin="5">
+						
+						<Button 
+							Background="{Binding ECOFriendlyBackground}"
+							Width="120"
+							Height="40"
+							Command="{Binding ECOFriendlyTrueCommand}">
+
+							<TextBlock 
+								Text="ECO friendly"
+								FontWeight="{Binding ECOFriendlyFontWeight}"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontSize="16"/>
+						</Button>
+					</Border>
+					
+				</StackPanel>
+
+				
+				<!-- Production Cost Information -->
+				<TextBlock 
+					Text="production cost"
+					Foreground="Black"
+					FontSize="20"
+					Margin="10"/>
+				
+				<Border 
+					Background="Silver"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="5"
+					Width="250"
+					Height="50">
+					
+					
+					<TextBlock 
+						Text="{Binding ProductionCost, StringFormat=' {0} kr pr.h'}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						FontSize="30"/>
+				</Border>
+
+				<!-- CO2 Emissions Information -->
+				<TextBlock 
+					Text="CO2 emittions"
+					Margin="10"
+					FontSize="20"
+					Foreground="Black"/>
+				
+				<Border 
+					Background="Silver"
+					BorderBrush="Black"
+					BorderThickness="1"
+					CornerRadius="5"
+					Width="250"
+					Height="50">
+					
+					<TextBlock 
+						Text="{Binding CO2Emotions, StringFormat=' {0} kr pr.h'}"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						FontSize="30"/>
+				</Border>
+				
+				
+				<!-- Buttons for summer and winter -->
+				<StackPanel 
+					Orientation="Horizontal" 
+					HorizontalAlignment="Center" 
+					Margin="10">
+					
+					
+					<!-- Summer Button -->
+					<Border	
+						Background="{Binding SummerBackground}"
+						Margin="5"
+						Width="120"
+						Height="40">
+						
+						<Button 
+							Background="{Binding SummerBackground}" 
+							Width="120"
+							Height="40"
+							Command="{Binding SummerTrueCommand}">
+						
+							<TextBlock 
+								Text="Summer"
+								FontWeight="{Binding SummerFontWeight}"
+								Foreground="White"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontSize="23"/>
+						</Button>
+					</Border>
+					<!-- Winter Button -->
+					<Border	
+						Background="{Binding WinterBackground}"
+						Margin="5"
+						Width="120"
+						Height="40">
+						
+						<Button 
+							Background="{Binding WinterBackground}"
+							Width="120"
+							Height="40"
+							Command="{Binding WinterTrueCommand}">
+						
+							<TextBlock 
+								Text="winter"
+								FontWeight="{Binding WinterFontWeight}"
+								Foreground="White"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								FontSize="23"/>
+						</Button>
+					</Border>
+				</StackPanel>
+					
+					<!-- Boilers and Motors Information -->
+
+					<Grid
+						RowDefinitions="Auto,*">
+
+						<StackPanel>
+							<TextBlock
+								Grid.Row="0"
+								Text="Boilers and Motors"
+								Foreground="Black"
+								FontWeight="Bold"
+								FontSize="20"
+								Margin="15,0,0,0"/>
+
+							<TextBlock
+								Grid.Row="0"
+								Text="currently on opration "
+								Foreground="Black"
+								FontWeight="Bold"
+								FontSize="20"
+								Margin="15,0,0,0"/>
+						</StackPanel>
+
+						<Border
+							Grid.Row="1"
+							Background="Gray"
+							BorderBrush="Black"
+							BorderThickness="1"
+							CornerRadius="5"
+							Width="250"
+							Height="210">
+
+							<Grid RowDefinitions="*,*,*,*">
+
+
+								<Border
+									Background="Silver"
+									BorderBrush="Black"
+									BorderThickness="0"
+									CornerRadius="5"
+									Width="225"
+									Height="35"
+									Grid.Row="0">
+									<Grid>
+										<ProgressBar
+											Value="{Binding GasBoilerOperationPercent}"
+											Maximum="100"
+											Foreground="Green"
+											Background="LightGray"
+											Height="35"
+											Width="225"/>
+										<TextBlock
+											Text="{Binding GasBoilerOperationPercent, StringFormat=' Gas Boiler : {0}%'}"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Foreground="Black"
+											FontSize="20"/>
+									</Grid>
+								</Border>
+
+								<Border
+									Background="Silver"
+									BorderBrush="Black"
+									BorderThickness="0"
+									CornerRadius="5"
+									Width="225"
+									Height="35"
+									Grid.Row="1">
+
+									<Grid>
+										<ProgressBar
+											Value="{Binding OilBoilerOperationPercent}"
+											Maximum="100"
+											Foreground="Green"
+											Background="LightGray"
+											Height="35"
+											Width="225"/>
+										<TextBlock
+											Text="{Binding OilBoilerOperationPercent, StringFormat=' Oil Boiler : {0}%'}"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Foreground="Black"
+											FontSize="20"/>
+									</Grid>
+								</Border>
+
+								<Border
+									Background="Silver"
+									BorderBrush="Black"
+									BorderThickness="0"
+									CornerRadius="5"
+									Width="225"
+									Height="35"
+									Grid.Row="2">
+
+									<Grid>
+										<ProgressBar
+											Value="{Binding GasMotorOperationPercent}"
+											Maximum="100"
+											Foreground="Green"
+											Background="LightGray"
+											Height="35"
+											Width="225"/>
+										<TextBlock
+											Text="{Binding GasMotorOperationPercent, StringFormat=' Gas Motor : {0}%'}"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Foreground="Black"
+											FontSize="20"/>
+									</Grid>
+								</Border>
+
+								<Border
+									Background="Silver"
+									BorderBrush="Black"
+									BorderThickness="0"
+									CornerRadius="5"
+									Width="225"
+									Height="35"
+									Grid.Row="3">
+
+									<Grid>
+										<ProgressBar
+											Value="{Binding ElectricBoilerOperationPercent}"
+											Maximum="100"
+											Foreground="Green"
+											Background="LightGray"
+											Height="35"
+											Width="225"/>
+										<TextBlock
+											Text="{Binding ElectricBoilerOperationPercent, StringFormat=' Electric Boiler : {0}%'}"
+											HorizontalAlignment="Center"
+											VerticalAlignment="Center"
+											Foreground="Black"
+											FontSize="20"/>
+									</Grid>
+								</Border>
+
+							</Grid>
+						</Border>
+
+					</Grid>
+
+
+					<Grid ColumnDefinitions="*,*">
+
+						<Border
+							Grid.Column="0"
+							Background="LightGreen"
+							Width="100"
+							Height="50"
+							CornerRadius="20"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Margin="10">
+							
+							<Button
+								Background="Green"
+								Width="100"
+								Height="50"
+								CornerRadius="20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Command="">
+								
+								<TextBlock
+									Text="Apply"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									Foreground="White"
+									FontWeight="Bold"/>
+							</Button>
+						</Border>
+
+						<Border
+							Grid.Column="1"
+							Background="LightSalmon"
+							Width="100"
+							Height="50"
+							CornerRadius="20"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Margin="10">
+							
+							<Button
+								Background="Red"
+								Width="100"
+								Height="50"
+								CornerRadius="20"
+								HorizontalAlignment="Center"
+								VerticalAlignment="Center"
+								Command="">
+								
+								<TextBlock
+									Text="Cancel"
+									HorizontalAlignment="Center"
+									VerticalAlignment="Center"
+									Foreground="White"
+									FontWeight="Bold"/>
+							</Button>
+						</Border>
+
+					</Grid>
+					
+			</StackPanel>
+		</Border>
+		
+	</Grid>
 </UserControl>
