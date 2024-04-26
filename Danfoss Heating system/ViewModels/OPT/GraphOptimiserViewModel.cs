@@ -14,8 +14,8 @@ public partial class GraphOptimiserViewModel : ViewModelBase
     {
         viewChange = mv;
 
-        viewChange._window.Width = 1980;
-        viewChange._window.Height = 1080;
+        viewChange.window.Width = 1980;
+        viewChange.window.Height = 1080;
     }
 
 

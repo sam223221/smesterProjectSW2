@@ -48,22 +48,30 @@
 							Margin="200,0,0,40" 
 							Content="Go to graph" 
 							VerticalAlignment="Bottom" 
-							Width="100" 
+							Width="100"
+							Height="30"
 							Foreground="White" 
 							Background="Black"
 							Command="{Binding GoToUserCommand}"
 							/>
 					
-					<!-- Go to Chart -->
+					<!-- Go to LiveOPT -->
 					<Button VerticalAlignment="Bottom" 
 							HorizontalAlignment="Right"  
 							Margin="240,0,0,40" 
-							Grid.Row="3" 
-							Content="Go to chart" 
-							Width="100" 
-							Foreground="White" 
+							Grid.Row="3"
+							Width="100"
+							Height="30"
 							Background="Black"
-							/>
+							Command="{Binding LiveOptimiserCommand}"
+							>
+						
+						<TextBlock Text="Go to LiveOPT" 
+								   FontSize="10"
+								   Foreground="White"
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center"/>
+					</Button>
 					
 				</StackPanel>
 			</Border>

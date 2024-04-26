@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using Danfoss_Heating_system.ViewModels.AdminMainPage;
+using Danfoss_Heating_system.ViewModels.OPT;
 using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Danfoss_Heating_system.Views;
 using ReactiveUI;
@@ -17,13 +18,13 @@ namespace Danfoss_Heating_system.ViewModels
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        private Window window;
+        public Window window;
 
         [ObservableProperty]
         private int sideBarWidth = 0;
 
         
-        public string userName;
+        public EnergyData userName;
 
 
         private bool _isSideBarOpen = false;
@@ -45,13 +46,21 @@ namespace Danfoss_Heating_system.ViewModels
             window.Close();
         }
 
+        [RelayCommand]
+        private void GoHome()
+        {
+            if(userName.UserRole == "Admin")
+            {
+                CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
+            }
+        }   
 
 
         public MainWindowViewModel(EnergyData item, Window window)
         {
 
             this.window = window;
-            userName = item.UserID;
+            userName = item;
 
             //sets the view within the window to the current role that is logging in
             switch (item.UserRole)
@@ -72,22 +81,21 @@ namespace Danfoss_Heating_system.ViewModels
         {
             NavigationButtons = new ObservableCollection<MyButtonModel>
             {
-                new MyButtonModel("User", ReactiveCommand.Create<string>(AdminNavigationExe)),
-                new MyButtonModel("Admin", ReactiveCommand.Create<string>(AdminNavigationExe)),
+                new MyButtonModel("GraphOPT", ReactiveCommand.Create<string>(AdminNavigationExe)),
+                new MyButtonModel("LiveOPT", ReactiveCommand.Create<string>(AdminNavigationExe)),
             };
         }
 
         private void AdminNavigationExe(string parameter)
         {
-            Debug.WriteLine("This is the input : " + parameter);
 
             switch (parameter)
             {
-                case "Admin":
-                    CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
+                case "GraphOPT":
+                    CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(this) };
                     break;
-                case "User":
-                    CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(this) };
+                case "LiveOPT":
+                    CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(this) };
                     break;
 
             }
@@ -106,7 +114,7 @@ namespace Danfoss_Heating_system.ViewModels
             
             if (_isSideBarOpen)
             {
-                SideBarWidth = 56;
+                SideBarWidth = 75;
             }else
             {
                 SideBarWidth = 0;

@@ -15,6 +15,8 @@ using Avalonia.Interactivity;
 using System.ComponentModel;
 using System.Windows.Input;
 using System.Runtime.CompilerServices;
+using DocumentFormat.OpenXml.Packaging;
+using Danfoss_Heating_system.ViewModels.OPT;
 
 namespace Danfoss_Heating_system.ViewModels.AdminMainPage
 {
@@ -29,14 +31,23 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
             viewchange = mv;
-            userName = "welcome back " + mv.userName;
+            viewchange.window.Width = 800;
+            viewchange.window.Height = 450;
+            viewchange.window.CanResize = false;
+            userName = "welcome back " + mv.userName.UserID;
         }
 
 
         [RelayCommand]
         private void GoToUser()
         {
-            viewchange.CurrentContent = new UserView() { DataContext = new UserMainPageViewModel(viewchange) };
+            viewchange.CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(viewchange) };
+        }
+
+        [RelayCommand]
+        private void LiveOptimiser()
+        {
+            viewchange.CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(viewchange) };
         }
 
     }

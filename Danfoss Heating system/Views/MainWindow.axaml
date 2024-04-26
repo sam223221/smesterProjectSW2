@@ -10,21 +10,21 @@
 		x:DataType="vm:MainWindowViewModel"
 		Title="Danfoss Heating System"
 		Icon="/Assets/Images/DanfossLogo.ico"
-		CanResize="False">
+		CanResize="True">
 	
 	
 	<Grid>
 		<!-- Row definitions -->
 		<Grid.RowDefinitions>
 
-			<RowDefinition Height="40"/> <!-- makes only space for the heigt of the bar -->
+			<RowDefinition Height="Auto"/> <!-- makes only space for the heigt of the bar -->
 			<RowDefinition Height="*"/> <!-- gives the remaining space to the content view -->
 			
 		</Grid.RowDefinitions>
 	
 		
 		<!-- Top Bar for navigation -->
-		<Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#F30000" Height="40">
+		<Grid Grid.Row="0" Grid.ColumnSpan="2" Background="#F30000" Height="50">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="130"/>
 				<ColumnDefinition Width="*"/>
@@ -35,32 +35,63 @@
 			</Grid.ColumnDefinitions>
 			
 			<!-- Danfoss Main logo -->
-			<Button Grid.Column="0" Background="Transparent" Width="110" Height="40" Margin="10,0,20,0">
+			<Button Grid.Column="0" 
+					Background="Transparent" 
+					Width="110" 
+					Height="40" 
+					Margin="10,0,20,0"
+					Command="{Binding GoHomeCommand}">
+				
 				<Image Grid.Column="0" Source="/Assets/Images/danfosslogowhite1.png" Width="90" Height="90" Margin="0,0,20,0"/>
 			</Button>
 			
 			<!-- FAQ button -->
-		    <Button Background="Transparent" Grid.Column="1" Width="70" Height="44" Margin="90,-5,0,0">
+		    <Button Background="Transparent" 
+					Grid.Column="1" 
+					Width="70" 
+					Height="44" 
+					Margin="90,-5,0,0">
+				
 				<Label Content="FAQ"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
 			
 			<!-- Help button -->
-			<Button Background="Transparent" Grid.Column="2" Width="77" Height="45" Margin="40,-5,0,0">
+			<Button Background="Transparent" 
+					Grid.Column="2" 
+					Width="77" 
+					Height="45" 
+					Margin="40,-5,0,0">
+				
 				<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 			</Button>
 			
 			<!-- Settings button -->
-			<Button Background="Transparent" Grid.Column="3" Width="130" Height="48" Margin="-20,-5,0,0">
+			<Button Background="Transparent" 
+					Grid.Column="3" 
+					Width="130" 
+					Height="48" 
+					Margin="-20,-5,0,0">
+				
 				<Label Content="Settings"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
 			
 			<!-- User icon -->
-			<Button Background="Transparent" Grid.Column="4" Width="40" Height="43" Margin="-10,0,13,0">
+			<Button Background="Transparent" 
+					Grid.Column="4" 
+					Width="40" 
+					Height="43"
+					Margin="-10,0,13,0">
+				
 				<Image Source="/Assets/Images/bob.png" Width="30" VerticalAlignment="Center" HorizontalAlignment="Center"></Image>
 			</Button>
 			
 			<!-- Exit button -->
-			<Button Background="Transparent" Grid.Column="5" Width="40" Height="43" Margin="0,0,10,0" Command="{Binding logoutCommand}">
+			<Button Background="Transparent" 
+					Grid.Column="5" 
+					Width="40"
+					Height="43"
+					Margin="0,0,10,0" 
+					Command="{Binding logoutCommand}">
 				<Image Source="/Assets/Images/exitIcon.png" VerticalAlignment="Center" Width="44" Height="35" HorizontalAlignment="Center"></Image>
 			</Button>
 		</Grid>
@@ -83,7 +114,7 @@
 					<ItemsControl ItemsSource="{Binding NavigationButtons}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
-								<Button Width="55"
+								<Button Width="74"
 										Height="55"
 										Margin="0,10,0,0"
 										Content ="{Binding Name}"
@@ -103,6 +134,7 @@
 					Width="10" Height="50" 
 					HorizontalAlignment="Left" 
 					VerticalAlignment="Center"
+					Margin="10"
 					ZIndex="1"
 					Background="DarkGray"
 					Command="{Binding SideBarToggleCommand}"
