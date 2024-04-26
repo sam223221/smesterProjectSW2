@@ -1,4 +1,5 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
+﻿using ClosedXML.Excel;
+using DocumentFormat.OpenXml.Wordprocessing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -146,7 +147,7 @@ internal class OPT
         return list;
     }
 
-    private double predictHeatDemand(int hourDemandCell, bool winter, string excelFilePath)
+    private double predictHeatDemand(int hourDemandRow, bool winter, string excelFilePath)
     {
         //Predicted heat demand
         double predHeatDemand = 0;
@@ -164,19 +165,19 @@ internal class OPT
         //Setting the references to the excel cells
         if (winter)
         {
-            cellOne = "D" + (hourDemandCell - 24).ToString();
-            cellTwo = "D" + (hourDemandCell - 48).ToString();
-            cellThr = "D" + (hourDemandCell - 72).ToString();
+            cellOne = "D" + (hourDemandRow - 24).ToString();
+            cellTwo = "D" + (hourDemandRow - 48).ToString();
+            cellThr = "D" + (hourDemandRow - 72).ToString();
         } else
         {
-            cellOne = "I" + (hourDemandCell - 24).ToString();
-            cellTwo = "I" + (hourDemandCell - 48).ToString();
-            cellThr = "I" + (hourDemandCell - 72).ToString();
+            cellOne = "I" + (hourDemandRow - 24).ToString();
+            cellTwo = "I" + (hourDemandRow - 48).ToString();
+            cellThr = "I" + (hourDemandRow - 72).ToString();
         }
     
 
         //This if statement makes the method return 0 as a heat demand if the data is insufficient
-        if (hourDemandCell >= 24 + offset)
+        if (hourDemandRow >= 24 + offset)
         {
             //Getting the data from the excel cells
             double demand24 = Convert.ToDouble((string)workbook.Cell(cellOne).Value);
@@ -184,11 +185,11 @@ internal class OPT
             double demand72 = Convert.ToDouble((string)workbook.Cell(cellThr).Value);
 
             // This is here so that if we don't have enough heat demand data for past days, the program won't die
-            if (hourDemandCell >= 72 + offset)
+            if (hourDemandRow >= 72 + offset)
             {
                 predHeatDemand = demand24 + demand48 + demand72 / 3;
             }
-            else if (hourDemandCell >= 48 + offset)
+            else if (hourDemandRow >= 48 + offset)
             {
                 predHeatDemand = demand24 + demand48 / 2;
             }
