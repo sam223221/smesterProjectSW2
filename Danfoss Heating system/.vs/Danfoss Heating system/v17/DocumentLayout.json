@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\exceldataparser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\models\\opt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:models\\opt.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\adminmainpage\\adminmainpageviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 240,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,7 +78,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "ExcelDataParser.cs",
+              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
+              "RelativeDocumentMoniker": "Models\\ExcelDataParser.cs",
+              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\ExcelDataParser.cs",
+              "RelativeToolTip": "Models\\ExcelDataParser.cs",
+              "ViewState": "AQIAAH0AAAAAAAAAAAAIwAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T01:56:19.718Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OPT.cs",
+              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\OPT.cs",
+              "RelativeDocumentMoniker": "Models\\OPT.cs",
+              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\OPT.cs",
+              "RelativeToolTip": "Models\\OPT.cs",
+              "ViewState": "AQIAAJkAAAAAAAAAAAAmwKEAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-26T01:55:23.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "LiveOptimiserViewModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\OPT\\LiveOptimiserViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\OPT\\LiveOptimiserViewModel.cs",
@@ -78,12 +112,11 @@
               "RelativeToolTip": "ViewModels\\OPT\\LiveOptimiserViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAxAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T20:36:04.954Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-25T20:36:04.954Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "MainWindowViewModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\MainWindowViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\MainWindowViewModel.cs",
@@ -91,12 +124,11 @@
               "RelativeToolTip": "ViewModels\\MainWindowViewModel.cs",
               "ViewState": "AQIAACoAAAAAAAAAAAAowE0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T22:00:32.346Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-25T22:00:32.346Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "AdminMainPageViewModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\AdminMainPage\\AdminMainPageViewModel.cs",
@@ -109,7 +141,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "ManualModeLiveOptimiserView.axaml.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\ManualModeLiveOptimiserView.axaml.cs",
               "RelativeDocumentMoniker": "Views\\Optimization\\ManualModeLiveOptimiserView.axaml.cs",
@@ -117,12 +149,11 @@
               "RelativeToolTip": "Views\\Optimization\\ManualModeLiveOptimiserView.axaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-26T01:26:32.205Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T01:26:32.205Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "GraphOptimiserViewModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\OPT\\GraphOptimiserViewModel.cs",
               "RelativeDocumentMoniker": "ViewModels\\OPT\\GraphOptimiserViewModel.cs",
@@ -130,12 +161,11 @@
               "RelativeToolTip": "ViewModels\\OPT\\GraphOptimiserViewModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAoAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T22:03:26.372Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-25T22:03:26.372Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "MyButtonModel.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\MyButtonModel.cs",
               "RelativeDocumentMoniker": "Models\\MyButtonModel.cs",
@@ -143,12 +173,11 @@
               "RelativeToolTip": "Models\\MyButtonModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T22:10:41.959Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-25T22:10:41.959Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "App.axaml.cs",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\App.axaml.cs",
               "RelativeDocumentMoniker": "App.axaml.cs",
@@ -156,8 +185,7 @@
               "RelativeToolTip": "App.axaml.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-04-25T22:00:45.939Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-25T22:00:45.939Z"
             }
           ]
         },
@@ -167,19 +195,18 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "ManualModeLiveOptimiserView.axaml",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\ManualModeLiveOptimiserView.axaml",
               "RelativeDocumentMoniker": "Views\\Optimization\\ManualModeLiveOptimiserView.axaml",
               "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\ManualModeLiveOptimiserView.axaml",
               "RelativeToolTip": "Views\\Optimization\\ManualModeLiveOptimiserView.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-26T01:26:32.389Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-04-26T01:26:32.389Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "LiveOptimiser.axaml",
               "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\LiveOptimiser.axaml",
               "RelativeDocumentMoniker": "Views\\Optimization\\LiveOptimiser.axaml",
