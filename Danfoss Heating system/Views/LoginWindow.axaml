@@ -12,13 +12,10 @@
         CanResize="False" Background="White">
 
 
-	<Grid>
+	<Grid
+		ShowGridLines="True"
+		ColumnDefinitions="*,2*">
 		
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
-			<ColumnDefinition Width="2*"/>
-		</Grid.ColumnDefinitions>
-
 		<Grid.RowDefinitions>
 			<RowDefinition/>
 			<RowDefinition/>
@@ -108,6 +105,18 @@
 				   >
 			<Run Text="Need help? Contact IT Service."/>
 		</TextBlock>
+		
+		<Border x:Name="InfoPupup" Background="DarkRed" Padding="10" CornerRadius="5"
+		HorizontalAlignment="Center" VerticalAlignment="Center" IsVisible="False" ZIndex="100" Grid.Row="6" Grid.Column="2" Height="140">
+			<TextBlock TextAlignment="Center" Foreground="White">
+				<Run Text="Information for IT service"/>
+				<LineBreak/>
+				<LineBreak/>
+				<Run Text="+45 123 456 78"/>
+				<LineBreak/>
+				<Run Text="danfoss@gmail.com"/>
+			</TextBlock>
+		</Border>
 
 		<!--Quotes are dosplayed-->
 		<Border Background="#AA000000" Grid.Column="1" Grid.Row="2" Height="120" Width="470">
@@ -129,18 +138,6 @@
 						   Margin="15"
 						   Text="{Binding SelectedQuoteAuthor}"/>
 			</Grid>
-		</Border>
-
-		<Border x:Name="InfoPupup" Background="#a30008" Padding="10" CornerRadius="5"
-				HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.9" IsVisible="False" ZIndex="100" Grid.Row="6" Grid.Column="2" Height="140">
-			<TextBlock TextAlignment="Center">
-				<Run Text="Information for IT service"/>
-				<LineBreak/>
-			    <LineBreak/>
-				<Run Text="+45 123 456 78"/>
-				<LineBreak/>
-				<Run Text="danfoss@gmail.com"/>
-			</TextBlock>
 		</Border>
 	</Grid>
 
