@@ -43,6 +43,8 @@
 					HorizontalAlignment="Center"
 					Orientation="Horizontal">
 					
+					
+					<!--Winter Button-->
 					<Border
 						Grid.Row="0"
 						HorizontalAlignment="Center"
@@ -52,7 +54,7 @@
 						BorderBrush="Black"
 						BorderThickness="2"
 						Margin="20"
-						Background="RosyBrown">
+						Background="{Binding WinterButtonBackground}">
 					
 						<Button
 							FontSize="20"
@@ -73,10 +75,11 @@
 						</Button>
 					</Border>
 
+					<!--Summer Button-->
 					<Border
 						Grid.Row="0"
 						HorizontalAlignment="Center"
-						Background="RosyBrown"
+						Background="{Binding SummerButtonBackground}"
 						CornerRadius="20"
 						Height="50"
 						Width="200"
@@ -91,7 +94,8 @@
 							CornerRadius="50"
 							VerticalAlignment="Center"
 							HorizontalAlignment="Center"
-							Background="Red">
+							Command="{Binding WinterButtonCommand}"
+							Background="{Binding SummerButtonCommand}">
 
 							<TextBlock
 								Text="Summer"
@@ -112,28 +116,32 @@
 					Background="RosyBrown"
 					CornerRadius="20"
 					Height="50"
-					Width="200"
-					BorderBrush="Black"
-					BorderThickness="2">
+					Width="440"
+					BorderBrush="Black">
 
-					<Button
-						Content="Select Days"
-						FontSize="20"
+
+					<ComboBox 
+						Width="440"
 						Height="50"
-						Width="200"
-						CornerRadius="50"
-						VerticalAlignment="Center"
-						HorizontalAlignment="Center"
-						Background="Red">
-
-						<TextBlock
-							Text="Select Days"
-							FontSize="20"
-							FontWeight="Bold"
-							Foreground="White"
-							VerticalAlignment="Center"
-							HorizontalAlignment="Center"/>
-					</Button>
+						CornerRadius="20"
+						ItemsSource="SortingTheDaysInExcelParserProps">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<Button 
+									Width="400"
+									Height="50"
+									Margin="2">
+									<TextBlock 
+										Text="hehehe"
+										FontSize="20"
+										FontWeight="Bold"
+										VerticalAlignment="Center"
+										HorizontalAlignment="Center"/>
+								</Button>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+					
 				</Border>
 
 

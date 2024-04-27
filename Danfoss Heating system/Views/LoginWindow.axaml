@@ -13,7 +13,6 @@
 
 
 	<Grid
-		ShowGridLines="True"
 		ColumnDefinitions="*,2*">
 		
 		<Grid.RowDefinitions>
