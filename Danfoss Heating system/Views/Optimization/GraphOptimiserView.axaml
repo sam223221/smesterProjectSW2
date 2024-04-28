@@ -63,6 +63,7 @@
 							CornerRadius="50"
 							VerticalAlignment="Center"
 							HorizontalAlignment="Center"
+							Command="{Binding WinterButtonCommand}"
 							Background="{Binding WinterButtonForeground}">
 						
 							<TextBlock
@@ -94,8 +95,8 @@
 							CornerRadius="50"
 							VerticalAlignment="Center"
 							HorizontalAlignment="Center"
-							Command="{Binding WinterButtonCommand}"
-							Background="{Binding SummerButtonCommand}">
+							Command="{Binding SummerButtonCommand}"
+							Background="{Binding SummerButtonForeground}">
 
 							<TextBlock
 								Text="Summer"
@@ -127,17 +128,12 @@
 						ItemsSource="{Binding DataDisplayed}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
-								<Button 
-									Width="400"
-									Height="50"
-									Margin="2">
-									<TextBlock 
-										Text="{Binding date}"
-										FontSize="20"
-										FontWeight="Bold"
-										VerticalAlignment="Center"
-										HorizontalAlignment="Center"/>
-								</Button>
+								<TextBlock
+									Text="{Binding date}"
+									FontSize="20"
+									FontWeight="Bold"
+									VerticalAlignment="Center"
+									HorizontalAlignment="Center"/>
 							</DataTemplate>
 						</ComboBox.ItemTemplate>
 					</ComboBox>
