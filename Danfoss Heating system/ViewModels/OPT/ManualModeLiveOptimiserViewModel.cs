@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Danfoss_Heating_system.Models;
 
 namespace Danfoss_Heating_system.ViewModels.OPT
 {
@@ -111,6 +112,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             SummerBackground = "Green";
             WinterFontWeight = "Normal";
             WinterBackground = "Gray";
+
         }
         [RelayCommand]
         private void WinterTrue()
@@ -207,10 +209,14 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         }
 
+        private OPTLive oPTLive;
+
         public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
         {
             this.viewChange = viewChange;
+            oPTLive = new OPTLive("Assets/data.xlsx");
         }
 
+       
     }
 }
