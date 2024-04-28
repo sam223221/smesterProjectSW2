@@ -214,7 +214,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
         {
             this.viewChange = viewChange;
-            oPTLive = new OPTLive("Assets/data.xlsx");
         }
 
        

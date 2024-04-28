@@ -124,7 +124,7 @@
 						Width="440"
 						Height="50"
 						CornerRadius="20"
-						ItemsSource="SortingTheDaysInExcelParserProps">
+						ItemsSource="{Binding DataDisplayed}">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<Button 
@@ -132,7 +132,7 @@
 									Height="50"
 									Margin="2">
 									<TextBlock 
-										Text="hehehe"
+										Text="{Binding date}"
 										FontSize="20"
 										FontWeight="Bold"
 										VerticalAlignment="Center"

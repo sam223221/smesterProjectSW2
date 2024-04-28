@@ -111,7 +111,8 @@
 					Opacity="1">
 				<StackPanel>
 				
-					<ItemsControl ItemsSource="{Binding NavigationButtons}">
+					<ItemsControl 
+						ItemsSource="{Binding NavigationButtons}">
 						<ItemsControl.ItemTemplate>
 							<DataTemplate>
 								<Button Width="74"

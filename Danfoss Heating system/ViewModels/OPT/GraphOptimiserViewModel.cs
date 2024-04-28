@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using DocumentFormat.OpenXml.Drawing;
+using DynamicData;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,13 +14,10 @@ namespace Danfoss_Heating_system.ViewModels.OPT;
 
 public partial class GraphOptimiserViewModel : ViewModelBase
 {
-    private MainWindowViewModel viewChange;
-    private SortingTheDaysInExcelParser summerData = new SortingTheDaysInExcelParser();
-    private SortingTheDaysInExcelParser winterData = new SortingTheDaysInExcelParser();
 
-    private Dictionary<DateTime, List<EnergyData>> summerPeriod;
-    private Dictionary<DateTime, List<EnergyData>> winterPeriod;
 
+
+    // ----------- Properties for Bindings ----------- //
     [ObservableProperty]
     private string winterButtonForeground = "Green";
     [ObservableProperty]
@@ -30,8 +28,30 @@ public partial class GraphOptimiserViewModel : ViewModelBase
     [ObservableProperty]
     private string summerButtonBackground = "LightCoral";
 
-    ObservableCollection<SortingTheDaysInExcelParserProps> DataDisplayed;
 
+
+
+    
+    
+    // ----------- List for variables ----------- //
+
+    List<EnergyData> allData;
+
+    private MainWindowViewModel viewChange;
+
+    private SortingTheDaysInExcelParser summerData = new SortingTheDaysInExcelParser();
+    private SortingTheDaysInExcelParser winterData = new SortingTheDaysInExcelParser();
+
+    private Dictionary<DateTime, List<EnergyData>> summerPeriodData;
+    private Dictionary<DateTime, List<EnergyData>> winterPeriodData;
+
+    private List<EnergyData> summerPeriod = new List<EnergyData>();
+    private List<EnergyData> winterPeriod = new List<EnergyData>();
+
+
+
+
+    // Constructor
     public GraphOptimiserViewModel(MainWindowViewModel mv)
     {
         viewChange = mv;
@@ -41,27 +61,13 @@ public partial class GraphOptimiserViewModel : ViewModelBase
         viewChange.window.Width = 1980;
         viewChange.window.Height = 1020;
 
-        var parser = new ExcelDataParser("Assets/data.xlsx");
-        var allData = parser.ParserEnergyData();
+        allData = new ExcelDataParser("Assets/data.xlsx").ParserEnergyData();
 
-        var summerPeriod = new List<EnergyData>();
-        var winterPeriod = new List<EnergyData>();
-
-        foreach (var item in allData)
-        {
-            if (item.Season == "Summer")
-            {
-                summerPeriod.Add(item);
-            }
-            else if (item.Season == "Winter")
-            {
-                winterPeriod.Add(item);
-            }
-
-            this.summerPeriod = summerData.SortDataByDate(summerPeriod);
-            this.winterPeriod = winterData.SortDataByDate(winterPeriod);
-        }
+        WinterPeriodDataConstructor();
     }
+
+
+    // ----------- RelayCommands for buttons ----------- //
 
     [RelayCommand]
     private void WinterButton()
@@ -71,13 +77,7 @@ public partial class GraphOptimiserViewModel : ViewModelBase
         SummerButtonForeground = "Red";
         SummerButtonBackground = "LightCoral";
 
-        DataDisplayed.Clear();
-
-        foreach (var item in winterPeriod)
-        {
-            DataDisplayed.Add(new SortingTheDaysInExcelParserProps { date = item.Key.ToString(), data = item.Value });
-        }
-
+        WinterPeriodDataConstructor();
     }
 
     [RelayCommand]
@@ -87,8 +87,55 @@ public partial class GraphOptimiserViewModel : ViewModelBase
         WinterButtonBackground = "LightCoral";
         SummerButtonForeground = "Green";
         SummerButtonBackground = "LightGreen";
+        
+        SummerPeriodDataConstructor();
     }
 
 
+
+
+
+
+    public ObservableCollection<SortingTheDaysInExcelParserProps> DataDisplayed { get; set; } = new();
+
+    // ----------- section for Methods ----------- // 
+    private void WinterPeriodDataConstructor()
+    {
+        DataDisplayed.Clear();
+        
+        foreach (var item in allData)
+        {
+            if (item.Season == "Winter")
+            {
+                winterPeriod.Add(item);
+            }
+        }
+
+        winterPeriodData = winterData.SortDataByDate(winterPeriod);
+        foreach (var item in winterPeriodData)
+        {
+            DataDisplayed.Insert(0, new SortingTheDaysInExcelParserProps { date = item.Key.Date.ToString(), data = item.Value });
+        }
+
+    }
+
+    private void SummerPeriodDataConstructor()
+    {
+        DataDisplayed.Clear();
+
+        foreach (var item in allData)
+        {
+            if (item.Season == "Summer")
+            {
+                summerPeriod.Add(item);
+                summerPeriodData = summerData.SortDataByDate(summerPeriod);
+            }
+        }
+        foreach (var item in summerPeriodData)
+        {
+            DataDisplayed.Insert(0,new SortingTheDaysInExcelParserProps { date = item.Key.ToString(), data = item.Value });
+        }
+
+    }
 }
 
