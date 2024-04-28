@@ -14,13 +14,9 @@ public partial class LoginWindow : Window , ICloseble
         
     }
 
-    public void Close()
-    {
-        base.Close();
-    }
-
     private void TextBlock_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
     {
         InfoPupup.IsVisible = !InfoPupup.IsVisible;
     }
+
 }
