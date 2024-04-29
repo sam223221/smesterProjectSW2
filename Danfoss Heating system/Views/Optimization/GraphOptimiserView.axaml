@@ -125,7 +125,7 @@
 						Width="440"
 						Height="50"
 						CornerRadius="20"
-						ItemsSource="{Binding DataDisplayed}">
+						x:Name="DataDisplayed">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<TextBlock

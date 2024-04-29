@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using DocumentFormat.OpenXml.Drawing;
@@ -28,8 +29,8 @@ public partial class GraphOptimiserViewModel : ViewModelBase
     [ObservableProperty]
     private string summerButtonBackground = "LightCoral";
 
-
-
+    [ObservableProperty]
+    private int selectedIndex = 0;
 
     
     
@@ -90,9 +91,6 @@ public partial class GraphOptimiserViewModel : ViewModelBase
         
         SummerPeriodDataConstructor();
     }
-
-
-
 
 
 

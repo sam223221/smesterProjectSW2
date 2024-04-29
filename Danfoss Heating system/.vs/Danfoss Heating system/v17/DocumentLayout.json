@@ -17,7 +17,7 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 42,
+          "DockedWidth": 31,
           "SelectedChildIndex": 5,
           "Children": [
             {
@@ -48,7 +48,7 @@
               "RelativeDocumentMoniker": "ViewModels\\OPT\\GraphOptimiserViewModel.cs",
               "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\OPT\\GraphOptimiserViewModel.cs",
               "RelativeToolTip": "ViewModels\\OPT\\GraphOptimiserViewModel.cs",
-              "ViewState": "AQIAACkAAAAAAAAAAAAQwFMAAAAdAAAA",
+              "ViewState": "AQIAAEMAAAAAAAAAAAAgwFwAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-28T17:52:22.595Z",
               "EditorCaption": ""
@@ -56,7 +56,7 @@
           ]
         },
         {
-          "DockedWidth": 88,
+          "DockedWidth": 54,
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -68,7 +68,7 @@
               "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\Optimization\\GraphOptimiserView.axaml",
               "RelativeToolTip": "Views\\Optimization\\GraphOptimiserView.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-04-28T15:22:29.704Z",
+              "WhenOpened": "2024-04-28T18:37:50.846Z",
               "EditorCaption": ""
             }
           ]
