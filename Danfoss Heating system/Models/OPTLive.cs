@@ -31,25 +31,30 @@ outputs: list:
 internal class OPTLive
 {
         ExcelDataParser ExcelDataParser;
-        
+    
 
         Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
 
+        OPT opt = new("/Assets/data.xlsx");
         public OPTLive(string filePath)
         {
             this.ExcelDataParser = new ExcelDataParser(filePath);
         }
 
 
-        public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> UsingMachines(double predictedHeatDemand)
+    // Optimizer (which units must be turn on)
+         public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> UsingMachines(int hourDemandCell, bool winter)
         {
             var productionUnits = ExcelDataParser.ParserProductionUnits();
-         
-             
+
+          double predictedHeatDemand = opt.predictHeatDemand(hourDemandCell, winter, "/Assets/data.xlsx");
 
             foreach (var unit in productionUnits) 
             {
-                var localOPTProp = new OPTLiveProp(unit);
+            var localOPTProp = new OPTLiveProp(unit)
+            {
+                PredictedHeatDemand = predictedHeatDemand
+            };
 
 
                 if(unit.MaxHeat <= predictedHeatDemand)
@@ -81,6 +86,8 @@ internal class OPTLive
             return optimalizationDataStatus;
         }
 
+
+    // Lowest cost optimizer
     public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> LowestCost()
     {
         return optimalizationDataStatus.OrderBy(unit => unit.Value.OPTProp.data.ProductionCost)
@@ -88,17 +95,22 @@ internal class OPTLive
     }
 
 
+    // Most eco friendly
+
     public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> EcoFriendly()
     {
         return optimalizationDataStatus.OrderBy(unit => unit.Value.OPTProp.data.CO2Emission)
             .ToDictionary(unit => unit.Key, unit => unit.Value);
     }
 
+   
+
+    // Total Production Cost
 
     public double ProductionCostPerHour()
     {
-            // Calculate how much heat i am using from each unit and  multiply this per its cost
-         double TotalOneHourCost = 0;
+            
+        double TotalOneHourCost = 0;
         foreach (var unit in optimalizationDataStatus)
         {
 
@@ -107,6 +119,8 @@ internal class OPTLive
             return TotalOneHourCost;
     }
 
+
+    // Total CO2 Emmition 
         public double CO2EmmitionsPerHour()
         {
             double TotalCO2Emmition = 0;
@@ -116,4 +130,38 @@ internal class OPTLive
             }
             return TotalCO2Emmition;
         }
+
+
+    // Percent of using each unit
+    public Dictionary<string, int> UnitUsagePerHour()
+    {
+        Dictionary<string, int> PercentUsage = new();
+        foreach(var unit in optimalizationDataStatus)
+        {
+            if(unit.Value.OPTProp.usingHeatDemand != 0)
+            {
+            unit.Value.OPTProp.UsageInPercentPerHour = (int)unit.Value.OPTProp.data.MaxHeat / (int)unit.Value.OPTProp.usingHeatDemand;
+            PercentUsage.Add(unit.Value.OPTProp.data.Name, unit.Value.OPTProp.UsageInPercentPerHour);
+            }
+            else
+            {
+                PercentUsage.Add(unit.Value.OPTProp.data.Name, 0);
+            }
+        }
+
+        return PercentUsage;
+    }
+
+
+    public int TotalHeatDemand()
+    {
+        var HeatDemand = 0;
+
+        foreach(var unit in optimalizationDataStatus)
+        {
+            HeatDemand += (int)unit.Value.OPTProp.usingHeatDemand;
+        }
+        return HeatDemand;
+    }
+
 }

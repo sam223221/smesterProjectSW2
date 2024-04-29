@@ -147,7 +147,7 @@ internal class OPT
         return list;
     }
 
-    private double predictHeatDemand(int hourDemandCell, bool winter, string excelFilePath)
+    public double predictHeatDemand(int hourDemandCell, bool winter, string excelFilePath)
     {
         //Predicted heat demand
         double predHeatDemand = 0;

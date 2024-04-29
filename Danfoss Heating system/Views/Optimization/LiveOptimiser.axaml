@@ -11,7 +11,7 @@
 	<Grid RowDefinitions="2*,*,*" 
 		  ColumnDefinitions="*,Auto">
 
-		<Border IsVisible="{Binding ManualModeVisible}" 
+		<Border IsVisible="False" 
 				ZIndex="2"
 				Grid.ColumnSpan="2"
 				Grid.RowSpan="3"

@@ -17,6 +17,7 @@ namespace Danfoss_Heating_system.Models
         public double? usingCO2Emission { get; set; }
         public double usingHeatDemand { get; set; }
 
+        public int UsageInPercentPerHour { get; set; }
 
         public OPTLiveProp(EnergyData data)
         {
