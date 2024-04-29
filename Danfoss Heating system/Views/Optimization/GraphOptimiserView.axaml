@@ -124,8 +124,7 @@
 					<ComboBox 
 						Width="440"
 						Height="50"
-						CornerRadius="20"
-						x:Name="DataDisplayed">
+						CornerRadius="20">
 						<ComboBox.ItemTemplate>
 							<DataTemplate>
 								<TextBlock
