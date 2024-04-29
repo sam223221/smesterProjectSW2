@@ -23,14 +23,14 @@ public partial class GraphOptimiserViewModel : ViewModelBase
     private string winterButtonForeground = "Green";
     [ObservableProperty]
     private string winterButtonBackground = "LightGreen";
+    [ObservableProperty]
+    private int selectedIndex;
     
     [ObservableProperty]
     private string summerButtonForeground = "Red";
     [ObservableProperty]
     private string summerButtonBackground = "LightCoral";
 
-    [ObservableProperty]
-    private int selectedIndex = 0;
 
     
     
