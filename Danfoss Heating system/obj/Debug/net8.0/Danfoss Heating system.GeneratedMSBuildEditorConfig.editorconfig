@@ -29,9 +29,6 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/GraphOptimiserView.axaml]
-build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
-
 [C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/LiveOptimiser.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 

@@ -92,7 +92,7 @@ namespace Danfoss_Heating_system.ViewModels
             switch (parameter)
             {
                 case "GraphOPT":
-                    CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(this) };
+                    
                     break;
                 case "LiveOPT":
                     CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(this) };
