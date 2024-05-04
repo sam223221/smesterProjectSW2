@@ -10,4 +10,12 @@ public partial class ManualModeLiveOptimiserView : UserControl
     {
         InitializeComponent();
     }
+
+    private void Button_Click(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+    }
+
+    private void Binding_1(object? sender, Avalonia.Interactivity.RoutedEventArgs e)
+    {
+    }
 }

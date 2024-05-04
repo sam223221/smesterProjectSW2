@@ -22,26 +22,26 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     // var for the heat demand and prediction
     [ObservableProperty]
-    private double heatDemandCurrent = 6.7;
+    private double heatDemandCurrent;
     [ObservableProperty]
-    private double heatDemandPrediction = 7.2;
+    private double heatDemandPrediction;
 
     // production cost and CO2 emissions for side bar
     [ObservableProperty]
-    private int productionCost = 800;
+    private int productionCost;
     [ObservableProperty]
-    private int cO2Emotions = 850;
+    private int cO2Emotions;
 
 
     // color states of the boilers and motors
     [ObservableProperty]
-    private string gasBoilerState = "Green";
+    private string gasBoilerState;
     [ObservableProperty]
-    private string oilBoilerState = "Green";
+    private string oilBoilerState;
     [ObservableProperty]
-    private string gasMotorState = "Orange";
+    private string gasMotorState;
     [ObservableProperty]
-    private string electricBoilerState = "Gray";
+    private string electricBoilerState;
 
 
     // color states of the summer and winter buttons
@@ -57,40 +57,40 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     // operation states of the boilers and motors
     [ObservableProperty]
-    private int gasBoilerOperationPercent= 100;
+    private int gasBoilerOperationPercent;
     [ObservableProperty]
-    private int gasBoilerOperationCost = 214;
+    private int gasBoilerOperationCost;
     [ObservableProperty]
-    private int gasBoilerOperationCO2 = 300;
+    private int gasBoilerOperationCO2;
     [ObservableProperty]
-    private string gasBoilerOperation = "ON";
+    private string gasBoilerOperation;
 
     [ObservableProperty]
-    private int oilBoilerOperationPercent = 100;
+    private int oilBoilerOperationPercent;
     [ObservableProperty]
-    private int oilBoilerOperationCost = 312;
+    private int oilBoilerOperationCost;
     [ObservableProperty]
-    private int oilBoilerOperationCO2 = 180;
+    private int oilBoilerOperationCO2;
     [ObservableProperty]
-    private string oilBoilerOperation = "ON";
+    private string oilBoilerOperation;
 
     [ObservableProperty]
-    private int gasMotorOperationPercent = 12;
+    private int gasMotorOperationPercent;
     [ObservableProperty]
-    private int gasMotorOperationCost = 800;
+    private int gasMotorOperationCost;
     [ObservableProperty]
-    private int gasMotorOperationCO2 = 20;
+    private int gasMotorOperationCO2;
     [ObservableProperty]
-    private string gasMotorOperation = "Heating up";
+    private string gasMotorOperation;
 
     [ObservableProperty]
-    private int electricBoilerOperationPercent = 0;
+    private int electricBoilerOperationPercent;
     [ObservableProperty]
-    private int electricBoilerOperationCost = 0;
+    private int electricBoilerOperationCost;
     [ObservableProperty]
-    private int electricBoilerOperationCO2 = 0;
+    private int electricBoilerOperationCO2;
     [ObservableProperty]
-    private string electricBoilerOperation = "OFF";
+    private string electricBoilerOperation;
 
     // color states of the low cost and eco friendly buttons
     [ObservableProperty]
@@ -108,6 +108,15 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     [ObservableProperty]
     private bool manualModeVisible = false;
 
+
+    [ObservableProperty]
+    private string actualHour;
+
+    [ObservableProperty]
+    private string previousHour;
+
+    [ObservableProperty]
+    private string nextHour;
 
 
     // relay commands for the summer and winter buttons
@@ -142,6 +151,7 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
         if (LowCost)
         {
+            SettingsForDynamicData();
             LowCostWeight = "Bold";
             LowCostBackground = "Green";
             return;
@@ -161,12 +171,12 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     [RelayCommand]
     private void ECOFriendlyTrue()
-    {
-        SettingsForDynamicData();
+    {      
         ECOFriendly = !ECOFriendly;
 
         if (ECOFriendly)
         {
+            SettingsForDynamicData();
             ECOFriendlyFontWeight = "Bold";
             ECOFriendlyBackground = "Green";
             return;
@@ -224,20 +234,57 @@ public partial class LiveOptimiserViewModel : ViewModelBase
         viewChange.window.Height = 1080;
         viewChange.window.MinHeight = 700;
         viewChange.window.MinWidth = 1800;
-        OPTLive = new OPTLive("/Assets/data.xlsx");      
+        OPTLive = new OPTLive("/Assets/data.xlsx");
+        SettingsForDynamicData();
     }
 
     public void SettingsForDynamicData()
     {
+        OPTLive.UsingMachines(160, true);
         ProductionCost = (int)OPTLive.ProductionCostPerHour();
         CO2Emotions = (int)OPTLive.CO2EmmitionsPerHour();
+
         var usagePerHour = OPTLive.UnitUsagePerHour();
         GasBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
         OilBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-        GasMotorOperationPercent  = usagePerHour.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
+        GasMotorOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
         ElectricBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
-        HeatDemandCurrent = OPTLive.TotalHeatDemand();
-        HeatDemandPrediction = OPTLiveProp.PredictedHeatDemand;
-    }
 
-}
+        HeatDemandCurrent = OPTLive.TotalHeatDemand();
+        HeatDemandPrediction = OPTLive.predictHeatDemandCalculate(160, true, "Assets/data.xlsx");
+        PreviousHour = OPTLive.GetHourFromCellIndex(159, true, "Assets/data.xlsx");
+        ActualHour = OPTLive.GetHourFromCellIndex(160, true, "Assets/data.xlsx");
+        NextHour = OPTLive.GetHourFromCellIndex(161, true, "Assets/data.xlsx");
+        var operationcost = OPTLive.UnitsOperationCosts();
+        GasBoilerOperationCost = operationcost.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
+        OilBoilerOperationCost = operationcost.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
+        GasMotorOperationCost = operationcost.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
+        ElectricBoilerOperationCost = operationcost.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+
+
+        var co2emissions = OPTLive.UnitsCO2Emission();
+        GasBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
+        OilBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
+        GasMotorOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
+        ElectricBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+
+
+        var stateofUnit = OPTLive.StateOfUnits(160, true, "Assets/data.xlsx");
+
+        stateofUnit.TryGetValue("Gas boiler", out var gasBoilerInfo);
+            GasBoilerState = gasBoilerInfo.Item1;
+            GasBoilerOperation = gasBoilerInfo.Item2;
+
+        stateofUnit.TryGetValue("Oil boiler", out var oilBoilerInfo);
+            OilBoilerState = oilBoilerInfo.Item1;
+            OilBoilerOperation = oilBoilerInfo.Item2;
+
+        stateofUnit.TryGetValue("Gas motor", out var gasMotorInfo);
+            GasMotorState = gasMotorInfo.Item1;
+            GasMotorOperation = gasMotorInfo.Item2;
+
+        stateofUnit.TryGetValue("Electric boiler", out var electricBoilerInfo);
+            ElectricBoilerState = electricBoilerInfo.Item1;
+            ElectricBoilerOperation = electricBoilerInfo.Item2;
+    }
+ }
