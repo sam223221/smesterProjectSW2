@@ -1,7 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Security.AccessControl;
 
 
 namespace Danfoss_Heating_system.ViewModels.OPT

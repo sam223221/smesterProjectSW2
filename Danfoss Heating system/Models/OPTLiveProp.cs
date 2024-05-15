@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Danfoss_Heating_system.Models
 {
-    internal class OPTLiveProp
+    public class OPTLiveProp
     {
 
         public EnergyData data;

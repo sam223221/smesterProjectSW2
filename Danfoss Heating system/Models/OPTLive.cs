@@ -28,7 +28,7 @@ outputs: list:
 
 
 
-internal class OPTLive
+public class OPTLive
 {
         ExcelDataParser ExcelDataParser;
         

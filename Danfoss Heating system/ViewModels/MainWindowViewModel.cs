@@ -1,4 +1,5 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
@@ -21,9 +22,14 @@ namespace Danfoss_Heating_system.ViewModels
         public Window window;
 
         [ObservableProperty]
-        private int sideBarWidth = 0;
+        private double sideBarWidth = 0;
 
-        
+        [ObservableProperty]
+        private double actualWidth = 0;
+
+        [ObservableProperty]
+        private double actualHeight = 0;
+
         public EnergyData userName;
 
 
@@ -61,6 +67,12 @@ namespace Danfoss_Heating_system.ViewModels
 
             this.window = window;
             userName = item;
+
+            window.GetObservable(Window.ClientSizeProperty).Subscribe(size =>
+            {
+                ActualWidth = (int)size.Width;
+                ActualHeight = size.Height;
+            });
 
             //sets the view within the window to the current role that is logging in
             switch (item.UserRole)
@@ -110,16 +122,8 @@ namespace Danfoss_Heating_system.ViewModels
         {
 
             _isSideBarOpen = !_isSideBarOpen;
-            
-            
-            if (_isSideBarOpen)
-            {
-                SideBarWidth = 75;
-            }else
-            {
-                SideBarWidth = 0;
-            }
-                
+            SideBarWidth = _isSideBarOpen ? 75 : 0;
+
         }
 
 

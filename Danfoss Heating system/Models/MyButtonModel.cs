@@ -20,7 +20,6 @@ namespace Danfoss_Heating_system.Models
 
         public ReactiveCommand<string, Unit> example { get; }
         public string Name { get; set; }
-        public ICommand Command { get; set; }
 
         public MyButtonModel(string name, ReactiveCommand<string, Unit> example)
         {
