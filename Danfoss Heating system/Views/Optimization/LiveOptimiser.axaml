@@ -11,7 +11,7 @@
 	<Grid RowDefinitions="2*,*,*" 
 		  ColumnDefinitions="*,Auto">
 
-		<Border IsVisible="{Binding ManualModeVisible}" 
+		<Border IsVisible="{Binding ManualModeVisible}"
 				ZIndex="2"
 				Grid.ColumnSpan="2"
 				Grid.RowSpan="3"
@@ -386,16 +386,17 @@
 						Margin="0,50,0,0">
 
 				<!-- Upper Clock -->
-				<TextBlock Text="05:00"
+				<TextBlock Text="{Binding PreviousHour}"
 						   FontSize="40"
 						   FontWeight="Bold"
 						   HorizontalAlignment="Center"
 						   VerticalAlignment="Center"
 						   Foreground="LightGray"
+						   
 						   />
 				
 				<!-- Center Clock -->
-				<TextBlock Text="06:00"
+				<TextBlock Text="{Binding ActualHour}"
 						   FontSize="50"
 						   FontWeight="Bold"
 						   HorizontalAlignment="Center"
@@ -404,7 +405,7 @@
 						   />
 				
 				<!-- Lower Clock -->
-				<TextBlock Text="07:00"
+				<TextBlock Text="{Binding NextHour}"
 						   FontSize="40"
 						   FontWeight="Bold"
 						   HorizontalAlignment="Center"

@@ -28,6 +28,7 @@
     <None Remove="Assets\Images\exitIcon.png" />
     <None Remove="Assets\Images\graph1.PNG" />
     <None Remove="Assets\Images\performance.png" />
+    <None Remove="Assets\Images\setting.png" />
   </ItemGroup>
 
 

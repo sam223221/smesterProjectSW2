@@ -41,7 +41,7 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         [RelayCommand]
         private void GoToUser()
         {
-            viewchange.CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(viewchange) };
+            
         }
 
         [RelayCommand]
