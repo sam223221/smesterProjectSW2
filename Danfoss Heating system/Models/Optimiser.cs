@@ -16,16 +16,12 @@ namespace Danfoss_Heating_system.Models
         public enum OptimizationType
         {
             BestCost,
-            LowestCO2
-        }
-
-        public enum OptimizationScenario
-        {
+            LowestCO2,
             Scenario1,
             Scenario2
         }
 
-        public List<OperationResult> CalculateOptimalOperations(DateTime specificDate, OptimizationScenario scenario, OptimizationType optimizationType)
+        public List<OperationResult> CalculateOptimalOperations(DateTime specificDate, OptimizationType optimizationType)
         {
             var results = new List<OperationResult>();
             var energyData = excelDataParser.ParserEnergyData()
@@ -37,95 +33,117 @@ namespace Danfoss_Heating_system.Models
             }
 
             var productionUnits = excelDataParser.ParserProductionUnits();
-            var result = new OperationResult();
-
-            // Define thresholds based on observed data
-            double highPriceThreshold = 1200; // Example high price threshold
-            double lowPriceThreshold = 700;   // Example low price threshold
-
-            // Sort units based on the optimization type
-            List<EnergyData> orderedUnits;
-            if (optimizationType == OptimizationType.BestCost)
+            var result = new OperationResult
             {
-                if (scenario == OptimizationScenario.Scenario1)
+                Date = specificDate,
+                HeatDemand = energyData.HeatDemand,
+                ElectricityPrice = energyData.ElectricityPrice
+            };
+
+            // Pre-calculate the production cost for the electric boiler and Gas Motor
+            foreach (var unit in productionUnits)
+            {
+                if (unit.Name == "Electric boiler")
                 {
-                    // Scenario 1: Prioritize gas boiler and use oil boiler if needed
-                    orderedUnits = productionUnits
-                        .Where(p => p.Name == "Gas boiler" || p.Name == "Oil boiler")
-                        .OrderBy(p => p.ProductionCost / p.MaxHeat)
-                        .ToList();
+                    unit.ProductionCost += energyData.ElectricityPrice;
                 }
-                else
+                if (unit.Name == "Gas motor")
                 {
-                    // Scenario 2: Use cost-effectiveness and incorporate dynamic electricity prices
-                    orderedUnits = productionUnits.OrderBy(p => p.ProductionCost / p.MaxHeat).ToList();
+                    double heatToProduce = Math.Min(energyData.HeatDemand, 3.6);
+                    double totalHeatCost = heatToProduce * unit.ProductionCost;
+                    double electricityProduced = (heatToProduce / 3.6) * unit.MaxElectricity;
+                    double totalElectricityRevenue = electricityProduced * energyData.ElectricityPrice;
+                    unit.ProductionCost = totalHeatCost - totalElectricityRevenue;
                 }
             }
-            else // OptimizationType.LowestCO2
-            {
-                orderedUnits = productionUnits.OrderBy(p => p.CO2Emission / p.MaxHeat).ToList();
-            }
 
-            double requiredHeat = energyData.HeatDemand;
+            var orderedUnits = SortProductionUnits(productionUnits, optimizationType, energyData);
+            double remainingHeat = energyData.HeatDemand;
             var unitsUsed = new List<string>();
+            var usedUnits = new HashSet<string>();
 
             foreach (var unit in orderedUnits)
             {
-                if (requiredHeat <= 0) break;
+                if (remainingHeat <= 0) break;
+                if (usedUnits.Contains(unit.Name)) continue;
 
-                double usedHeat;
-                double cost;
-                double emissions;
+                double heatToProduce = Math.Min(remainingHeat, unit.MaxHeat);
+                remainingHeat -= heatToProduce;
 
-                if (scenario == OptimizationScenario.Scenario2)
-                {
-                    // Special logic for gas motor and electric boiler in Scenario 2
-                    if (unit.Name == "Gas motor" && energyData.ElectricityPrice > highPriceThreshold)
-                    {
-                        // Use gas motor if electricity prices are high
-                        usedHeat = Math.Min(unit.MaxHeat, requiredHeat);
-                        cost = usedHeat * unit.ProductionCost;
-                        emissions = usedHeat * unit.CO2Emission;
-
-                        unitsUsed.Add(unit.Name);
-                        result.TotalCost += cost;
-                        result.CO2Emissions += emissions;
-                        requiredHeat -= usedHeat;
-                        continue;
-                    }
-                    else if (unit.Name == "Electric boiler" && energyData.ElectricityPrice < lowPriceThreshold)
-                    {
-                        // Use electric boiler if electricity prices are low
-                        usedHeat = Math.Min(unit.MaxHeat, requiredHeat);
-                        // Calculate the cost considering electricity consumption
-                        cost = usedHeat * unit.ProductionCost + usedHeat * Math.Abs(unit.MaxElectricity) * energyData.ElectricityPrice;
-                        emissions = usedHeat * unit.CO2Emission;
-
-                        unitsUsed.Add(unit.Name);
-                        result.TotalCost += cost;
-                        result.CO2Emissions += emissions;
-                        requiredHeat -= usedHeat;
-                        continue;
-                    }
-                }
-
-                // General logic for other units
-                usedHeat = Math.Min(unit.MaxHeat, requiredHeat);
-                cost = usedHeat * unit.ProductionCost;
-                emissions = usedHeat * unit.CO2Emission;
-
+                result.TotalCost += CalculateCost(unit, heatToProduce);
+                result.CO2Emissions += CalculateEmissions(unit, heatToProduce);
                 unitsUsed.Add(unit.Name);
-                result.TotalCost += cost;
-                result.CO2Emissions += emissions;
-                requiredHeat -= usedHeat;
+                usedUnits.Add(unit.Name);
+            }
+
+            if (remainingHeat > 0)
+            {
+                throw new InvalidOperationException("Unable to meet the heat demand with the available units.");
             }
 
             result.UnitsUsed = string.Join(", ", unitsUsed);
-            result.HeatDemand = energyData.HeatDemand;
-            result.ElectricityPrice = energyData.ElectricityPrice;
             results.Add(result);
 
             return results;
+        }
+
+        private List<EnergyData> SortProductionUnits(IEnumerable<EnergyData> productionUnits, OptimizationType optimizationType, EnergyData electricalPrice)
+        {
+            switch (optimizationType)
+            {
+                case OptimizationType.BestCost:
+                    return productionUnits.OrderBy(p => p.ProductionCost).ToList();
+                case OptimizationType.LowestCO2:
+                    return productionUnits.OrderBy(p => p.CO2Emission / p.MaxHeat).ToList();
+                case OptimizationType.Scenario1:
+                    return productionUnits
+                        .Where(p => p.Name == "Gas boiler" || p.Name == "Oil boiler")
+                        .OrderBy(p => p.ProductionCost / p.MaxHeat)
+                        .ToList();
+                case OptimizationType.Scenario2:
+                    return SortProductionUnitsForScenario2(productionUnits, electricalPrice);
+                default:
+                    throw new ArgumentException("Invalid optimization type");
+            }
+        }
+
+        private List<EnergyData> SortProductionUnitsForScenario2(IEnumerable<EnergyData> productionUnits , EnergyData electrialPrice)
+        {
+            double highPriceThreshold = 1000;
+            double lowPriceThreshold = 650;
+            double electricityPrice = electrialPrice.ElectricityPrice;
+
+            if (electricityPrice < lowPriceThreshold)
+            {
+                // Always choose the Electric Boiler
+                return productionUnits
+                    .OrderByDescending(p => p.Name == "Electric boiler")
+                    .ThenBy(p => p.ProductionCost)
+                    .ToList();
+            }
+            else if (electricityPrice > highPriceThreshold)
+            {
+                // Use the Gas Motor first, then add the motors with the lowest price
+                return productionUnits
+                    .OrderByDescending(p => p.Name == "Gas motor")
+                    .ThenBy(p => p.ProductionCost)
+                    .ToList();
+            }
+            else
+            {
+                // Use the lowest price motors
+                return productionUnits.OrderBy(p => p.ProductionCost).ToList();
+            }
+        }
+
+        private double CalculateCost(EnergyData unit, double heatProduced)
+        {
+            return heatProduced * unit.ProductionCost;
+        }
+
+        private double CalculateEmissions(EnergyData unit, double heatProduced)
+        {
+            return unit.CO2Emission * heatProduced;
         }
     }
 }

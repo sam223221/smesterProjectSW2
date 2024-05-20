@@ -49,9 +49,9 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string lowestCo2Background = "LightCoral";
         [ObservableProperty]
-        private string scenario1Foreground = "Green";
+        private string scenario1Foreground = "Red";
         [ObservableProperty]
-        private string scenario1Background = "LightGreen";
+        private string scenario1Background = "LightCoral";
         [ObservableProperty]
         private string scenario2Foreground = "Red";
         [ObservableProperty]
@@ -75,7 +75,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         public ObservableCollection<GraphProps> DataGraphDisplayed { get; set; } = new();
         private Optimiser optimizer;
         private OptimizationType optimizationType = OptimizationType.BestCost;
-        private OptimizationScenario optimizationScenario = OptimizationScenario.Scenario1;
 
         // Constructor
         public GraphOptimiserViewModel(MainWindowViewModel mv)
@@ -139,6 +138,10 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             BestCostBackground = "LightGreen";
             LowestCo2Foreground = "Red";
             LowestCo2Background = "LightCoral";
+            Scenario2Foreground = "Red";
+            Scenario2Background = "LightCoral";
+            Scenario1Foreground = "Red";
+            Scenario1Background = "LightCoral";
 
             optimizationType = OptimizationType.BestCost;
             ResultDataUpdate(selectedDate.TimeFrom);
@@ -153,6 +156,10 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             BestCostBackground = "LightCoral";
             LowestCo2Foreground = "Green";
             LowestCo2Background = "LightGreen";
+            Scenario2Foreground = "Red";
+            Scenario2Background = "LightCoral";
+            Scenario1Foreground = "Red";
+            Scenario1Background = "LightCoral";
 
             optimizationType = OptimizationType.LowestCO2;
             ResultDataUpdate(selectedDate.TimeFrom);
@@ -167,8 +174,12 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             Scenario1Background = "LightGreen";
             Scenario2Foreground = "Red";
             Scenario2Background = "LightCoral";
+            BestCostForeground = "Red";
+            BestCostBackground = "LightCoral";
+            LowestCo2Foreground = "Red";
+            LowestCo2Background = "LightCoral";
 
-            optimizationScenario = OptimizationScenario.Scenario1;
+            optimizationType = OptimizationType.Scenario1;
             ResultDataUpdate(selectedDate.TimeFrom);
         }
 
@@ -181,8 +192,12 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             Scenario1Background = "LightCoral";
             Scenario2Foreground = "Green";
             Scenario2Background = "LightGreen";
+            BestCostForeground = "Red";
+            BestCostBackground = "LightCoral";
+            LowestCo2Foreground = "Red";
+            LowestCo2Background = "LightCoral";
 
-            optimizationScenario = OptimizationScenario.Scenario2;
+            optimizationType = OptimizationType.Scenario2;
             ResultDataUpdate(selectedDate.TimeFrom);
         }
 
@@ -228,7 +243,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         private void ResultDataUpdate(DateTime timeFrom)
         {
             
-            var result = optimizer.CalculateOptimalOperations(timeFrom, optimizationScenario, optimizationType);
+            var result = optimizer.CalculateOptimalOperations(timeFrom, optimizationType);
             ResultCurrentHeatDemand = result[0].HeatDemand.ToString("F2");
             ResultCurrentElectricalPrice = result[0].ElectricityPrice.ToString("F2");
             ResultCurrentProfit = result[0].TotalCost.ToString("F2");

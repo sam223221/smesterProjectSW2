@@ -14,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 45,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -35,13 +35,7 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 129,
-          "SelectedChildIndex": 0,
-          "Children": [
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -50,9 +44,9 @@
               "RelativeDocumentMoniker": "Models\\Optimiser.cs",
               "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Models\\Optimiser.cs",
               "RelativeToolTip": "Models\\Optimiser.cs",
-              "ViewState": "AQIAADoAAAAAAAAAAAAAAE0AAAAhAAAA",
+              "ViewState": "AQIAAFcAAAAAAAAAAAAYwG8AAAAsAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-15T06:54:15.031Z",
+              "WhenOpened": "2024-05-19T16:05:24.281Z",
               "EditorCaption": ""
             }
           ]

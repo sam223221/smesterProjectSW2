@@ -191,10 +191,10 @@
 				<Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
 					<TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="25" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Text="Solution Tab" Margin="10"/>
 
-					<!-- Best Cost Button -->
+					<!-- lowest Cost Button -->
 					<Border Grid.Row="1" Grid.Column="0" Height="70" Width="200" CornerRadius="20" Background="{Binding BestCostBackground}">
 						<Button HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" CornerRadius="20" Background="{Binding BestCostForeground}" Command="{Binding BestCostCommand}">
-							<TextBlock Text="Best Cost" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<TextBlock Text="Lowest Cost" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 						</Button>
 					</Border>
 
