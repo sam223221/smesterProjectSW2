@@ -13,27 +13,30 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Danfoss_Heating_system
-build_property.ProjectDir = C:\Users\kubak\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\
+build_property.ProjectDir = C:\Users\samgl\Documents\GitHub\smesterProjectSW2\Danfoss Heating system\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/App.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/App.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminView.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Admin/AdminView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/LoginWindow.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/LoginWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/MainWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/LiveOptimiser.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/GraphOptimiserView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/ManualModeLiveOptimiserView.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/LiveOptimiser.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
-[C:/Users/kubak/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/User/UserView.axaml]
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/ManualModeLiveOptimiserView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/User/UserView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
