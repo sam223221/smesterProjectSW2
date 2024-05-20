@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "fNvM+hjD/GA0zGH4WzvE+1qrR+iCK8ybf/27rX3z/sb8bJ4yeA59l+eNg42nw0lNTXlNgJCYRS0b3NRabS8B4w==",
+  "dgSpecHash": "7pK6iCrtsuy8oCPr7QRqp8Sgs3jAP3lRYzQHPdo06pNxsaIjDWFMiMVio+bFP2QUrzvwjkquCyuWCqGxCMXeQg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kubak\\OneDrive\\Pulpit\\Danfoss Heating System\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
+  "projectFilePath": "C:\\Users\\kubak\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kubak\\.nuget\\packages\\avalonia\\11.0.10\\avalonia.11.0.10.nupkg.sha512",
     "C:\\Users\\kubak\\.nuget\\packages\\avalonia.angle.windows.natives\\2.1.0.2023020321\\avalonia.angle.windows.natives.2.1.0.2023020321.nupkg.sha512",
