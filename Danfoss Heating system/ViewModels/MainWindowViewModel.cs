@@ -47,7 +47,7 @@ namespace Danfoss_Heating_system.ViewModels
 
             var loginWindow = new LoginWindow();
             loginWindow.DataContext = new LoginWindowViewModel(loginWindow); // Passes the window so it can be manipulated
-            
+
             loginWindow.Show();
             window.Close();
         }
@@ -55,11 +55,11 @@ namespace Danfoss_Heating_system.ViewModels
         [RelayCommand]
         private void GoHome()
         {
-            if(userName.UserRole == "Admin")
+            if (userName.UserRole == "Admin")
             {
                 CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
             }
-        }   
+        }
 
 
         public MainWindowViewModel(EnergyData item, Window window)
@@ -104,7 +104,7 @@ namespace Danfoss_Heating_system.ViewModels
             switch (parameter)
             {
                 case "GraphOPT":
-                    
+                    CurrentContent = new () { DataContext = new GraphOptimiserViewModel(this) };
                     break;
                 case "LiveOPT":
                     CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(this) };
@@ -112,13 +112,13 @@ namespace Danfoss_Heating_system.ViewModels
 
             }
 
-            _isSideBarOpen= false;
+            _isSideBarOpen = false;
             SideBarWidth = 0;
         }
 
 
         [RelayCommand]
-        private void SideBarToggle() 
+        private void SideBarToggle()
         {
 
             _isSideBarOpen = !_isSideBarOpen;

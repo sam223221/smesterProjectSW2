@@ -41,7 +41,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string summerButtonBackground = "LightCoral";
         [ObservableProperty]
-        private string bestCostForeground= "Green";
+        private string bestCostForeground = "Green";
         [ObservableProperty]
         private string bestCostBackground = "LightGreen";
         [ObservableProperty]
@@ -134,7 +134,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         {
             if (!isThereData) return;
 
-            BestCostForeground ="Green";
+            BestCostForeground = "Green";
             BestCostBackground = "LightGreen";
             LowestCo2Foreground = "Red";
             LowestCo2Background = "LightCoral";
@@ -183,8 +183,8 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             ResultDataUpdate(selectedDate.TimeFrom);
         }
 
-        [RelayCommand] 
-        private void Scenario2() 
+        [RelayCommand]
+        private void Scenario2()
         {
             if (!isThereData) return;
 
@@ -242,7 +242,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         private void ResultDataUpdate(DateTime timeFrom)
         {
-            
+
             var result = optimizer.CalculateOptimalOperations(timeFrom, optimizationType);
             ResultCurrentHeatDemand = result[0].HeatDemand.ToString("F2");
             ResultCurrentElectricalPrice = result[0].ElectricityPrice.ToString("F2");
@@ -271,7 +271,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             foreach (var item in summerPeriodData)
             {
 
-               DataDisplayed.Add(new SortingTheDaysInExcelParserProps { date = item.Key.Date.ToString("dd/MM/yyyy"), data = item.Value });
+                DataDisplayed.Add(new SortingTheDaysInExcelParserProps { date = item.Key.Date.ToString("dd/MM/yyyy"), data = item.Value });
 
             }
         }
@@ -280,7 +280,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         {
 
             if (value == -1) return;
-            
+
             displayedData = DataDisplayed[value];
 
             UpdateGraph(null);

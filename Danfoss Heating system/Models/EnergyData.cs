@@ -34,4 +34,16 @@ namespace Danfoss_Heating_system.Models
         public string? DisplayQuoteAuthor => quoteAuther;    
     }
 
+    public class OperationResult
+    {
+        public DateTime Date { get; set; }
+        public string? UnitsUsed { get; set; }
+        public double TotalCost { get; set; }
+        public double CO2Emissions { get; set; }
+        public double HeatDemand { get; internal set; }
+        public double ElectricityPrice { get; internal set; }
+    }
+
+
+
 }
