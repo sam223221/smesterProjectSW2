@@ -24,15 +24,15 @@
 
 				<StackPanel Grid.Row="0" Grid.ColumnSpan="2">
 					<TextBlock Text="!!!YOU ARE ENTERING MANUAL MODE!!!" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="100" Foreground="White"/>
-					<TextBlock Text="You are now entering Manual mode, by doing this all respondsebility is now in your hads" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you will still se predictions for the comming hour but there wont be any automation everything will be manual and all up to you" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="to turn on and off the motors you have to press the on and of button under the corosponding machine you want to tun on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="the total production all the machins are producing under your control will be displayed" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you will also have the full responsibility of setting how much each motor needs to produce, as default all motors are set to 100%" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="this you have to change youself!" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You are now entering Manual mode, by doing this all responsibility is now in your hands" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You will still see predictions for the coming hour but there won't be any automation. Everything will be manual and all up to you" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="To turn on and off the motors you have to press the on and off button under the corresponding machine you want to turn on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="The total production all the machines are producing under your control will be displayed" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You will also have the full responsibility of setting how much each motor needs to produce. As default all motors are set to 100%" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="This you have to change yourself!" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="The Motors take around 10 min to start, so be carefull on when you want to start a motor make sure you do it in good time," Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you can allways lower prduction on another motor to compinsate for too many motors on, but that dosent happen when to few mtors are ON" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="The motors take around 10 minutes to start, so be careful on when you want to start a motor. Make sure you do it in good time," Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You can always lower production on another motor to compensate for too many motors on, but that doesn't happen when too few motors are on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
@@ -458,7 +458,7 @@
 						Command="{Binding ManualModeCommand}"
 						>
 					<TextBlock
-						Text="Mauel"
+						Text="Manual"
 						HorizontalAlignment="Center"
 						VerticalAlignment="Center"
 						Foreground="Black"

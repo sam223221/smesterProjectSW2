@@ -169,11 +169,11 @@ namespace Danfoss_Heating_system.Models
                 {
                     if (row.RowNumber() <= 3) continue; //Skipping header rows
                     var name = row.Cell(22).GetValue<String>();
-                    double.TryParse(row.Cell(23).GetValue<String>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double maxHeat);
-                    double.TryParse(row.Cell(24).GetValue<String>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double maxElectricity);
+                    double.TryParse(row.Cell(23).GetValue<String>(), NumberStyles.Any, DanishInfo, out double maxHeat);
+                    double.TryParse(row.Cell(24).GetValue<String>(), NumberStyles.Any, DanishInfo, out double maxElectricity);
                     double.TryParse(row.Cell(25).GetValue<String>(), NumberStyles.Any, DanishInfo, out double productionCost);
                     double.TryParse(row.Cell(26).GetValue<String>(), NumberStyles.Any, DanishInfo, out double co2Emissions);
-                    double.TryParse(row.Cell(27).GetValue<String>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double gasConsumption);
+                    double.TryParse(row.Cell(27).GetValue<String>(), NumberStyles.Any, DanishInfo, out double gasConsumption);
 
                     productionUnitList.Add(new EnergyData
                     {

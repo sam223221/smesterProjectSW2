@@ -37,7 +37,7 @@ internal class OPTLive
 {
     ExcelDataParser ExcelDataParser;
     public string filePath;
-
+    
     Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
     
     Dictionary<string, OPTLiveProp> machinesForManualMode = new Dictionary<string, OPTLiveProp>();
@@ -120,7 +120,7 @@ internal class OPTLive
             {
                 optLivePropForManual.isUnitEnabled = true;
                 optLivePropForManual.usingHeatDemand = optLivePropForManual.usingHeatDemand;
-                optLivePropForManual.usingCO2Emission = optLivePropForManual.usingCO2Emission;
+                optLivePropForManual.usingCO2Emission = optLivePropForManual.usingHeatDemand * unit.CO2Emission;
                 optLivePropForManual.stateOfUnit = "Green";
                 optLivePropForManual.operationOfUnit = "ON";
                 optLivePropForManual.UsageInPercentPerHour = 100;
@@ -343,7 +343,7 @@ internal class OPTLive
         {
             HeatDemand += unit.Value.usingHeatDemand;
         }
-        double roundedHeatDemand = Math.Round(HeatDemand, 2);
+        double roundedHeatDemand = Math.Round(HeatDemand, 3);
         return roundedHeatDemand;
     }
 
@@ -396,7 +396,7 @@ internal class OPTLive
 
         foreach (var unit in newState)
         {
-            int co2 = Convert.ToInt32(unit.Value.usingCO2Emission);
+            int co2 = Convert.ToInt32(unit.Value.usingHeatDemand * unit.Value.data.CO2Emission);
             unitsCO2Emissions.Add(unit.Value.data.Name, co2);
         }
         return unitsCO2Emissions;
