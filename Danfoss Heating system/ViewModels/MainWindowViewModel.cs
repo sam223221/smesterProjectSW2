@@ -88,6 +88,11 @@ namespace Danfoss_Heating_system.ViewModels
 
         }
 
+        [RelayCommand]
+        private void HelpButton()
+        {
+            CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(this) };
+        }
 
         private void AdminNavigationBar()
         {
@@ -115,6 +120,7 @@ namespace Danfoss_Heating_system.ViewModels
             _isSideBarOpen = false;
             SideBarWidth = 0;
         }
+        
 
 
         [RelayCommand]

@@ -60,7 +60,8 @@
 					Grid.Column="2" 
 					Width="77" 
 					Height="45" 
-					Margin="40,-5,0,0">
+					Margin="40,-5,0,0"
+					Command="">
 				
 				<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 			</Button>
