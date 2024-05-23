@@ -126,6 +126,7 @@ namespace Danfoss_Heating_system.Models
                     double.TryParse(row.Cell(3).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringWinter);          // Winter HeatDemand                                                                            
                     double.TryParse(row.Cell(4).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringWinter);    // Winter ElectricityPrice
 
+                    
                     energyDataList.Add(new EnergyData
                     {
                         TimeFrom = timeFromStringWinter,
@@ -175,15 +176,18 @@ namespace Danfoss_Heating_system.Models
                     double.TryParse(row.Cell(26).GetValue<String>(), NumberStyles.Any, DanishInfo, out double co2Emissions);
                     double.TryParse(row.Cell(27).GetValue<String>(), NumberStyles.Any, DanishInfo, out double gasConsumption);
 
-                    productionUnitList.Add(new EnergyData
+                    if (!string.IsNullOrEmpty(name))
                     {
-                        Name = name,
-                        MaxHeat = maxHeat,
-                        MaxElectricity = maxElectricity,
-                        ProductionCost = productionCost,
-                        CO2Emission = co2Emissions,
-                        GasConsumption = gasConsumption,
-                    });
+                        productionUnitList.Add(new EnergyData
+                        {
+                            Name = name,
+                            MaxHeat = maxHeat,
+                            MaxElectricity = maxElectricity,
+                            ProductionCost = productionCost,
+                            CO2Emission = co2Emissions,
+                            GasConsumption = gasConsumption,
+                        });
+                    }
                 }
             }
             return productionUnitList;

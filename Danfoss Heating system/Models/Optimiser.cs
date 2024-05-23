@@ -72,7 +72,7 @@ namespace Danfoss_Heating_system.Models
 
                 result.TotalCost += CalculateCost(unit, heatToProduce);
                 result.CO2Emissions += CalculateEmissions(unit, heatToProduce);
-                unitsUsed.Add(unit.Name);
+                unitsUsed.Add(unit.Name + " " + heatToProduce.ToString("F2") + "MW");
                 usedUnits.Add(unit.Name);
             }
 
@@ -81,7 +81,7 @@ namespace Danfoss_Heating_system.Models
                 throw new InvalidOperationException("Unable to meet the heat demand with the available units.");
             }
 
-            result.UnitsUsed = string.Join(", ", unitsUsed);
+            result.UnitsUsed = string.Join(" : ", unitsUsed);
             results.Add(result);
 
             return results;

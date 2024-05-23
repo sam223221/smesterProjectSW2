@@ -244,9 +244,9 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         {
 
             var result = optimizer.CalculateOptimalOperations(timeFrom, optimizationType);
-            ResultCurrentHeatDemand = result[0].HeatDemand.ToString("F2");
-            ResultCurrentElectricalPrice = result[0].ElectricityPrice.ToString("F2");
-            ResultCurrentProfit = result[0].TotalCost.ToString("F2");
+            ResultCurrentHeatDemand = result[0].HeatDemand.ToString("F2") + " MW";
+            ResultCurrentElectricalPrice = result[0].ElectricityPrice.ToString("F2") + " kr";
+            ResultCurrentProfit = result[0].TotalCost.ToString("F2") + " kr";
             ResultMotorsInUse = result[0].UnitsUsed;
         }
 
