@@ -7556,23 +7556,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\samgl\\.nuget\\packages\\": {},
+    "C:\\Users\\ksuch\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
+      "projectUniqueName": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
       "projectName": "Danfoss Heating system",
-      "projectPath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
-      "packagesPath": "C:\\Users\\samgl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\obj\\",
+      "projectPath": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\Danfoss Heating system.csproj",
+      "packagesPath": "C:\\Users\\ksuch\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\samgl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ksuch\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7658,7 +7658,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
       }
     }
   },

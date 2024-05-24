@@ -1,0 +1,77 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.TopBarNavigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:HelpViewModel"
+             x:Class="Danfoss_Heating_system.Views.TopBarNavigation.HelpView"
+			 Background="White">
+
+	<Grid>
+		
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="1" Grid.ColumnSpan="2" Background="LightGray"
+				Width="340" Height="100" VerticalAlignment="Center"
+				BorderBrush="Black" BorderThickness="2" CornerRadius="15"
+				>
+			
+			<TextBlock Text="Help Section" FontSize="26" 
+					   TextAlignment="Center" VerticalAlignment="Center"
+					   FontWeight="Bold" Foreground="Black"/>
+		</Border>
+
+		<Border Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Background="#CB0B0B"
+				Width="340" Height="220" VerticalAlignment="Center"
+				BorderBrush="Black" BorderThickness="2" CornerRadius="15" Margin="15">
+
+			<StackPanel Orientation="Vertical">
+			<TextBlock Text="Contact IT Service" FontSize="18"
+					   TextAlignment="Center" VerticalAlignment="Top"
+					   FontWeight="SemiBold" Foreground="White" Margin="25"/>
+				<TextBlock Text="+45 123 456 78" FontSize="18"
+					   TextAlignment="Center" VerticalAlignment="Top"
+					   FontWeight="Normal" Foreground="White" Margin="15"/>
+				<TextBlock Text="danfoss@gmail.com" FontSize="18"
+				   TextAlignment="Center" VerticalAlignment="Top"
+				   FontWeight="Normal" Foreground="White" Margin="15"/>
+			</StackPanel>
+			
+		</Border>
+
+		<Border Grid.Row="3" Grid.Column="1"
+				Background="LightGray" Grid.RowSpan="2"
+				BorderBrush="Black" BorderThickness="2" CornerRadius="15" 
+				Height="100" Width="355"> 
+			
+			<TextBlock Text="Before contacting the support look at the FAQ Section."
+					   FontSize="16" TextAlignment="Center" 
+					   VerticalAlignment="Center" TextWrapping="Wrap"
+					   FontWeight="SemiBold" Foreground="Black" 
+					   />
+		
+		</Border>
+		
+		<Image Source="/Assets/Images/DanfossLogo.png" 
+			   Grid.Column="1" Grid.Row="5" Grid.RowSpan="2" Width="200" Height="250"/>
+		
+		
+		
+	</Grid>
+	
+</UserControl>
