@@ -1,10 +1,10 @@
 ﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
-using Danfoss_Heating_system.Interfaces;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using Danfoss_Heating_system.Views;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Danfoss_Heating_system.ViewModels;
@@ -32,13 +32,18 @@ public partial class LoginWindowViewModel : ViewModelBase
     [ObservableProperty]
     private bool signInSucceed = false;
 
+    ExcelDataParser excelDataParser = new ExcelDataParser("Assets/data.xlsx");
+    EnergyData UserLogin;
+
+    //Create Main window and sets the data context
+    Window mainWindow = new MainWindow();
+    MainWindowViewModel mainWindowViewModel;
+
     [RelayCommand]
     private void WrongUsernameOrPassword()
     {
-        var parser = new ExcelDataParser("Assets/data.xlsx");
-        var UserData = parser.UserInfo();
-        EnergyData UserLogin;
-        
+        List<EnergyData> UserData = excelDataParser.UserInfo();
+
         foreach (var item in UserData)
         {
 
@@ -60,10 +65,8 @@ public partial class LoginWindowViewModel : ViewModelBase
 
     public void MainWindowOpen(EnergyData item)
     {
-        //Create Main window and sets the data context
-        var mainWindow = new MainWindow();
-        mainWindow.DataContext = new MainWindowViewModel(item, mainWindow);
-        
+        mainWindowViewModel = new MainWindowViewModel(item, mainWindow);
+        mainWindow.DataContext = mainWindowViewModel;
 
         //Closes and opens login page and main window
         mainWindow.Show();

@@ -645,7 +645,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         }
 
-        private OPTLive oPTLive;
+        private OPTLive OPTLive;
 
         public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
         {
@@ -660,6 +660,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         {
             ProductionCost = (int)optLive.ProductionCostPerHourManualMode(newState);
             CO2Emotions = (int)optLive.CO2EmmitionsPerHourManualMode(newState);
+
 
             var usagePerHour = optLive.UnitUsagePerHourManualMode(newState);
             GasBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();

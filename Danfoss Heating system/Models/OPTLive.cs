@@ -15,43 +15,27 @@ using System.Threading.Tasks;
 namespace Danfoss_Heating_system.Models;
 
 
-/* 
-input: 
-1.newst date: datetime format  
-
-
-outputs: list:      
-1. which motors need to be trued on     
-2. timer for each hour so 10 min before the whole hour it needs to trun on a motor     
-3. current production     
-4. lowest cost solution     
-5. most eco friendly solution     
-6. total cost     
-7. current emmitions  manuale
-*/
-
-
-
 
 internal class OPTLive
 {
-    ExcelDataParser ExcelDataParser;
+    ExcelDataParser excelDataParser;
     public string filePath;
     
     Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
     
     Dictionary<string, OPTLiveProp> machinesForManualMode = new Dictionary<string, OPTLiveProp>();
+
     public OPTLive(string filepath)
     {
         string relativePath = @"..\..\..\Assets\data.xlsx";
         this.filePath = Path.GetFullPath(relativePath);
-        this.ExcelDataParser = new ExcelDataParser(this.filePath);
+        this.excelDataParser = new ExcelDataParser(this.filePath);
     }
 
     // Optimizer (which units must be turn on)
     public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> UsingMachines(int hourDemandCell, bool winter)
     {
-        var productionUnits = ExcelDataParser.ParserProductionUnits();
+        var productionUnits = excelDataParser.ParserProductionUnits();
         var firstFourUnits = productionUnits.Take(4).ToList();
         double predictedHeatDemand = predictHeatDemandCalculate(hourDemandCell, winter, "/Assets/data.xlsx");
 
@@ -106,7 +90,7 @@ internal class OPTLive
 
         double predictedHeatDemand = predictHeatDemandCalculate(hourDemandCell, winter, "/Assets/data.xlsx");
 
-        var productionUnits = ExcelDataParser.ParserProductionUnits();
+        var productionUnits = excelDataParser.ParserProductionUnits();
         var firstFour = productionUnits.Take(4).ToList();
 
         foreach (var unit in firstFour)

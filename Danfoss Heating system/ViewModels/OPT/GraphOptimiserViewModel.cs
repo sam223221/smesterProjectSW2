@@ -7,7 +7,6 @@ using ReactiveUI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using static Danfoss_Heating_system.Models.Optimiser;
 
 namespace Danfoss_Heating_system.ViewModels.OPT
@@ -80,13 +79,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         public GraphOptimiserViewModel(MainWindowViewModel mv)
         {
             viewChange = mv;
-
-            // Subscribe to window size changes to update actualWidth and actualHeight
-            mv.window.GetObservable(Window.ClientSizeProperty).Subscribe(size =>
-            {
-                ActualWidth = (int)size.Width;
-                ActualHeight = size.Height;
-            });
 
             // Set window properties
             viewChange.window.CanResize = true;
