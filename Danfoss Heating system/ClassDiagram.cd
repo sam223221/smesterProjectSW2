@@ -21,7 +21,7 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="Danfoss_Heating_system.ViewModels.OPT.GraphOptimiserViewModel">
-    <Position X="8.25" Y="1.5" Width="2.5" />
+    <Position X="8" Y="1.5" Width="2.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
