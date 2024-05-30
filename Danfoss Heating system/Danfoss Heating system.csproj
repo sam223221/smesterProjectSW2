@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="Assets/Images/**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <AvaloniaResource Remove="Assets\data.xlsx" />
   </ItemGroup>
 
@@ -53,8 +57,13 @@
     <AvaloniaResource Update="Assets\Images\Danfoss_LOGO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Images\ElectricBoilerPic.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
+    <AvaloniaResource Update="Assets\Images\evaluation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AvaloniaResource>
   </ItemGroup>
-
 
   <ItemGroup>
     <Compile Update="Views\Admin\AdminView.axaml.cs">

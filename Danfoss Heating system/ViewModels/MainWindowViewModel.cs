@@ -5,8 +5,10 @@ using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using Danfoss_Heating_system.ViewModels.AdminMainPage;
 using Danfoss_Heating_system.ViewModels.OPT;
+using Danfoss_Heating_system.ViewModels.TopBarNavigation;
 using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Danfoss_Heating_system.Views;
+using Danfoss_Heating_system.Views.TopBarNavigation;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
@@ -132,6 +134,24 @@ namespace Danfoss_Heating_system.ViewModels
 
         }
 
+        [RelayCommand]
+        private void FAQButton()
+        {
+            CurrentContent = new FAQView() { DataContext = new FAQViewModel() };
+        }
+
+        [RelayCommand]
+        private void UnitsButton()
+        {
+            CurrentContent = new UnitsView() { DataContext = new UnitsViewModel() };
+        }
+
+        [RelayCommand]
+
+        private void HelpButton()
+        {
+            CurrentContent = new HelpView() { DataContext = new HelpViewModel() };
+        }
 
     }
 }

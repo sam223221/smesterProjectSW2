@@ -1,0 +1,104 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:Danfoss_Heating_system.ViewModels.TopBarNavigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="vm:UnitsViewModel"
+             x:Class="Danfoss_Heating_system.Views.TopBarNavigation.UnitsView"
+             Background="White">
+	
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="375"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<Border Grid.Row="0" Grid.ColumnSpan="2" Background="LightGray" CornerRadius="15" Margin="15"
+                BorderBrush="Black" BorderThickness="2" Width="700" Height="45">
+			<StackPanel Orientation="Horizontal" Spacing="40" Grid.Row="0" Grid.ColumnSpan="2">
+
+				<Button x:Name="btnGasBoiler" Command="{Binding SelectUnitCommand}" CommandParameter="GasBoiler"
+                        Content="Gas Boiler" FontSize="21" FontWeight="Bold"
+                        VerticalAlignment="Center" Background="Transparent"
+                        Width="138" Height="38" CornerRadius="18" Foreground="Black"/>
+
+				<Button x:Name="btnOilBoiler" Command="{Binding SelectUnitCommand}" CommandParameter="OilBoiler"
+                        Content="Oil Boiler" FontSize="21" FontWeight="Bold"
+                        VerticalAlignment="Center" Background="Transparent"
+                        Width="130" Height="38" CornerRadius="18" Foreground="Black"/>
+
+				<Button x:Name="btnGasMotor" Command="{Binding SelectUnitCommand}" CommandParameter="GasMotor"
+                        Content="Gas Motor" FontSize="21" FontWeight="Bold"
+                        VerticalAlignment="Center" Background="Transparent"
+                        Width="142" Height="38" CornerRadius="18" Foreground="Black"/>
+
+				<Button x:Name="btnElectricBoiler" Command="{Binding SelectUnitCommand}" CommandParameter="ElectricBoiler"
+                        Content="Electric Boiler" FontSize="21" FontWeight="Bold"
+                        VerticalAlignment="Center" Background="Transparent"
+                        Width="182" Height="38" CornerRadius="18" Foreground="Black"/>
+			</StackPanel>
+		</Border>
+
+		<StackPanel Grid.Column="0" Grid.Row="1" Grid.RowSpan="5" Orientation="Vertical" Spacing="16" Margin="10, 0, -15, 0">
+
+			<Border Grid.Row="1" Background="LightGray" CornerRadius="15" BorderBrush="Black" BorderThickness="2" Width="330" Height="45">
+				<TextBlock x:Name="tbMaxHeat" Text="{Binding CurrentUnit.MaxHeat, StringFormat='  Max Heat: {0}'}"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+			</Border>
+
+			<Border Grid.Row="2" Background="LightGray" CornerRadius="15" BorderBrush="Black" BorderThickness="2" Width="330" Height="45">
+				<TextBlock x:Name="tbProductionCost" Text="{Binding CurrentUnit.ProductionCost, StringFormat='  Production Cost: {0}'}"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black" />
+			</Border>
+
+			<Border Grid.Row="3" Background="LightGray" CornerRadius="15" BorderBrush="Black" BorderThickness="2" Width="330" Height="45">
+				<TextBlock x:Name="tbCO2Emission" Text="{Binding CurrentUnit.CO2Emission, StringFormat='  CO2 Emission: {0}'}"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+			</Border>
+
+			<Border Grid.Row="4" Background="LightGray" CornerRadius="15" BorderBrush="Black" BorderThickness="2" Width="330" Height="45">
+				<TextBlock x:Name="tbGasConsumption" Text="{Binding CurrentUnit.GasConsumption, StringFormat='  Gas Consumption: {0}'}"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black" />
+			</Border>
+
+			<Border Grid.Row="5" Background="LightGray" CornerRadius="15" BorderBrush="Black" BorderThickness="2" Width="330" Height="45">
+				<TextBlock x:Name="tbMaxElectricity" Text="{Binding CurrentUnit.MaxElectricity, StringFormat='  Max Electricity: {0}'}"
+                           FontSize="18" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+			</Border>
+		</StackPanel>
+
+		<Border Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" BorderBrush="Black" BorderThickness="2" CornerRadius="15"
+                Width="380" Height="275" Background="LightGray" ClipToBounds="True">
+
+			<Grid>
+			<Image Source="avares://Danfoss Heating system/Assets/Images/GasBoilerPic.png"
+                   Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" IsVisible="{Binding GasBoilerState}"
+				   Stretch="Fill" Height="275" Width="380" ZIndex="3"/>
+
+				<Image Source="avares://Danfoss Heating system/Assets/Images/OilBoilerPic.png"
+					   Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" IsVisible="{Binding OilBoilerState}"
+					   Stretch="Fill" Height="275" Width="380" ZIndex="3"/>
+
+				<Image Source="avares://Danfoss Heating system/Assets/Images/GasMotorPic.png"
+				   Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" IsVisible="{Binding GasMotorState}"
+				   Stretch="Fill" Height="275" Width="380" ZIndex="3"/>
+
+				<Image Source="avares://Danfoss Heating system/Assets/Images/ElectricBoilerPic.png"
+   Grid.Column="1" Grid.Row="2" Grid.RowSpan="3" IsVisible="{Binding ElectricBoilerState}"
+   Stretch="Fill" Height="275" Width="380" ZIndex="3"/>
+			</Grid>
+			
+		</Border>
+
+	</Grid>
+</UserControl>

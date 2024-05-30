@@ -50,7 +50,9 @@
 					Grid.Column="1" 
 					Width="70" 
 					Height="44" 
-					Margin="90,-5,0,0">
+					Margin="90,-5,0,0"
+					Command="{Binding FAQButtonCommand}"
+					>
 				
 				<Label Content="FAQ"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
@@ -61,19 +63,20 @@
 					Width="77" 
 					Height="45" 
 					Margin="40,-5,0,0"
-					Command="">
+					Command="{Binding HelpButtonCommand}">
 				
 				<Label Content="Help"  FontSize="25" Foreground="White" VerticalAlignment="Top" HorizontalAlignment="Center"/>
 			</Button>
 			
-			<!-- Settings button -->
+			<!-- Units button -->
 			<Button Background="Transparent" 
 					Grid.Column="3" 
-					Width="130" 
+					Width="230" 
 					Height="48" 
-					Margin="-20,-5,0,0">
+					Margin="-20,-5,0,0"
+					Command="{Binding UnitsButtonCommand}">
 				
-				<Label Content="Settings"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+				<Label Content="Units"  FontSize="25" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
 			</Button>
 			
 			<!-- User icon -->
