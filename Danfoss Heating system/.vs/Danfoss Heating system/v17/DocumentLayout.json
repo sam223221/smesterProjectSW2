@@ -1,14 +1,10 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\",
+  "WorkspaceRootPath": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\pulpit\\danfoss\\smesterprojectsw2\\danfoss heating system\\views\\topbarnavigation\\unitsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\topbarnavigation\\unitsview.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\ksuch\\onedrive\\pulpit\\danfoss\\smesterprojectsw2\\danfoss heating system\\viewmodels\\topbarnavigation\\unitsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:viewmodels\\topbarnavigation\\unitsviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|c:\\users\\samgl\\documents\\github\\smesterprojectsw2\\danfoss heating system\\views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}",
+      "RelativeMoniker": "D:0:0:{D5800AE2-564D-40AC-897B-B816745B7846}|Danfoss Heating system.csproj|solutionrelative:views\\loginwindow.axaml||{6D5344A2-2FCD-49DE-A09D-6A14FD1B1224}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +14,15 @@
       "DocumentGroups": [
         {
           "DockedHeight": 293,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -39,26 +39,13 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UnitsView.axaml",
-              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\Views\\TopBarNavigation\\UnitsView.axaml",
-              "RelativeDocumentMoniker": "Views\\TopBarNavigation\\UnitsView.axaml",
-              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\Views\\TopBarNavigation\\UnitsView.axaml",
-              "RelativeToolTip": "Views\\TopBarNavigation\\UnitsView.axaml",
+              "Title": "LoginWindow.axaml",
+              "DocumentMoniker": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
+              "RelativeDocumentMoniker": "Views\\LoginWindow.axaml",
+              "ToolTip": "C:\\Users\\samgl\\Documents\\GitHub\\smesterProjectSW2\\Danfoss Heating system\\Views\\LoginWindow.axaml",
+              "RelativeToolTip": "Views\\LoginWindow.axaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-05-24T15:38:59.457Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "UnitsViewModel.cs",
-              "DocumentMoniker": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\TopBarNavigation\\UnitsViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModels\\TopBarNavigation\\UnitsViewModel.cs",
-              "ToolTip": "C:\\Users\\ksuch\\OneDrive\\Pulpit\\Danfoss\\smesterProjectSW2\\Danfoss Heating system\\ViewModels\\TopBarNavigation\\UnitsViewModel.cs",
-              "RelativeToolTip": "ViewModels\\TopBarNavigation\\UnitsViewModel.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T15:38:56.07Z",
+              "WhenOpened": "2024-05-30T15:21:41.712Z",
               "EditorCaption": ""
             }
           ]

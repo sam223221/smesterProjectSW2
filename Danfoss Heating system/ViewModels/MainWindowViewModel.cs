@@ -90,12 +90,6 @@ namespace Danfoss_Heating_system.ViewModels
 
         }
 
-        [RelayCommand]
-        private void HelpButton()
-        {
-            CurrentContent = new GraphOptimiserView() { DataContext = new GraphOptimiserViewModel(this) };
-        }
-
         private void AdminNavigationBar()
         {
             NavigationButtons = new ObservableCollection<MyButtonModel>
@@ -147,7 +141,6 @@ namespace Danfoss_Heating_system.ViewModels
         }
 
         [RelayCommand]
-
         private void HelpButton()
         {
             CurrentContent = new HelpView() { DataContext = new HelpViewModel() };

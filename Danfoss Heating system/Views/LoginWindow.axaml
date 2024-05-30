@@ -58,6 +58,7 @@
 				 Watermark="Password" 
 				 Background="Gray" 
 				 Foreground="White"
+				 PasswordChar="☭"
 				 />
 
 		<!--SignIn successful sign-->
