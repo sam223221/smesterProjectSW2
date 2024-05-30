@@ -15,8 +15,6 @@ namespace Danfoss_Heating_system.ViewModels.AdminMainPage
         public AdminMainPageViewModel(MainWindowViewModel mv)
         {
             viewchange = mv;
-            viewchange.window.Width = 800;
-            viewchange.window.Height = 450;
             viewchange.window.CanResize = false;
             userName = "welcome back " + mv.userName.UserID;
         }

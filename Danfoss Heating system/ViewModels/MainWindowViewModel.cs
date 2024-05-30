@@ -60,6 +60,8 @@ namespace Danfoss_Heating_system.ViewModels
             if (userName.UserRole == "Admin")
             {
                 CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
+                window.Width = 800;
+                window.Height = 450;
             }
         }
 

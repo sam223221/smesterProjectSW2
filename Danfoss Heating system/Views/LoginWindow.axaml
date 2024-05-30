@@ -9,6 +9,7 @@
         Title="Danfoss Heating System"
 		Width="800"
 		Height="450"
+		Icon="/Assets/Images/DanfossLogo.ico"
         CanResize="False" Background="White">
 
 

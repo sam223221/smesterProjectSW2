@@ -82,8 +82,8 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
             // Set window properties
             viewChange.window.CanResize = true;
-            viewChange.window.Width = 1980;
-            viewChange.window.Height = 1020;
+            viewChange.window.Width = 1920;
+            viewChange.window.Height = 1080;
 
             // Parse all data from the Excel file
             allData = new ExcelDataParser("Assets/data.xlsx").ParserEnergyData();

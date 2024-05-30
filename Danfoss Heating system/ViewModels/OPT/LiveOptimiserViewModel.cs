@@ -16,9 +16,9 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     private OPTLiveProp OPTLiveProp;
 
     [ObservableProperty]
-    private int _sideBarWidth = 300;
+    private int _sideBarWidth = 0;
     [ObservableProperty]
-    private bool sideBarOpen = true;
+    private bool sideBarOpen = false;
 
     // var for the heat demand and prediction
     [ObservableProperty]
@@ -230,10 +230,8 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     {
         viewChange = mv;
         viewChange.window.CanResize = true;
-        viewChange.window.Width = 1980;
+        viewChange.window.Width = 1920;
         viewChange.window.Height = 1080;
-        viewChange.window.MinHeight = 700;
-        viewChange.window.MinWidth = 1800;
         OPTLive = new OPTLive("/Assets/data.xlsx");
         SettingsForDynamicData();
     }

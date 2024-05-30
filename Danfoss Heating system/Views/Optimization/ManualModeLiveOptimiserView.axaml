@@ -257,7 +257,7 @@
 					<Button Command="{Binding ToggleToolTipVisibilityCommand}" ToolTip.Placement="BottomEdgeAlignedLeft">
 						<ToolTip.Tip>
 							<ToolTip IsVisible="{Binding ToolTipIsVisible}" >
-								<Border Background="#8c8c89" Width="140" Height="70">
+								<Border Background="#8c8c89" Width="150" Height="70">
 									<StackPanel
 										Orientation="Vertical"
 										Width="120">
