@@ -38,5 +38,14 @@ build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 [C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/Optimization/ManualModeLiveOptimiserView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
 
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/TopBarNavigation/FAQView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/TopBarNavigation/HelpView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
+[C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/TopBarNavigation/UnitsView.axaml]
+build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
+
 [C:/Users/samgl/Documents/GitHub/smesterProjectSW2/Danfoss Heating system/Views/User/UserView.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml

@@ -1,0 +1,66 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.TopBarNavigation"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 x:DataType="vm:FAQViewModel"
+			 x:Class="Danfoss_Heating_system.Views.TopBarNavigation.FAQView"
+			 >
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition/>
+		</Grid.ColumnDefinitions>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="150"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+
+		<ListBox Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" x:Name="QuestionList"
+				 ItemsSource="{Binding Questions}"
+				 SelectedIndex="{Binding SelectedQuestionIndex}"
+				 Background="White">
+			
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					
+					<Border Background="LightGray" Margin="5" Padding="5" 
+							BorderBrush="Black" BorderThickness="2" CornerRadius="5">
+						
+						<Button Content="{Binding}" Foreground="Black" Background="LightGray"/>
+					
+					</Border>
+						
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+
+		
+		<Border Background="White" Grid.Column="1" Grid.Row="0">
+			<Image Source="/Assets/Images/DanfossLogo.png" Grid.Row="0" Height="105" 
+				   VerticalAlignment="Center" HorizontalAlignment="Center"/>
+		</Border>
+
+		<StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="1" Background="White"> 
+			
+		<TextBlock Text="Frequently Asked Questions" FontWeight="Bold" Grid.Column="1" Grid.Row="0" 
+				   Background="Transparent" Foreground="Black" Margin="30, 50, 0, 8"/>
+
+		<Border Grid.Column="1" Grid.Row="1"  Grid.RowSpan="2" Background="White"> 	
+		<Border Background="LightGray" 
+				Height="150" Width="350" BorderBrush="Black" BorderThickness="2"
+                CornerRadius="10" VerticalAlignment="Center" Padding="10">
+			
+			<TextBlock Text="{Binding CurrentAnswer}" Foreground="Black"
+                        VerticalAlignment="Center" TextWrapping="WrapWithOverflow" 
+					   HorizontalAlignment="Center"/>
+		</Border>
+		</Border>
+		</StackPanel>
+	
+
+	</Grid>
+</UserControl>

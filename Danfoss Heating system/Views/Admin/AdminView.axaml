@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.AdminMainPage"
+			 Width="800"
+			 Height="450"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="Danfoss_Heating_system.AdminView"
              x:DataType="vm:AdminMainPageViewModel">

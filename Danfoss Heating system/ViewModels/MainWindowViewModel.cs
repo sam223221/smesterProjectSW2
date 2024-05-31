@@ -1,17 +1,17 @@
-﻿using Avalonia.Controls;
+﻿using Avalonia;
+using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using Danfoss_Heating_system.ViewModels.AdminMainPage;
 using Danfoss_Heating_system.ViewModels.OPT;
+using Danfoss_Heating_system.ViewModels.TopBarNavigation;
 using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Danfoss_Heating_system.Views;
+using Danfoss_Heating_system.Views.TopBarNavigation;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Reactive;
-using System.Windows.Input;
 
 
 namespace Danfoss_Heating_system.ViewModels
@@ -21,9 +21,14 @@ namespace Danfoss_Heating_system.ViewModels
         public Window window;
 
         [ObservableProperty]
-        private int sideBarWidth = 0;
+        private double sideBarWidth = 0;
 
-        
+        [ObservableProperty]
+        private double actualWidth = 0;
+
+        [ObservableProperty]
+        private double actualHeight = 0;
+
         public EnergyData userName;
 
 
@@ -41,7 +46,7 @@ namespace Danfoss_Heating_system.ViewModels
 
             var loginWindow = new LoginWindow();
             loginWindow.DataContext = new LoginWindowViewModel(loginWindow); // Passes the window so it can be manipulated
-            
+
             loginWindow.Show();
             window.Close();
         }
@@ -49,11 +54,13 @@ namespace Danfoss_Heating_system.ViewModels
         [RelayCommand]
         private void GoHome()
         {
-            if(userName.UserRole == "Admin")
+            if (userName.UserRole == "Admin")
             {
                 CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
+                window.Width = 800;
+                window.Height = 450;
             }
-        }   
+        }
 
 
         public MainWindowViewModel(EnergyData item, Window window)
@@ -61,6 +68,12 @@ namespace Danfoss_Heating_system.ViewModels
 
             this.window = window;
             userName = item;
+
+            window.GetObservable(Window.ClientSizeProperty).Subscribe(size =>
+            {
+                ActualWidth = (int)size.Width;
+                ActualHeight = size.Height;
+            });
 
             //sets the view within the window to the current role that is logging in
             switch (item.UserRole)
@@ -75,7 +88,6 @@ namespace Danfoss_Heating_system.ViewModels
             }
 
         }
-
 
         private void AdminNavigationBar()
         {
@@ -100,28 +112,38 @@ namespace Danfoss_Heating_system.ViewModels
 
             }
 
-            _isSideBarOpen= false;
+            _isSideBarOpen = false;
             SideBarWidth = 0;
         }
 
 
+
         [RelayCommand]
-        private void SideBarToggle() 
+        private void SideBarToggle()
         {
 
             _isSideBarOpen = !_isSideBarOpen;
-            
-            
-            if (_isSideBarOpen)
-            {
-                SideBarWidth = 75;
-            }else
-            {
-                SideBarWidth = 0;
-            }
-                
+            SideBarWidth = _isSideBarOpen ? 75 : 0;
+
         }
 
+        [RelayCommand]
+        private void FAQButton()
+        {
+            CurrentContent = new FAQView() { DataContext = new FAQViewModel() };
+        }
+
+        [RelayCommand]
+        private void UnitsButton()
+        {
+            CurrentContent = new UnitsView() { DataContext = new UnitsViewModel() };
+        }
+
+        [RelayCommand]
+        private void HelpButton()
+        {
+            CurrentContent = new HelpView() { DataContext = new HelpViewModel() };
+        }
 
     }
 }

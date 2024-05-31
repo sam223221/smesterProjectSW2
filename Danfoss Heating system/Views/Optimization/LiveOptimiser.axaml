@@ -3,6 +3,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.OPT"
+			 Width="1920"
+			 Height="1080"
              mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
              x:Class="Danfoss_Heating_system.LiveOptimiser"
 			 x:DataType="vm:LiveOptimiserViewModel"
@@ -11,7 +13,7 @@
 	<Grid RowDefinitions="2*,*,*" 
 		  ColumnDefinitions="*,Auto">
 
-		<Border IsVisible="{Binding ManualModeVisible}" 
+		<Border IsVisible="{Binding ManualModeVisible}"
 				ZIndex="2"
 				Grid.ColumnSpan="2"
 				Grid.RowSpan="3"
@@ -24,15 +26,15 @@
 
 				<StackPanel Grid.Row="0" Grid.ColumnSpan="2">
 					<TextBlock Text="!!!YOU ARE ENTERING MANUAL MODE!!!" FontSize="30" FontWeight="Bold" HorizontalAlignment="Center" Margin="100" Foreground="White"/>
-					<TextBlock Text="You are now entering Manual mode, by doing this all respondsebility is now in your hads" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you will still se predictions for the comming hour but there wont be any automation everything will be manual and all up to you" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="to turn on and off the motors you have to press the on and of button under the corosponding machine you want to tun on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="the total production all the machins are producing under your control will be displayed" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you will also have the full responsibility of setting how much each motor needs to produce, as default all motors are set to 100%" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="this you have to change youself!" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You are now entering Manual mode, by doing this all responsibility is now in your hands" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You will still see predictions for the coming hour but there won't be any automation. Everything will be manual and all up to you" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="To turn on and off the motors you have to press the on and off button under the corresponding machine you want to turn on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="The total production all the machines are producing under your control will be displayed" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You will also have the full responsibility of setting how much each motor needs to produce. As default all motors are set to 100%" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="This you have to change yourself!" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="The Motors take around 10 min to start, so be carefull on when you want to start a motor make sure you do it in good time," Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
-					<TextBlock Text="you can allways lower prduction on another motor to compinsate for too many motors on, but that dosent happen when to few mtors are ON" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="The motors take around 10 minutes to start, so be careful on when you want to start a motor. Make sure you do it in good time," Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
+					<TextBlock Text="You can always lower production on another motor to compensate for too many motors on, but that doesn't happen when too few motors are on" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
 					<TextBlock Text="" Foreground="White" FontSize="20" HorizontalAlignment="Center"/>
@@ -360,11 +362,28 @@
 		
 		<!-- HeatDemand displayed -->
 
-		<Grid Grid.Row="1"
-			  ColumnDefinitions="*,Auto,*">
-			
+		<Grid
+			Grid.Row="1"
+			ColumnDefinitions="*,Auto,*">
+
 			<!-- Current HeatDemand -->
-			<Border CornerRadius="25"
+			<StackPanel
+				HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Grid.Column="0"
+				Orientation="Vertical">
+
+				<TextBlock
+					Text="Current Production"
+					FontSize="25"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Black"
+					Margin="-10"/>
+
+				<Border
+					CornerRadius="25"
 					BorderThickness="4"
 					BorderBrush="Black"
 					Width="400"
@@ -372,65 +391,130 @@
 					HorizontalAlignment="Center"
 					VerticalAlignment="Center"
 					Grid.Column="0"
-					>
-				<TextBlock Text="{Binding HeatDemandCurrent}"
-						   FontSize="30"
-						   FontWeight="Bold"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="Black"/>
-			</Border>
-
-			<!-- Clock -->
-			<StackPanel Grid.Column="1"
-						Margin="0,50,0,0">
-
-				<!-- Upper Clock -->
-				<TextBlock Text="05:00"
-						   FontSize="40"
-						   FontWeight="Bold"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="LightGray"
-						   />
-				
-				<!-- Center Clock -->
-				<TextBlock Text="06:00"
-						   FontSize="50"
-						   FontWeight="Bold"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="Black"
-						   />
-				
-				<!-- Lower Clock -->
-				<TextBlock Text="07:00"
-						   FontSize="40"
-						   FontWeight="Bold"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="Gray"
-						   />
+					Margin="20"
+						>
+					<TextBlock
+						Text="{Binding HeatDemandCurrent}"
+						FontSize="30"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"/>
+				</Border>
 			</StackPanel>
 
-			<!-- Predicted HeatDemand -->
-			<Border CornerRadius="25"
-					BorderThickness="4"
-					BorderBrush="Black"
-					Width="400"
-					Height="100"
+			<!-- Clock -->
+			<StackPanel
+				Grid.Column="1"
+				Margin="0,50,0,0">
+
+				<!-- Upper Clock -->
+				<TextBlock
+					Text="{Binding PreviousHour}"
+					FontSize="40"
+					FontWeight="Bold"
 					HorizontalAlignment="Center"
 					VerticalAlignment="Center"
-					Grid.Column="2">
-				
-				<TextBlock Text="{Binding HeatDemandPrediction}"
-						   FontSize="30"
-						   FontWeight="Bold"
-						   HorizontalAlignment="Center"
-						   VerticalAlignment="Center"
-						   Foreground="Black"/>
-			</Border>
-			
+					Foreground="LightGray"/>
+
+				<!-- Center Clock -->
+				<TextBlock
+					Text="{Binding ActualHour}"
+					FontSize="50"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Black"/>
+
+				<!-- Lower Clock -->
+				<TextBlock
+					Text="{Binding NextHour}"
+					FontSize="40"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center"
+					Foreground="Gray"/>
+
+			</StackPanel>
+
+			<!-- Predicted HeatDemand and current production -->
+
+
+			<StackPanel
+				Grid.Column="2"
+				Orientation="Horizontal"
+				HorizontalAlignment="Center">
+
+				<!-- Current Production Area -->
+				<StackPanel
+					Orientation="Vertical"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+
+					<TextBlock
+						Text="Current Heat Demand"
+						FontSize="25"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						Margin="-10"/>
+
+					<Border
+						CornerRadius="25"
+						BorderThickness="4"
+						BorderBrush="Black"
+						Width="300"
+						Height="100"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Margin="20">
+
+						<TextBlock
+							Text="{Binding HeatDemandPrediction}"
+							FontSize="30"
+							FontWeight="Bold"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Foreground="Black"/>
+					</Border>
+				</StackPanel>
+
+				<!-- Prediction Area -->
+				<StackPanel
+					Orientation="Vertical"
+					HorizontalAlignment="Center"
+					VerticalAlignment="Center">
+
+					<TextBlock
+						Text="Predicted Demand"
+						FontSize="25"
+						FontWeight="Bold"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Foreground="Black"
+						Margin="-10"/>
+
+					<Border
+						CornerRadius="25"
+						BorderThickness="4"
+						BorderBrush="Black"
+						Width="300"
+						Height="100"
+						HorizontalAlignment="Center"
+						VerticalAlignment="Center"
+						Margin="20">
+
+						<TextBlock
+							Text="{Binding HeatDemandPrediction}"
+							FontSize="30"
+							FontWeight="Bold"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"
+							Foreground="Black"/>
+					</Border>
+				</StackPanel>
+			</StackPanel>
 		</Grid>
 
 		<!-- Manual and Auto Buttons -->
@@ -457,7 +541,7 @@
 						Command="{Binding ManualModeCommand}"
 						>
 					<TextBlock
-						Text="Mauel"
+						Text="Manual"
 						HorizontalAlignment="Center"
 						VerticalAlignment="Center"
 						Foreground="Black"

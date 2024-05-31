@@ -2,159 +2,274 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:vm="using:Danfoss_Heating_system.ViewModels.OPT"
-             mc:Ignorable="d" d:DesignWidth="1980" d:DesignHeight="1020"
+             xmlns:vm="using:Danfoss_Heating_system.ViewModels.OPT"
+			 Width="1920"
+			 Height="1080"
+             mc:Ignorable="d" d:DesignWidth="1920" d:DesignHeight="1080"
+             MinHeight="800"
+             MinWidth="900"
              x:Class="Danfoss_Heating_system.GraphOptimiserView"
-			 x:DataType="vm:GraphOptimiserViewModel">
+             x:DataType="vm:GraphOptimiserViewModel">
 
+	<!-- Main Grid Layout -->
+	<Grid ColumnDefinitions="2*,*">
 
-	<Grid>
+		<!-- Graph Section -->
+		<Grid Background="White" Grid.Column="0">
 
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="2*"/>
-			<ColumnDefinition Width="1*"/>
-		</Grid.ColumnDefinitions>
+			<!-- Gray Box for Graph Area -->
+			<Border Height="950" Width="1200" CornerRadius="20" Background="LightGray">
+				<!-- Grid for Graph and Information Below -->
+				<Grid RowDefinitions="*,Auto" ColumnDefinitions="Auto,*" >
 
-		<Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
+					<!-- Dummy for Graph Placement Adjustment -->
+					<TextBlock VerticalAlignment="Center" Foreground="LightGray" Text="8" Grid.Column="0" FontSize="45" Margin="10,-27,0,0"/>
 
-		<!-- Header -->
+					<!-- Y-Axis Labels and Lines -->
+					<Grid VerticalAlignment="Bottom" ZIndex="0" Grid.Row="0" Grid.ColumnSpan="2" ColumnDefinitions="Auto,*">
+						<Grid Height="800" VerticalAlignment="Bottom" RowDefinitions="*,*,*,*,*,*,*,*,*,*">
+							<!-- Y-Axis Labels and Lines -->
+							<Grid Grid.Row="0" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="10" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="1" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="9" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="2" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="8" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="3" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="7" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="4" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="6" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="5" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="5" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="6" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="4" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="7" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="3" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="8" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="2" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+							<Grid Grid.Row="9" ColumnDefinitions="Auto,*">
+								<Border Margin="10,-25,8,0" Width="50">
+									<TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Foreground="Gray" Text="1" FontSize="45"/>
+								</Border>
+								<Border Grid.Column="1" BorderBrush="Gray" Background="Gray" Height="2" VerticalAlignment="Top" Width="1120"/>
+							</Grid>
+						</Grid>
+					</Grid>
 
-		<Grid Background="#F30000"
-			  Grid.Row="0" Grid.ColumnSpan="2">
+					<!-- Graph Display -->
+					<ItemsControl Grid.Column="1" VerticalAlignment="Bottom" Height="800" Width="1100" ItemsSource="{Binding DataGraphDisplayed}" ZIndex="1">
+						<ItemsControl.ItemsPanel>
+							<ItemsPanelTemplate>
+								<UniformGrid Rows="1" Columns="24"/>
+							</ItemsPanelTemplate>
+						</ItemsControl.ItemsPanel>
+						<ItemsControl.ItemTemplate>
+							<DataTemplate>
+								<Border Background="DarkSeaGreen" Width="30" Height="{Binding HeatDemand}" VerticalAlignment="Bottom" Margin="2">
+									<Grid ColumnDefinitions="*">
+										<TextBlock Text="{Binding Heating}" HorizontalAlignment="Center" Margin="0,0,0,10" FontWeight="Bold" Grid.Column="0" ZIndex="1" VerticalAlignment="Bottom"/>
+										<Button Height="{Binding HeatDemand}" Grid.Column="0" Command="{Binding ChosenPiler}" CommandParameter="{Binding date}" Background="{Binding background}" Width="30"/>
+									</Grid>
+								</Border>
+							</DataTemplate>
+						</ItemsControl.ItemTemplate>
+					</ItemsControl>
 
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
-
-
-
-
+					<!-- Information Below Graph -->
+					<Border Grid.ColumnSpan="2" Grid.Row="1" Height="100" Width="1200" CornerRadius="0,0,20,20" Background="Gray">
+						<Grid ColumnDefinitions="Auto,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,*,Auto" VerticalAlignment="Top" Margin="0,15,0,0">
+							<TextBlock Grid.Column="0" FontSize="10" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="" Width="70"/>
+							<TextBlock Grid.Column="1" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="00&#x0a;01"/>
+							<TextBlock Grid.Column="2" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="01&#x0a;02"/>
+							<TextBlock Grid.Column="3" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="02&#x0a;03"/>
+							<TextBlock Grid.Column="4" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="03&#x0a;04"/>
+							<TextBlock Grid.Column="5" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="04&#x0a;05"/>
+							<TextBlock Grid.Column="6" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="05&#x0a;06"/>
+							<TextBlock Grid.Column="7" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="06&#x0a;07"/>
+							<TextBlock Grid.Column="8" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="07&#x0a;08"/>
+							<TextBlock Grid.Column="9" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="08&#x0a;09"/>
+							<TextBlock Grid.Column="10" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="09&#x0a;10"/>
+							<TextBlock Grid.Column="11" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="10&#x0a;11"/>
+							<TextBlock Grid.Column="12" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="11&#x0a;12"/>
+							<TextBlock Grid.Column="13" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="12&#x0a;13"/>
+							<TextBlock Grid.Column="14" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="13&#x0a;14"/>
+							<TextBlock Grid.Column="15" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="14&#x0a;15"/>
+							<TextBlock Grid.Column="16" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="15&#x0a;16"/>
+							<TextBlock Grid.Column="17" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="16&#x0a;17"/>
+							<TextBlock Grid.Column="18" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="17&#x0a;18"/>
+							<TextBlock Grid.Column="19" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="18&#x0a;19"/>
+							<TextBlock Grid.Column="20" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="19&#x0a;20"/>
+							<TextBlock Grid.Column="21" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="20&#x0a;21"/>
+							<TextBlock Grid.Column="22" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="21&#x0a;22"/>
+							<TextBlock Grid.Column="23" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="22&#x0a;23"/>
+							<TextBlock Grid.Column="24" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="23&#x0a;00"/>
+							<TextBlock Grid.Column="25" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Text="" Width="29"/>
+							
+							
+						</Grid>
+					</Border>
+				</Grid>
+			</Border>
 		</Grid>
 
-		<!-- Optimization Section -->
+		<!-- Optimization Data Section -->
+		<Grid Background="LightGray" Grid.Column="1" RowDefinitions="2*,3*,4*" ColumnDefinitions="Auto,*">
 
-		<Grid Background="#FFFFFF"
-			  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="1">
+			<!-- Red Spacer -->
+			<Border Grid.Column="0" Grid.RowSpan="3" Background="Red" Width="5" ZIndex="1"/>
 
-		</Grid>
+			<!-- Day Selection Section -->
+			<Grid Grid.Column="1" RowDefinitions="*,*">
+				<!-- Summer and Winter Period Buttons -->
+				<Grid Grid.Row="0" ColumnDefinitions="3*,Auto,*,Auto,3*">
+					<!-- Winter Button -->
+					<Border Grid.Column="1" HorizontalAlignment="Center" CornerRadius="20" Height="50" Width="200" BorderBrush="Black" BorderThickness="2" Margin="20" Background="{Binding WinterButtonBackground}">
+						<Button FontSize="20" Height="50" Width="200" CornerRadius="50" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding WinterButtonCommand}" Background="{Binding WinterButtonForeground}">
+							<TextBlock Text="Winter" Foreground="White" FontWeight="Bold" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						</Button>
+					</Border>
 
-		<!-- Optimization Data -->
+					<!-- Summer Button -->
+					<Border Grid.Column="3" HorizontalAlignment="Center" Background="{Binding SummerButtonBackground}" CornerRadius="20" Height="50" Width="200" BorderBrush="Black" BorderThickness="2" Margin="20">
+						<Button FontSize="20" Height="50" Width="200" CornerRadius="50" VerticalAlignment="Center" HorizontalAlignment="Center" Command="{Binding SummerButtonCommand}" Background="{Binding SummerButtonForeground}">
+							<TextBlock Text="Summer" FontSize="20" FontWeight="Bold" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+						</Button>
+					</Border>
+				</Grid>
 
-		<Grid Background="#E5E0E0"
-			  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="1">
+				<!-- ComboBox for Data Display -->
+				<Border Grid.Row="1" HorizontalAlignment="Center" Background="RosyBrown" CornerRadius="20" Height="50" Width="440" BorderBrush="Black">
+					<ComboBox Width="440" Height="50" CornerRadius="20" ItemsSource="{Binding DataDisplayed}" SelectedIndex="{Binding SelectedIndex}">
+						<ComboBox.ItemTemplate>
+							<DataTemplate>
+								<TextBlock Text="{Binding date}" FontSize="20" FontWeight="Bold" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+							</DataTemplate>
+						</ComboBox.ItemTemplate>
+					</ComboBox>
+				</Border>
+			</Grid>
 
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="5"/>
-				<ColumnDefinition/>
-			</Grid.ColumnDefinitions>
+			<!-- Red Spacer Between Sections -->
+			<Border VerticalAlignment="Top" Grid.Column="1" Grid.Row="1" Background="Red" Height="5"/>
 
-			<Grid.RowDefinitions>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-				<RowDefinition/>
-			</Grid.RowDefinitions>
+			<!-- Solution Tab Section -->
+			<Border Grid.Row="1" Grid.Column="1" Height="240" Width="500" BorderThickness="0" Background="Gray" CornerRadius="50">
+				<Grid RowDefinitions="Auto,*,*" ColumnDefinitions="*,*">
+					<TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="25" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Text="Solution Tab" Margin="10"/>
 
-			<Border Grid.Column="0" Grid.RowSpan="18" Background="#F30000" Width="5"/>
+					<!-- lowest Cost Button -->
+					<Border Grid.Row="1" Grid.Column="0" Height="70" Width="200" CornerRadius="20" Background="{Binding BestCostBackground}">
+						<Button HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" CornerRadius="20" Background="{Binding BestCostForeground}" Command="{Binding BestCostCommand}">
+							<TextBlock Text="Lowest Cost" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Button>
+					</Border>
 
+					<!-- Lowest CO2 Button -->
+					<Border Grid.Row="1" Grid.Column="1" Height="70" Width="200" Background="{Binding LowestCo2Background}" CornerRadius="20">
+						<Button HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" Background="{Binding LowestCo2Foreground}" CornerRadius="20" Command="{Binding LowestCo2Command}">
+							<TextBlock Text="Lowest CO2" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Button>
+					</Border>
 
-			<Border Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
-				<ComboBox Foreground="White" Background="Transparent" Width="380" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" FontSize="24" SelectedIndex="0" MaxDropDownHeight="100" CornerRadius="20">
-					<ComboBoxItem>Winter (8.02 - 15.02)</ComboBoxItem>
-					<ComboBoxItem>Summer (8.07 - 15.07)</ComboBoxItem>
-				</ComboBox>
+					<!-- Scenario 1 Button -->
+					<Border Grid.Row="2" Grid.Column="0" Height="70" Width="200" Background="{Binding Scenario1Background}" CornerRadius="20" Margin="25">
+						<Button HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" Background="{Binding Scenario1Foreground}" CornerRadius="20" Command="{Binding Scenario1Command}">
+							<TextBlock Text="Scenario 1" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Button>
+					</Border>
+
+					<!-- Scenario 2 Button -->
+					<Border Grid.Row="2" Grid.Column="1" Height="60" Width="200" Background="{Binding Scenario2Background}" CornerRadius="20" Margin="25">
+						<Button HorizontalAlignment="Center" VerticalAlignment="Center" Height="70" Width="200" Background="{Binding Scenario2Foreground}" CornerRadius="20" Command="{Binding Scenario2Command}">
+							<TextBlock Text="Scenario 2" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+						</Button>
+					</Border>
+				</Grid>
 			</Border>
 
-			<Border Grid.Column="1" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
-				<ComboBox Foreground="White" Background="Transparent" Width="380" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0" FontSize="24" SelectedIndex="0" MaxDropDownHeight="850" CornerRadius="20">
-					<ComboBoxItem>8.02.2023 -> 00.00 - 01.00</ComboBoxItem>
-					<ComboBoxItem>hour2</ComboBoxItem>
-					<ComboBoxItem>hour3</ComboBoxItem>
-					<ComboBoxItem>hour4</ComboBoxItem>
-					<ComboBoxItem>hour5</ComboBoxItem>
-					<ComboBoxItem>hour6</ComboBoxItem>
-					<ComboBoxItem>hour7</ComboBoxItem>
-					<ComboBoxItem>hour8</ComboBoxItem>
-					<ComboBoxItem>hour9</ComboBoxItem>
-					<ComboBoxItem>hour10</ComboBoxItem>
-				</ComboBox>
+			<!-- Red Spacer Between Sections -->
+			<Border VerticalAlignment="Top" Grid.Column="1" Grid.Row="2" Background="Red" Height="5"/>
+
+			<!-- Result Tab Section -->
+			<Border Grid.Row="2" Grid.Column="1" Height="270" Width="500" BorderThickness="0" Background="Gray" CornerRadius="50">
+				<Grid RowDefinitions="Auto,*,*,*">
+					<TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="25" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" Text="Result Tab" Margin="10"/>
+
+					<Grid Grid.Row="1" ColumnDefinitions="*,*">
+						<!-- Heat Demand Display -->
+						<Border Width="150" Height="68" CornerRadius="20" Background="DarkGray">
+							<TextBlock TextAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+								<Run Text="{Binding ResultCurrentHeatDemand}"/>
+								<LineBreak/>
+								<Run FontSize="15" Text="Heat Demand"/>
+							</TextBlock>
+						</Border>
+
+						<!-- Electrical Price Display -->
+						<Border Grid.Column="1" Width="150" Height="68" CornerRadius="20" Background="DarkGray">
+							<TextBlock TextAlignment="Center" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center">
+								<Run Text="{Binding ResultCurrentElectricalPrice}"/>
+								<LineBreak/>
+								<Run FontSize="15" Text="Electrical Price"/>
+							</TextBlock>
+						</Border>
+					</Grid>
+
+					<!-- Motors used Display -->
+					<Border Grid.Row="2" Height="50" Width="400" Background="DarkGray" CornerRadius="20" Margin="10">
+						<Grid RowDefinitions="Auto,*">
+							<TextBlock Grid.Row="0" Text="Motors in use" FontSize="15" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<TextBlock Grid.Row="1" Text="{Binding ResultMotorsInUse}" FontSize="18" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+						</Grid>
+					</Border>
+
+					<!-- price Display -->
+					<Border Grid.Row="3" Height="50" Width="400" Background="DarkGray" CornerRadius="20" Margin="10">
+						<Grid RowDefinitions="Auto,*">
+							<TextBlock Grid.Row="0" Text="Price of production" FontSize="15" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+							<TextBlock Grid.Row="1" Text="{Binding ResultCurrentProfit}" FontSize="20" FontWeight="Bold" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+						</Grid>
+					</Border>
+				</Grid>
 			</Border>
-
-			<TextBlock Grid.Column="1" Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="Transparent" FontSize="32" FontWeight="Bold">
-				Optimization of:
-			</TextBlock>
-
-			<StackPanel Orientation="Horizontal" Grid.Row="7" Grid.Column="1" Spacing="20" HorizontalAlignment="Center">
-
-				<Button Content="Costs" Background="#F30000" Width="195" Height="60" CornerRadius="24" FontSize="24" FontWeight="SemiBold"
-						Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black"/>
-
-				<Button Content="CO2 Emissions" Background="#F30000" Width="195" Height="60" CornerRadius="24" FontSize="24" FontWeight="SemiBold"
-						Foreground="White" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderThickness="1" BorderBrush="Black"/>
-
-			</StackPanel>
-
-			<TextBlock Grid.Column="1" Grid.Row="9" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" Background="Transparent" FontSize="32" FontWeight="Bold">
-				Optimization Data:
-			</TextBlock>
-
-			<StackPanel Grid.Column="1" Grid.Row="11" Spacing="30" Orientation="Vertical">
-
-				<Border Grid.Column="1" Grid.Row="10" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
-					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-						Total Heat Usage:
-					</TextBlock>
-				</Border>
-
-				<Border Grid.Column="1" Grid.Row="12" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
-					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-						Total Production Cost:
-					</TextBlock>
-				</Border>
-
-				<Border Grid.Column="1" Grid.Row="14" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#F30000" Width="420" Height="60" CornerRadius="24" BorderThickness="1" BorderBrush="Black">
-					<TextBlock Foreground="White" FontSize="24" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10">
-						Total CO2 Emissions:
-					</TextBlock>
-				</Border>
-
-			</StackPanel>
-
 		</Grid>
-
-
 	</Grid>
 </UserControl>

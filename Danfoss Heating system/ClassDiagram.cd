@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Danfoss_Heating_system.Models.Optimiser">
+    <Position X="12.5" Y="2.75" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Nested Types" Collapsed="false" />
+    </Compartments>
+    <NestedTypes>
+      <Enum Name="Danfoss_Heating_system.Models.Optimiser.OptimizationType">
+        <TypeIdentifier>
+          <NewMemberFileName>Models\Optimiser.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAACAAAECBAAAAAAAAAAAAAAAAAABAAQAAAAAAAAAA=</HashCode>
+      <FileName>Models\Optimiser.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="excelDataParser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.ViewModels.OPT.GraphOptimiserViewModel">
+    <Position X="8" Y="1.5" Width="2.5" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>JiYDAEAwAVBIRBAAAAAgKGJAaBQEgAAgDEAAYAABAAY=</HashCode>
+      <FileName>ViewModels\OPT\GraphOptimiserViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="viewChange" />
+      <Field Name="optimizer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.ViewModels.OPT.LiveOptimiserViewModel">
+    <Position X="8.25" Y="6.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="viewChange" Type="Danfoss_Heating_system.ViewModels.MainWindowViewModel" FixedFromPoint="true">
+      <Path>
+        <Point X="8.25" Y="6.812" />
+        <Point X="6.75" Y="6.812" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>MABQBAADgwCBCkIBASUIEECAggAAgACMRBGAEkAQMVQ=</HashCode>
+      <FileName>ViewModels\OPT\LiveOptimiserViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="viewChange" />
+      <Field Name="OPTLive" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.Models.ExcelDataParser">
+    <Position X="17.75" Y="5.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAgAAAAAAAAAAAFAAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\ExcelDataParser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Danfoss_Heating_system.Models.OPTLive">
+    <Position X="12.25" Y="6.75" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="excelDataParser" Type="Danfoss_Heating_system.Models.ExcelDataParser" FixedToPoint="true">
+      <Path>
+        <Point X="15" Y="7.125" />
+        <Point X="17.75" Y="7.125" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAACAMAsAOAAEAIAAAAQAAAAAAAAAFAAAABQQAAChEk=</HashCode>
+      <FileName>Models\OPTLive.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="excelDataParser" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.ViewModels.OPT.ManualModeLiveOptimiserViewModel">
+    <Position X="8" Y="9.5" Width="2.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <AssociationLine Name="viewChange" Type="Danfoss_Heating_system.ViewModels.MainWindowViewModel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="8" Y="11.881" />
+        <Point X="7.344" Y="11.881" />
+        <Point X="7.344" Y="7.277" />
+        <Point X="6.75" Y="7.277" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>OBBQAAAjgyiBC0qBAaQIFECAggCAgAANxBGAEECQsdU=</HashCode>
+      <FileName>ViewModels\OPT\ManualModeLiveOptimiserViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="viewChange" />
+      <Field Name="OPTLive" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.ViewModels.LoginWindowViewModel">
+    <Position X="0.5" Y="4.75" Width="2" />
+    <AssociationLine Name="excelDataParser" Type="Danfoss_Heating_system.Models.ExcelDataParser" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.5" Y="8.358" />
+        <Point X="1.5" Y="8.925" />
+        <Point X="6.146" Y="8.925" />
+        <Point X="6.146" Y="14.156" />
+        <Point X="16.208" Y="14.156" />
+        <Point X="16.208" Y="7.625" />
+        <Point X="17.75" Y="7.625" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="mainWindowViewModel" Type="Danfoss_Heating_system.ViewModels.MainWindowViewModel" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="6.188" />
+        <Point X="3.625" Y="6.188" />
+        <Point X="3.625" Y="6.188" />
+        <Point X="4.75" Y="6.188" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>ECAAAAAAAAEAQABAAAAAAAEYBAAAABAAIACAAgAAAAA=</HashCode>
+      <FileName>ViewModels\LoginWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="excelDataParser" />
+      <Field Name="mainWindowViewModel" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Danfoss_Heating_system.ViewModels.MainWindowViewModel">
+    <Position X="4.75" Y="4.75" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAFAAAABQAAAAACAGAAAAAAAAACAAAIABgAAAEAAQQ=</HashCode>
+      <FileName>ViewModels\MainWindowViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
