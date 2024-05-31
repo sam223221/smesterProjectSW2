@@ -6,15 +6,10 @@
     <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
-    <StartupObject>Danfoss_Heating_system.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
     <AvaloniaResource Include="Assets\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <AvaloniaResource Include="Assets/Images/**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,7 +28,6 @@
     <None Remove="Assets\Images\exitIcon.png" />
     <None Remove="Assets\Images\graph1.PNG" />
     <None Remove="Assets\Images\performance.png" />
-    <None Remove="Assets\Images\setting.png" />
   </ItemGroup>
 
 
@@ -58,13 +52,8 @@
     <AvaloniaResource Update="Assets\Images\Danfoss_LOGO.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </AvaloniaResource>
-    <AvaloniaResource Update="Assets\Images\ElectricBoilerPic.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AvaloniaResource>
-    <AvaloniaResource Update="Assets\Images\evaluation.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </AvaloniaResource>
   </ItemGroup>
+
 
   <ItemGroup>
     <Compile Update="Views\Admin\AdminView.axaml.cs">

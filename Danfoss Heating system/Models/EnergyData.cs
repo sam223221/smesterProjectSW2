@@ -16,7 +16,7 @@ namespace Danfoss_Heating_system.Models
         public string? UserRole { get; set; }
 
 
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public double MaxHeat { get; set; }
         public double MaxElectricity { get; set; }
         public double ProductionCost { get; set; }
