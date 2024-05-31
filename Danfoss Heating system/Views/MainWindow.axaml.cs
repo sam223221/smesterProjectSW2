@@ -1,7 +1,4 @@
 using Avalonia.Controls;
-using Danfoss_Heating_system.ViewModels;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
 
 namespace Danfoss_Heating_system.Views
 {
@@ -12,6 +9,6 @@ namespace Danfoss_Heating_system.Views
             InitializeComponent();
             DataContext = this;
         }
-      
+
     }
 }

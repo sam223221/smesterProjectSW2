@@ -1,16 +1,9 @@
-﻿using Avalonia.Controls.Primitives;
-using ClosedXML.Excel;
-using Danfoss_Heating_system.ViewModels.OPT;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using ClosedXML.Excel;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Reactive;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Danfoss_Heating_system.Models;
 
@@ -20,9 +13,9 @@ internal class OPTLive
 {
     ExcelDataParser excelDataParser;
     public string filePath;
-    
+
     Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
-    
+
     Dictionary<string, OPTLiveProp> machinesForManualMode = new Dictionary<string, OPTLiveProp>();
 
     public OPTLive(string filepath)
@@ -136,7 +129,7 @@ internal class OPTLive
         {
             var worksheet = workbook.Worksheet("SDM");
             CultureInfo DanishInfo = new CultureInfo("da-DK");
-             if (winter)
+            if (winter)
             {
                 cellOne = "D" + (hourDemandCell - 24).ToString();
                 cellTwo = "D" + (hourDemandCell - 48).ToString();
@@ -150,11 +143,11 @@ internal class OPTLive
             }
 
 
-        //This if statement makes the method return 0 as a heat demand if the data is insufficient
-             if (hourDemandCell >= 24 + offset)
-             {
-                  //Getting the data from the excel cells
-                  double.TryParse(worksheet.Cell(cellOne).GetValue<string>(),NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand24);
+            //This if statement makes the method return 0 as a heat demand if the data is insufficient
+            if (hourDemandCell >= 24 + offset)
+            {
+                //Getting the data from the excel cells
+                double.TryParse(worksheet.Cell(cellOne).GetValue<string>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand24);
                 demand24 = Math.Round(parsedValueDemand24, 2, MidpointRounding.AwayFromZero);
                 double.TryParse(worksheet.Cell(cellTwo).GetValue<string>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand48);
                 demand48 = Math.Round(parsedValueDemand48, 2, MidpointRounding.AwayFromZero);
@@ -163,18 +156,18 @@ internal class OPTLive
 
                 // This is here so that if we don't have enough heat demand data for past days, the program won't die
                 if (hourDemandCell >= 72 + offset)
-                    {
-                      predHeatDemand = (demand24 + demand48 + demand72) / 3;
-                    }
-                  else if (hourDemandCell >= 48 + offset)
-                    {
-                      predHeatDemand = (demand24 + demand48) / 2;
-                    }
-                  else
-                    {
-                      predHeatDemand = demand24;
-                    }
-             }
+                {
+                    predHeatDemand = (demand24 + demand48 + demand72) / 3;
+                }
+                else if (hourDemandCell >= 48 + offset)
+                {
+                    predHeatDemand = (demand24 + demand48) / 2;
+                }
+                else
+                {
+                    predHeatDemand = demand24;
+                }
+            }
         }
         double predictedHeatDemand = Math.Round(predHeatDemand, 2, MidpointRounding.AwayFromZero);
         return predictedHeatDemand;
@@ -304,7 +297,7 @@ internal class OPTLive
     }
 
 
-   // Total Heat Demand
+    // Total Heat Demand
     public double TotalHeatDemand()
     {
         double HeatDemand = 0;
@@ -392,33 +385,33 @@ internal class OPTLive
     {
         Dictionary<string, (string, string)> StateofUnits = new();
 
-        foreach(var unit in optimalizationDataStatus)
+        foreach (var unit in optimalizationDataStatus)
         {
-            if(unit.Value.isEnabled == true)
+            if (unit.Value.isEnabled == true)
             {
                 unit.Value.OPTProp.stateOfUnit = "Green";
                 unit.Value.OPTProp.operationOfUnit = "ON";
             }
-           
-            else 
+
+            else
             {
-            // finish this
+                // finish this
                 double currentDemand = predictHeatDemandCalculate(currentHour, isWinter, FilePath);
                 double nextHourPredictedDemand = NextHourPredictedDemand(currentHour, isWinter, FilePath);
 
-                if(nextHourPredictedDemand - currentDemand > 2)
+                if (nextHourPredictedDemand - currentDemand > 2)
                 {
                     unit.Value.OPTProp.stateOfUnit = "Orange";
                     unit.Value.OPTProp.operationOfUnit = "Heating up";
                 }
                 else
                 {
-                unit.Value.OPTProp.stateOfUnit = "Gray";
-                unit.Value.OPTProp.operationOfUnit = "OFF";
+                    unit.Value.OPTProp.stateOfUnit = "Gray";
+                    unit.Value.OPTProp.operationOfUnit = "OFF";
                 }
             }
             StateofUnits.Add(unit.Value.OPTProp.data.Name, (unit.Value.OPTProp.stateOfUnit, unit.Value.OPTProp.operationOfUnit));
-     
+
         }
         return StateofUnits;
     }
@@ -448,7 +441,7 @@ internal class OPTLive
 
             var cellValue = worksheet.Cell(adjustedIndex, column).GetValue<string>().Trim();
 
-            if (DateTime.TryParse(cellValue, out DateTime parsedDate)) 
+            if (DateTime.TryParse(cellValue, out DateTime parsedDate))
             {
                 return parsedDate.ToString("HH:mm");
             }

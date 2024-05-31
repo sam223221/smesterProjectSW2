@@ -107,7 +107,7 @@ namespace Danfoss_Heating_system.Models
             }
         }
 
-        private List<EnergyData> SortProductionUnitsForScenario2(IEnumerable<EnergyData> productionUnits , EnergyData electrialPrice)
+        private List<EnergyData> SortProductionUnitsForScenario2(IEnumerable<EnergyData> productionUnits, EnergyData electrialPrice)
         {
             double highPriceThreshold = 1000;
             double lowPriceThreshold = 650;

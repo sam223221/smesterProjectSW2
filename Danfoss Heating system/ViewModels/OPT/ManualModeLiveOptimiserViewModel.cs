@@ -1,12 +1,9 @@
-﻿using Avalonia.Controls.Primitives;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive;
 
 namespace Danfoss_Heating_system.ViewModels.OPT
 {
@@ -125,7 +122,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         [ObservableProperty]
         private string previousHour;
-        
+
         [ObservableProperty]
         private string nextHour;
 
@@ -164,7 +161,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         private bool OilBoilerTurnOn;
         private bool GasMotorTurnOn;
         private bool ElectricBoilerTurnOn;
-       
+
 
         Dictionary<string, OPTLiveProp> newState = new Dictionary<string, OPTLiveProp>();
         public void HoldChangesNewList()
@@ -192,15 +189,15 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                         PredictedHeatDemand = unit.Value.PredictedHeatDemand,
                         remainingHeatDemand = unit.Value.remainingHeatDemand,
                         usingCO2Emission = unit.Value.usingHeatDemand * unit.Value.data.CO2Emission,
-                       usingHeatDemand = unit.Value.usingHeatDemand,
-                       stateOfUnit = unit.Value.stateOfUnit,
-                       operationOfUnit = unit.Value.operationOfUnit,
-                       UsageInPercentPerHour = unit.Value.UsageInPercentPerHour,
+                        usingHeatDemand = unit.Value.usingHeatDemand,
+                        stateOfUnit = unit.Value.stateOfUnit,
+                        operationOfUnit = unit.Value.operationOfUnit,
+                        UsageInPercentPerHour = unit.Value.UsageInPercentPerHour,
                     };
 
                     if (!newState.ContainsKey(unit.Value.data.Name))
                     {
-                    newState.Add(unit.Value.data.Name, optLivePropForManual);
+                        newState.Add(unit.Value.data.Name, optLivePropForManual);
                     }
 
                     else
@@ -209,74 +206,74 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                     }
                 }
             }
-         }
+        }
 
         private void UpdateListFromState(string name)
         {
-                if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasBoiler))
-                    {
-                    gasBoiler.stateOfUnit = GasBoilerState;
-                    gasBoiler.operationOfUnit = GasBoilerOperation;
-                    gasBoiler.UsageInPercentPerHour = GasBoilerOperationPercent;
-                    gasBoiler.operationCost = GasBoilerOperationCost;
-                    gasBoiler.usingCO2Emission = GasBoilerOperationCO2;
-                    if (gasBoiler.usingHeatDemand == 0)
-                    {
-                        gasBoiler.usingHeatDemand = GasBoilerUsingHeatDemand;
-                    }
-                   else if (gasBoiler.operationCost == 0)
-                    {
-                        gasBoiler.usingHeatDemand = 0;
-                    }
-                  
-
-                    newState["Gas boiler"] = gasBoiler;
-                    SettingsForDynamicDataManualMode();
-                }
-            
-                else if (name == "Oil boiler" &&  newState.TryGetValue("Oil boiler", out OPTLiveProp oilBoiler))
+            if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasBoiler))
+            {
+                gasBoiler.stateOfUnit = GasBoilerState;
+                gasBoiler.operationOfUnit = GasBoilerOperation;
+                gasBoiler.UsageInPercentPerHour = GasBoilerOperationPercent;
+                gasBoiler.operationCost = GasBoilerOperationCost;
+                gasBoiler.usingCO2Emission = GasBoilerOperationCO2;
+                if (gasBoiler.usingHeatDemand == 0)
                 {
-                    oilBoiler.stateOfUnit = OilBoilerState;
-                    oilBoiler.operationOfUnit = OilBoilerOperation;
-                    oilBoiler.UsageInPercentPerHour = OilBoilerOperationPercent;
-                    oilBoiler.operationCost = OilBoilerOperationCost;
-                    oilBoiler.usingCO2Emission = OilBoilerOperationCO2;
-                    if(oilBoiler.usingHeatDemand == 0)
-                    {
-                        oilBoiler.usingHeatDemand = OilBoilerUsingHeatDemand;
-                    }
-                   else if (oilBoiler.operationCost == 0)
-                    {
-                        oilBoiler.usingHeatDemand = 0;
-                    }
+                    gasBoiler.usingHeatDemand = GasBoilerUsingHeatDemand;
+                }
+                else if (gasBoiler.operationCost == 0)
+                {
+                    gasBoiler.usingHeatDemand = 0;
+                }
+
+
+                newState["Gas boiler"] = gasBoiler;
+                SettingsForDynamicDataManualMode();
+            }
+
+            else if (name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilBoiler))
+            {
+                oilBoiler.stateOfUnit = OilBoilerState;
+                oilBoiler.operationOfUnit = OilBoilerOperation;
+                oilBoiler.UsageInPercentPerHour = OilBoilerOperationPercent;
+                oilBoiler.operationCost = OilBoilerOperationCost;
+                oilBoiler.usingCO2Emission = OilBoilerOperationCO2;
+                if (oilBoiler.usingHeatDemand == 0)
+                {
+                    oilBoiler.usingHeatDemand = OilBoilerUsingHeatDemand;
+                }
+                else if (oilBoiler.operationCost == 0)
+                {
+                    oilBoiler.usingHeatDemand = 0;
+                }
 
                 newState["Oil boiler"] = oilBoiler;
-                    SettingsForDynamicDataManualMode();
+                SettingsForDynamicDataManualMode();
+            }
+
+            else if (name == "Gas motor" && newState.TryGetValue("Gas motor", out OPTLiveProp gasMotor))
+            {
+                gasMotor.stateOfUnit = GasMotorState;
+                gasMotor.operationOfUnit = GasMotorOperation;
+                gasMotor.UsageInPercentPerHour = GasMotorOperationPercent;
+                gasMotor.operationCost = GasMotorOperationCost;
+                gasMotor.usingCO2Emission = GasMotorOperationCO2;
+
+                if (gasMotor.usingHeatDemand == 0)
+                {
+                    gasMotor.usingHeatDemand = GasMotorUsingHeatDemand;
+                }
+                else if (gasMotor.operationCost == 0)
+                {
+                    gasMotor.usingHeatDemand = 0;
                 }
 
-               else if (name == "Gas motor" && newState.TryGetValue("Gas motor", out OPTLiveProp gasMotor))
-               {
-                    gasMotor.stateOfUnit = GasMotorState;
-                    gasMotor.operationOfUnit = GasMotorOperation;
-                    gasMotor.UsageInPercentPerHour = GasMotorOperationPercent;
-                    gasMotor.operationCost = GasMotorOperationCost;
-                    gasMotor.usingCO2Emission = GasMotorOperationCO2;
-
-                  if (gasMotor.usingHeatDemand == 0)
-                  {
-                      gasMotor.usingHeatDemand = GasMotorUsingHeatDemand;
-                  }
-                 else if (gasMotor.operationCost == 0)
-                  {
-                    gasMotor.usingHeatDemand = 0;
-                  }
-                 
                 newState["Gas motor"] = gasMotor;
-                    SettingsForDynamicDataManualMode();
-               }
+                SettingsForDynamicDataManualMode();
+            }
 
-     
-            else if(name == "Electric boiler" && newState.TryGetValue("Electric boiler", out OPTLiveProp electricBoiler))
+
+            else if (name == "Electric boiler" && newState.TryGetValue("Electric boiler", out OPTLiveProp electricBoiler))
             {
                 electricBoiler.stateOfUnit = ElectricBoilerState;
                 electricBoiler.operationOfUnit = OilBoilerOperation;
@@ -284,7 +281,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                 electricBoiler.operationCost = ElectricBoilerOperationCost;
                 electricBoiler.usingCO2Emission = ElectricBoilerOperationCO2;
 
-                if(electricBoiler.usingHeatDemand == 0)
+                if (electricBoiler.usingHeatDemand == 0)
                 {
                     electricBoiler.usingHeatDemand = ElectricBoilerUsingHeatDemand;
                 }
@@ -297,12 +294,12 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                 SettingsForDynamicDataManualMode();
             }
         }
-          
+
         [RelayCommand]
         private void GasBoilerBehaviour()
-            {
+        {
             GasBoilerTurnOn = !GasBoilerTurnOn;
-            if(GasBoilerTurnOn)
+            if (GasBoilerTurnOn)
             {
                 GasBoilerState = "Green";
                 GasBoilerOperation = "ON";
@@ -391,8 +388,8 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                 ElectricBoilerOperationCost = 300;
                 ElectricBoilerOperationCO2 = 0;
                 ElectricBoilerUsingHeatDemand = 8;
-             
-             }
+
+            }
             else
             {
                 ElectricBoilerState = "Red";
@@ -408,29 +405,29 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [RelayCommand]
         private void MinusHeatDemand(string name)
         {
-            if(name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasboiler))
+            if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasboiler))
             {
                 double maxHeat = gasboiler.data.MaxHeat;
 
                 double percent5 = Math.Round(gasboiler.data.MaxHeat / 20, 3);
 
-              
-                if(GasBoilerUsingHeatDemand - percent5 >= 0)
+
+                if (GasBoilerUsingHeatDemand - percent5 >= 0)
                 {
                     GasBoilerUsingHeatDemand = Math.Round(GasBoilerUsingHeatDemand - percent5, 3);
                     gasboiler.usingHeatDemand = Math.Round(gasboiler.usingHeatDemand - percent5, 3);
                 }
-          
+
                 SettingsForDynamicDataManualMode();
-            UpdateListFromState("Gas boiler");
+                UpdateListFromState("Gas boiler");
             }
-            else if(name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilboiler))
+            else if (name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilboiler))
             {
                 double maxHeat = oilboiler.data.MaxHeat;
 
                 double percent5 = Math.Round(oilboiler.data.MaxHeat / 20, 3);
 
-                if(OilBoilerUsingHeatDemand - percent5 >= 0)
+                if (OilBoilerUsingHeatDemand - percent5 >= 0)
                 {
                     OilBoilerUsingHeatDemand = Math.Round(OilBoilerUsingHeatDemand - percent5, 3);
                     oilboiler.usingHeatDemand = Math.Round(oilboiler.usingHeatDemand - percent5, 3);
@@ -654,7 +651,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             optLive.MachinesManualMode(160, true);
             HoldChangesNewList();
             SettingsForDynamicDataManualMode();
-            }
+        }
 
         public void SettingsForDynamicDataManualMode()
         {

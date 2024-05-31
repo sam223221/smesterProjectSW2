@@ -15,7 +15,7 @@ public partial class LoginWindowViewModel : ViewModelBase
     private Window closeable;
 
     [ObservableProperty]
-    private string password="";
+    private string password = "";
 
     [ObservableProperty]
     private string username = "";
@@ -28,7 +28,7 @@ public partial class LoginWindowViewModel : ViewModelBase
 
     [ObservableProperty]
     private bool warningSign = false;
-    
+
     [ObservableProperty]
     private bool signInSucceed = false;
 
@@ -78,14 +78,14 @@ public partial class LoginWindowViewModel : ViewModelBase
     {
         closeable = Cloneable;
         var parser = new ExcelDataParser("Assets/data.xlsx");
-        var quotes  = parser.ParseQuotes();     // extracting the quotes from the excel sheet
-        
+        var quotes = parser.ParseQuotes();     // extracting the quotes from the excel sheet
+
 
         // Select a random quote and display it
         Random random = new();
 
-        var randomQuote     = quotes[random.Next(quotes.Count)];
-        selectedQuote       = randomQuote.DisplayQuotes;
+        var randomQuote = quotes[random.Next(quotes.Count)];
+        selectedQuote = randomQuote.DisplayQuotes;
         selectedQuoteAuthor = randomQuote.DisplayQuoteAuthor;
 
     }

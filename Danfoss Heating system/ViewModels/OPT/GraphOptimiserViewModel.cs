@@ -1,6 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using ReactiveUI;

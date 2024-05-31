@@ -9,6 +9,6 @@ namespace Danfoss_Heating_system.Views.TopBarNavigation
         {
             InitializeComponent();
             this.DataContext = new UnitsViewModel();
-        }  
+        }
     }
 }

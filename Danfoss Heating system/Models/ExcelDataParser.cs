@@ -1,12 +1,8 @@
 ﻿using ClosedXML.Excel;
-using DocumentFormat.OpenXml.Spreadsheet;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Reactive.Disposables;
 
 
 namespace Danfoss_Heating_system.Models
@@ -47,7 +43,8 @@ namespace Danfoss_Heating_system.Models
                             Quotes = quote,
                             quoteAuther = quoteAuthor
                         });
-                    } else if (!string.IsNullOrWhiteSpace(quote))
+                    }
+                    else if (!string.IsNullOrWhiteSpace(quote))
                     {
                         quotesList.Add(new EnergyData
                         {
@@ -126,7 +123,7 @@ namespace Danfoss_Heating_system.Models
                     double.TryParse(row.Cell(3).GetValue<String>(), NumberStyles.Any, DanishInfo, out heatDemandStringWinter);          // Winter HeatDemand                                                                            
                     double.TryParse(row.Cell(4).GetValue<String>(), NumberStyles.Any, DanishInfo, out electricityPriceStringWinter);    // Winter ElectricityPrice
 
-                    
+
                     energyDataList.Add(new EnergyData
                     {
                         TimeFrom = timeFromStringWinter,
@@ -191,7 +188,7 @@ namespace Danfoss_Heating_system.Models
                 }
             }
             return productionUnitList;
-        } 
+        }
     }
-    
+
 }

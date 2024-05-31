@@ -1,10 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Linq;
-using System.Reactive;
-using System.Security.AccessControl;
 
 
 namespace Danfoss_Heating_system.ViewModels.OPT;
@@ -171,7 +168,7 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     [RelayCommand]
     private void ECOFriendlyTrue()
-    {      
+    {
         ECOFriendly = !ECOFriendly;
 
         if (ECOFriendly)
@@ -220,7 +217,7 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
         if (answer == "Yes")
         {
-            viewChange.CurrentContent = new ManualModeLiveOptimiserView() { DataContext = new ManualModeLiveOptimiserViewModel(viewChange)};
+            viewChange.CurrentContent = new ManualModeLiveOptimiserView() { DataContext = new ManualModeLiveOptimiserViewModel(viewChange) };
             return;
         }
     }
@@ -270,19 +267,19 @@ public partial class LiveOptimiserViewModel : ViewModelBase
         var stateofUnit = OPTLive.StateOfUnits(160, true, "Assets/data.xlsx");
 
         stateofUnit.TryGetValue("Gas boiler", out var gasBoilerInfo);
-            GasBoilerState = gasBoilerInfo.Item1;
-            GasBoilerOperation = gasBoilerInfo.Item2;
+        GasBoilerState = gasBoilerInfo.Item1;
+        GasBoilerOperation = gasBoilerInfo.Item2;
 
         stateofUnit.TryGetValue("Oil boiler", out var oilBoilerInfo);
-            OilBoilerState = oilBoilerInfo.Item1;
-            OilBoilerOperation = oilBoilerInfo.Item2;
+        OilBoilerState = oilBoilerInfo.Item1;
+        OilBoilerOperation = oilBoilerInfo.Item2;
 
         stateofUnit.TryGetValue("Gas motor", out var gasMotorInfo);
-            GasMotorState = gasMotorInfo.Item1;
-            GasMotorOperation = gasMotorInfo.Item2;
+        GasMotorState = gasMotorInfo.Item1;
+        GasMotorOperation = gasMotorInfo.Item2;
 
         stateofUnit.TryGetValue("Electric boiler", out var electricBoilerInfo);
-            ElectricBoilerState = electricBoilerInfo.Item1;
-            ElectricBoilerOperation = electricBoilerInfo.Item2;
+        ElectricBoilerState = electricBoilerInfo.Item1;
+        ElectricBoilerOperation = electricBoilerInfo.Item2;
     }
- }
+}

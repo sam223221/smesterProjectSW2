@@ -12,9 +12,6 @@ using Danfoss_Heating_system.Views.TopBarNavigation;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Reactive;
-using System.Windows.Input;
 
 
 namespace Danfoss_Heating_system.ViewModels
@@ -118,7 +115,7 @@ namespace Danfoss_Heating_system.ViewModels
             _isSideBarOpen = false;
             SideBarWidth = 0;
         }
-        
+
 
 
         [RelayCommand]
