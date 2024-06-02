@@ -471,7 +471,7 @@
 						Margin="20">
 
 						<TextBlock
-							Text="{Binding HeatDemandPrediction}"
+							Text="{Binding HeatDemandCurrent}"
 							FontSize="30"
 							FontWeight="Bold"
 							HorizontalAlignment="Center"
@@ -604,28 +604,33 @@
 			CornerRadius="50"
 			BorderThickness="2"
 			BorderBrush="Black"
-			Height="920"
+			Height="750"
 			Width="{Binding SideBarWidth}"
 			Margin="10"
 			Background="LightGray">
 
 
 			<StackPanel
-				VerticalAlignment="Top"
+				VerticalAlignment="Center"
 				IsVisible="{Binding SideBarOpen}">
 
-				<!--Graph-->
+
 				<Border
-					Height="200"
-					Width="250"
-					BorderThickness="3"
 					BorderBrush="Black"
-					Margin="0,30"
-					CornerRadius="25"
-					IsVisible="{Binding SideBarOpen}">
-
+					BorderThickness="3"
+					Background="White"
+					Width="200"
+					Margin="0,0,0,20"
+					CornerRadius="10">
+					<Label
+						ZIndex="1"
+						Foreground="Black"
+						HorizontalAlignment="Center"
+						FontSize="35"
+						FontWeight="Bold">
+						Settings
+					</Label>
 				</Border>
-
 
 				<!-- Buttons for lowest cost and ECO friendly -->
 				<StackPanel
@@ -918,66 +923,6 @@
 							</Border>
 
 						</Grid>
-					</Border>
-
-				</Grid>
-
-				<Grid ColumnDefinitions="*,*">
-
-					<Border
-						Grid.Column="0"
-						Background="LightGreen"
-						Width="100"
-						Height="50"
-						CornerRadius="20"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Margin="10">
-
-						<Button
-							Background="Green"
-							Width="100"
-							Height="50"
-							CornerRadius="20"
-							HorizontalAlignment="Center"
-							VerticalAlignment="Center"
-							Command="">
-
-							<TextBlock
-								Text="Apply"
-								HorizontalAlignment="Center"
-								VerticalAlignment="Center"
-								Foreground="White"
-								FontWeight="Bold"/>
-						</Button>
-					</Border>
-
-					<Border
-						Grid.Column="1"
-						Background="LightSalmon"
-						Width="100"
-						Height="50"
-						CornerRadius="20"
-						HorizontalAlignment="Center"
-						VerticalAlignment="Center"
-						Margin="10">
-
-						<Button
-							Background="Red"
-							Width="100"
-							Height="50"
-							CornerRadius="20"
-							HorizontalAlignment="Center"
-							VerticalAlignment="Center"
-							Command="">
-
-							<TextBlock
-								Text="Cancel"
-								HorizontalAlignment="Center"
-								VerticalAlignment="Center"
-								Foreground="White"
-								FontWeight="Bold"/>
-						</Button>
 					</Border>
 
 				</Grid>

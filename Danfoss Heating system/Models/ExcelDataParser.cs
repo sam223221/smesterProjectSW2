@@ -58,6 +58,7 @@ namespace Danfoss_Heating_system.Models
             return quotesList;
         }
 
+
         public List<EnergyData> UserInfo()
         {
             var list = new List<EnergyData>();
@@ -188,6 +189,83 @@ namespace Danfoss_Heating_system.Models
                 }
             }
             return productionUnitList;
+        }
+
+        public List<OPTLiveProp> ParserUnitsState()
+        {
+            var productionUnitList = new List<OPTLiveProp>();
+
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet("SDM");
+                var rows = worksheet.RangeUsed().RowsUsed();
+                CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+                foreach (var row in rows)
+                {
+                    if (row.RowNumber() <= 1) continue; //Skipping header rows
+                    var NameOfUnit = row.Cell(29).GetValue<String>();
+                    var stateOfUnit = row.Cell(30).GetValue<String>();
+                    var operationOfUnit = row.Cell(31).GetValue<String>();
+                    int.TryParse(row.Cell(32).GetValue<String>(), NumberStyles.Any, DanishInfo, out int UsageInPercentPerHour);
+                    double.TryParse(row.Cell(33).GetValue<String>(), NumberStyles.Any, DanishInfo, out double operationCost);
+                    double.TryParse(row.Cell(34).GetValue<String>(), NumberStyles.Any, DanishInfo, out double usingCO2Emission);
+                    double.TryParse(row.Cell(35).GetValue<String>(), NumberStyles.Any, DanishInfo, out double usingHeatDemand);
+                    double.TryParse(row.Cell(36).GetValue<String>(), NumberStyles.Any, DanishInfo, out double isUnitEnabled);
+
+                    if (!string.IsNullOrEmpty(NameOfUnit))
+                    {
+                        productionUnitList.Add(new OPTLiveProp
+                        {
+                            NameOfUnit = NameOfUnit,
+                            stateOfUnit = stateOfUnit,
+                            operationOfUnit = operationOfUnit,
+                            UsageInPercentPerHour = UsageInPercentPerHour,
+                            operationCost = operationCost,
+                            usingCO2Emission = usingCO2Emission,
+                            usingHeatDemand = usingHeatDemand,
+                            isUnitEnabled = isUnitEnabled == 1 ? true : false,
+                        });
+                    }
+                }
+            }
+            return productionUnitList;
+        }
+
+        public void UpdateUnitsInWorksheet(List<OPTLiveProp> productionUnitList, bool isWinter)
+        {
+            using (var workbook = new XLWorkbook(filePath))
+            {
+                var worksheet = workbook.Worksheet("SDM");
+                var rows = worksheet.RangeUsed().RowsUsed();
+                CultureInfo DanishInfo = new CultureInfo("da-DK");
+
+                foreach (var row in rows)
+                {
+                    if (row.RowNumber() <= 1 || row.RowNumber() >= 10) continue; // Skipping header rows
+                    if (isWinter && row.RowNumber() >= 6) continue; // Skipping summer rows
+                    if (!isWinter && row.RowNumber() < 6) continue; // Skipping winter rows
+
+
+                    var NameOfUnit = row.Cell(29).GetValue<string>();
+
+                    var unit = productionUnitList.Find(u => u.NameOfUnit == NameOfUnit);
+                    if (unit != null)
+                    {
+                        row.Cell(29).Value = unit.NameOfUnit; // Update NameOfUnit
+                        row.Cell(30).Value = unit.stateOfUnit; // Update stateOfUnit
+                        row.Cell(31).Value = unit.operationOfUnit; // Update operationOfUnit
+                        row.Cell(32).Value = unit.UsageInPercentPerHour; // Update UsageInPercentPerHour
+                        row.Cell(33).Value = unit.operationCost; // Update operationCost
+                        row.Cell(34).Value = unit.usingCO2Emission; // Update usingCO2Emission
+                        row.Cell(35).Value = unit.usingHeatDemand; // Update usingHeatDemand
+                        row.Cell(36).Value = unit.isUnitEnabled ? 1 : 0; // Toggle isUnitEnabled
+                    }
+                }
+
+                // Save changes to the workbook
+                workbook.SaveAs(filePath);
+            }
         }
     }
 

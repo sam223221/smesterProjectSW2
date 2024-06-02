@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Danfoss_Heating_system.ViewModels.OPT
 {
@@ -13,24 +12,24 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         private MainWindowViewModel viewChange;
         [ObservableProperty]
-        private int _sideBarWidth = 300;
+        private int sideBarWidth = 300;
         [ObservableProperty]
         private bool sideBarOpen = true;
 
         [ObservableProperty]
-        private double currentProduction;
+        private string currentProduction;
 
         // var for the heat demand and prediction
         [ObservableProperty]
-        private double heatDemandCurrent;
+        private string heatDemandCurrent;
         [ObservableProperty]
         private double heatDemandPrediction;
 
         // production cost and CO2 emissions for side bar
         [ObservableProperty]
-        private int productionCost;
+        private string productionCost;
         [ObservableProperty]
-        private int cO2Emotions;
+        private string cO2Emotions;
 
 
         // color states of the boilers and motors
@@ -59,46 +58,54 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private int gasBoilerOperationPercent = 0;
         [ObservableProperty]
-        private double gasBoilerOperationCost = 0;
+        private string gasBoilerOperationCost = "0";
         [ObservableProperty]
-        private double gasBoilerOperationCO2 = 0;
+        private string gasBoilerOperationCO2 = "0";
         [ObservableProperty]
         private string gasBoilerOperation = "OFF";
         [ObservableProperty]
-        private double gasBoilerUsingHeatDemand = 0;
+        private string gasBoilerUsingHeatDemand = "0";
+        [ObservableProperty]
+        private bool gasBoilerSettings = false;
 
         [ObservableProperty]
         private int oilBoilerOperationPercent = 0;
         [ObservableProperty]
-        private int oilBoilerOperationCost = 0;
+        private string oilBoilerOperationCost = "0";
         [ObservableProperty]
-        private int oilBoilerOperationCO2 = 0;
+        private string oilBoilerOperationCO2 = "0";
         [ObservableProperty]
         private string oilBoilerOperation = "OFF";
         [ObservableProperty]
-        private double oilBoilerUsingHeatDemand = 0;
+        private string oilBoilerUsingHeatDemand = "0";
+        [ObservableProperty]
+        private bool oilBoilerSettings = false;
 
         [ObservableProperty]
         private int gasMotorOperationPercent = 0;
         [ObservableProperty]
-        private int gasMotorOperationCost = 0;
+        private string gasMotorOperationCost = "0";
         [ObservableProperty]
-        private int gasMotorOperationCO2 = 0;
+        private string gasMotorOperationCO2 = "0";
         [ObservableProperty]
         private string gasMotorOperation = "OFF";
         [ObservableProperty]
-        private double gasMotorUsingHeatDemand = 0;
+        private string gasMotorUsingHeatDemand = "0";
+        [ObservableProperty]
+        private bool gasMotorSettings = false;
 
         [ObservableProperty]
         private int electricBoilerOperationPercent = 0;
         [ObservableProperty]
-        private int electricBoilerOperationCost = 0;
+        private string electricBoilerOperationCost = "0";
         [ObservableProperty]
-        private int electricBoilerOperationCO2 = 0;
+        private string electricBoilerOperationCO2 = "0";
         [ObservableProperty]
         private string electricBoilerOperation = "OFF";
         [ObservableProperty]
-        private double electricBoilerUsingHeatDemand = 0;
+        private string electricBoilerUsingHeatDemand = "0";
+        [ObservableProperty]
+        private bool electricBoilerSettings = false;
 
         // color states of the low cost and eco friendly buttons
         [ObservableProperty]
@@ -128,489 +135,186 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
 
         [ObservableProperty]
-        private bool toolTipIsVisible;
+        private bool changesAreBeingMade = false;
 
-        [RelayCommand]
-        private void ToggleToolTipVisibility()
+        private bool seasonSelecter = true;
+
+
+
+
+
+        private OPTLive OPTLive;
+        List<OPTLiveProp> unitState = new();
+
+        public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
         {
-            ToolTipIsVisible = !ToolTipIsVisible;
+            this.viewChange = viewChange;
+            optLive = new OPTLive("/Assets/data.xlsx");
+            Initilizer();
         }
+
 
         // relay commands for the summer and winter buttons
         [RelayCommand]
         private void SummerTrue()
         {
-
+            seasonSelecter = false;
             SummerFontWeight = "Bold";
             SummerBackground = "Green";
             WinterFontWeight = "Normal";
             WinterBackground = "Gray";
+            Initilizer();
 
         }
         [RelayCommand]
         private void WinterTrue()
         {
-
+            seasonSelecter = true;
             SummerFontWeight = "Normal";
             SummerBackground = "Gray";
             WinterFontWeight = "Bold";
             WinterBackground = "Green";
+            Initilizer();
         }
 
-        public bool GasBoilerTurnOn;
-        private bool OilBoilerTurnOn;
-        private bool GasMotorTurnOn;
-        private bool ElectricBoilerTurnOn;
-
-
-        Dictionary<string, OPTLiveProp> newState = new Dictionary<string, OPTLiveProp>();
-        public void HoldChangesNewList()
-        {
-            {
-                foreach (var unit in optLive.MachinesManualMode(160, true))
-                {
-                    EnergyData energyData = new EnergyData
-                    {
-                        Name = unit.Value.data.Name,
-                        HeatDemand = unit.Value.data.HeatDemand,
-                        MaxHeat = unit.Value.data.MaxHeat,
-                        MaxElectricity = unit.Value.data.MaxElectricity,
-                        ProductionCost = unit.Value.data.ProductionCost,
-                        CO2Emission = unit.Value.data.CO2Emission,
-                        GasConsumption = unit.Value.data.GasConsumption,
-                        PercentageUsage = unit.Value.data.PercentageUsage,
-                        ElectricityPrice = unit.Value.data.ElectricityPrice,
-                    };
-
-
-                    OPTLiveProp optLivePropForManual = new OPTLiveProp(energyData)
-                    {
-                        isUnitEnabled = unit.Value.isUnitEnabled,
-                        PredictedHeatDemand = unit.Value.PredictedHeatDemand,
-                        remainingHeatDemand = unit.Value.remainingHeatDemand,
-                        usingCO2Emission = unit.Value.usingHeatDemand * unit.Value.data.CO2Emission,
-                        usingHeatDemand = unit.Value.usingHeatDemand,
-                        stateOfUnit = unit.Value.stateOfUnit,
-                        operationOfUnit = unit.Value.operationOfUnit,
-                        UsageInPercentPerHour = unit.Value.UsageInPercentPerHour,
-                    };
-
-                    if (!newState.ContainsKey(unit.Value.data.Name))
-                    {
-                        newState.Add(unit.Value.data.Name, optLivePropForManual);
-                    }
-
-                    else
-                    {
-                        newState[unit.Value.data.Name] = optLivePropForManual;
-                    }
-                }
-            }
-        }
-
-        private void UpdateListFromState(string name)
-        {
-            if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasBoiler))
-            {
-                gasBoiler.stateOfUnit = GasBoilerState;
-                gasBoiler.operationOfUnit = GasBoilerOperation;
-                gasBoiler.UsageInPercentPerHour = GasBoilerOperationPercent;
-                gasBoiler.operationCost = GasBoilerOperationCost;
-                gasBoiler.usingCO2Emission = GasBoilerOperationCO2;
-                if (gasBoiler.usingHeatDemand == 0)
-                {
-                    gasBoiler.usingHeatDemand = GasBoilerUsingHeatDemand;
-                }
-                else if (gasBoiler.operationCost == 0)
-                {
-                    gasBoiler.usingHeatDemand = 0;
-                }
-
-
-                newState["Gas boiler"] = gasBoiler;
-                SettingsForDynamicDataManualMode();
-            }
-
-            else if (name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilBoiler))
-            {
-                oilBoiler.stateOfUnit = OilBoilerState;
-                oilBoiler.operationOfUnit = OilBoilerOperation;
-                oilBoiler.UsageInPercentPerHour = OilBoilerOperationPercent;
-                oilBoiler.operationCost = OilBoilerOperationCost;
-                oilBoiler.usingCO2Emission = OilBoilerOperationCO2;
-                if (oilBoiler.usingHeatDemand == 0)
-                {
-                    oilBoiler.usingHeatDemand = OilBoilerUsingHeatDemand;
-                }
-                else if (oilBoiler.operationCost == 0)
-                {
-                    oilBoiler.usingHeatDemand = 0;
-                }
-
-                newState["Oil boiler"] = oilBoiler;
-                SettingsForDynamicDataManualMode();
-            }
-
-            else if (name == "Gas motor" && newState.TryGetValue("Gas motor", out OPTLiveProp gasMotor))
-            {
-                gasMotor.stateOfUnit = GasMotorState;
-                gasMotor.operationOfUnit = GasMotorOperation;
-                gasMotor.UsageInPercentPerHour = GasMotorOperationPercent;
-                gasMotor.operationCost = GasMotorOperationCost;
-                gasMotor.usingCO2Emission = GasMotorOperationCO2;
-
-                if (gasMotor.usingHeatDemand == 0)
-                {
-                    gasMotor.usingHeatDemand = GasMotorUsingHeatDemand;
-                }
-                else if (gasMotor.operationCost == 0)
-                {
-                    gasMotor.usingHeatDemand = 0;
-                }
-
-                newState["Gas motor"] = gasMotor;
-                SettingsForDynamicDataManualMode();
-            }
-
-
-            else if (name == "Electric boiler" && newState.TryGetValue("Electric boiler", out OPTLiveProp electricBoiler))
-            {
-                electricBoiler.stateOfUnit = ElectricBoilerState;
-                electricBoiler.operationOfUnit = OilBoilerOperation;
-                electricBoiler.UsageInPercentPerHour = ElectricBoilerOperationPercent;
-                electricBoiler.operationCost = ElectricBoilerOperationCost;
-                electricBoiler.usingCO2Emission = ElectricBoilerOperationCO2;
-
-                if (electricBoiler.usingHeatDemand == 0)
-                {
-                    electricBoiler.usingHeatDemand = ElectricBoilerUsingHeatDemand;
-                }
-                else if (electricBoiler.operationCost == 0)
-                {
-                    electricBoiler.usingHeatDemand = 0;
-                }
-
-                newState["Electric boiler"] = electricBoiler;
-                SettingsForDynamicDataManualMode();
-            }
-        }
 
         [RelayCommand]
-        private void GasBoilerBehaviour()
+        private void OnOfButtonForMachins(string name)
         {
-            GasBoilerTurnOn = !GasBoilerTurnOn;
-            if (GasBoilerTurnOn)
+            ChangesAreBeingMade = true;
+            foreach (var unit in unitState)
             {
-                GasBoilerState = "Green";
-                GasBoilerOperation = "ON";
-                GasBoilerOperationPercent = 100;
-                GasBoilerOperationCost = 214;
-                GasBoilerOperationCO2 = 1075;
-                GasBoilerUsingHeatDemand = 5;
-
+                if (unit.NameOfUnit == name && unit.isUnitEnabled == false)
+                {
+                    unit.UsageInPercentPerHour = 100;
+                    unit.stateOfUnit = "Green";
+                    unit.operationOfUnit = "ON";
+                    unit.operationCost = unit.data.MaxHeat * unit.data.ProductionCost;
+                    unit.usingCO2Emission = unit.data.MaxHeat * unit.data.CO2Emission;
+                    unit.usingHeatDemand = unit.data.MaxHeat;
+                    unit.isUnitEnabled = true;
+                    UnitUpdate(unit);
+                }
+                else if (unit.NameOfUnit == name && unit.isUnitEnabled == true)
+                {
+                    unit.UsageInPercentPerHour = 0;
+                    unit.stateOfUnit = "Red";
+                    unit.operationOfUnit = "OFF";
+                    unit.operationCost = 0;
+                    unit.usingCO2Emission = 0;
+                    unit.usingHeatDemand = 0;
+                    unit.isUnitEnabled = false;
+                    UnitUpdate(unit);
+                }
             }
-            else
-            {
-                GasBoilerState = "Red";
-                GasBoilerOperation = "OFF";
-                GasBoilerOperationPercent = 0;
-                GasBoilerOperationCO2 = 0;
-                GasBoilerOperationCost = 0;
-                GasBoilerUsingHeatDemand = 0;
-            }
-            UpdateListFromState("Gas boiler");
         }
+
 
         [RelayCommand]
-        private void OilBoilerBehaviour()
+        private void SettingsIsVisible(string unitName)
         {
-            OilBoilerTurnOn = !OilBoilerTurnOn;
-
-            if (OilBoilerTurnOn)
+            switch (unitName)
             {
-                OilBoilerState = "Green";
-                OilBoilerOperation = "ON";
-                OilBoilerOperationPercent = 100;
-                OilBoilerOperationCost = 800;
-                OilBoilerOperationCO2 = 1060;
-                OilBoilerUsingHeatDemand = 4;
-            }
-            else
-            {
-                OilBoilerState = "Red";
-                OilBoilerOperation = "OFF";
-                OilBoilerOperationCO2 = 0;
-                OilBoilerOperationCost = 0;
-                OilBoilerOperationPercent = 0;
-                OilBoilerUsingHeatDemand = 0;
-            }
-
-            UpdateListFromState("Oil boiler");
+                case "Gas boiler":
+                    GasBoilerSettings = !GasBoilerSettings;
+                    break;
+                case "Oil boiler":
+                    OilBoilerSettings = !OilBoilerSettings;
+                    break;
+                case "Gas motor":
+                    GasMotorSettings = !GasMotorSettings;
+                    break;
+                case "Electric boiler":
+                    ElectricBoilerSettings = !ElectricBoilerSettings;
+                    break;
+            };
         }
 
-        [RelayCommand]
-        private void GasMotorBehaviour()
-        {
-            GasMotorTurnOn = !GasMotorTurnOn;
-
-            if (GasMotorTurnOn)
-            {
-                GasMotorState = "Green";
-                GasMotorOperation = "ON";
-                GasMotorOperationPercent = 100;
-                GasMotorOperationCost = 500;
-                GasMotorOperationCO2 = 2304;
-                GasMotorUsingHeatDemand = 3.6;
-            }
-            else
-            {
-                GasMotorState = "Red";
-                GasMotorOperation = "OFF";
-                GasMotorOperationPercent = 0;
-                GasMotorOperationCO2 = 0;
-                GasMotorOperationCost = 0;
-                GasMotorUsingHeatDemand = 0;
-            }
-
-            UpdateListFromState("Gas motor");
-        }
-
-        [RelayCommand]
-        private void ElectricBoilerBehaviour()
-        {
-            ElectricBoilerTurnOn = !ElectricBoilerTurnOn;
-
-            if (ElectricBoilerTurnOn)
-            {
-                ElectricBoilerState = "Green";
-                ElectricBoilerOperation = "ON";
-                ElectricBoilerOperationPercent = 100;
-                ElectricBoilerOperationCost = 300;
-                ElectricBoilerOperationCO2 = 0;
-                ElectricBoilerUsingHeatDemand = 8;
-
-            }
-            else
-            {
-                ElectricBoilerState = "Red";
-                ElectricBoilerOperation = "OFF";
-                ElectricBoilerOperationPercent = 0;
-                ElectricBoilerOperationCO2 = 0;
-                ElectricBoilerOperationCost = 0;
-                ElectricBoilerUsingHeatDemand = 0;
-            }
-            UpdateListFromState("Electric boiler");
-        }
 
         [RelayCommand]
         private void MinusHeatDemand(string name)
         {
-            if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasboiler))
+            ChangesAreBeingMade = true;
+            foreach (var unit in unitState)
             {
-                double maxHeat = gasboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(gasboiler.data.MaxHeat / 20, 3);
-
-
-                if (GasBoilerUsingHeatDemand - percent5 >= 0)
+                if (unit.NameOfUnit == name && unit.isUnitEnabled == true)
                 {
-                    GasBoilerUsingHeatDemand = Math.Round(GasBoilerUsingHeatDemand - percent5, 3);
-                    gasboiler.usingHeatDemand = Math.Round(gasboiler.usingHeatDemand - percent5, 3);
-                }
+                    unit.UsageInPercentPerHour -= 5;
+                    unit.usingHeatDemand -= Math.Round(unit.data.MaxHeat / 20, 3);
 
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Gas boiler");
-            }
-            else if (name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilboiler))
-            {
-                double maxHeat = oilboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(oilboiler.data.MaxHeat / 20, 3);
-
-                if (OilBoilerUsingHeatDemand - percent5 >= 0)
-                {
-                    OilBoilerUsingHeatDemand = Math.Round(OilBoilerUsingHeatDemand - percent5, 3);
-                    oilboiler.usingHeatDemand = Math.Round(oilboiler.usingHeatDemand - percent5, 3);
+                    if (unit.UsageInPercentPerHour < 5)
+                    {
+                        unit.stateOfUnit = "Red";
+                        unit.isUnitEnabled = false;
+                    }
+                    else
+                    {
+                        unit.isUnitEnabled = true;
+                    }
+                    UnitUpdate(unit);
                 }
-                else
-                {
-                    OilBoilerUsingHeatDemand = 0;
-                    oilboiler.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Oil boiler");
-            }
-            else if (name == "Gas motor" && newState.TryGetValue("Gas motor", out OPTLiveProp gasmotor))
-            {
-                double maxHeat = gasmotor.data.MaxHeat;
-
-                double percent5 = Math.Round(gasmotor.data.MaxHeat / 20, 3);
-
-                if (GasMotorUsingHeatDemand - percent5 >= 0)
-                {
-                    GasMotorUsingHeatDemand = Math.Round(GasMotorUsingHeatDemand - percent5, 3);
-                    gasmotor.usingHeatDemand = Math.Round(gasmotor.usingHeatDemand - percent5, 3);
-                }
-                else
-                {
-                    GasMotorUsingHeatDemand = 0;
-                    gasmotor.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Gas motor");
-            }
-            else if (name == "Electric boiler" && newState.TryGetValue("Electric boiler", out OPTLiveProp electricboiler))
-            {
-                double maxHeat = electricboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(electricboiler.data.MaxHeat / 20, 3);
-
-                if (ElectricBoilerUsingHeatDemand - percent5 >= 0)
-                {
-                    ElectricBoilerUsingHeatDemand = Math.Round(ElectricBoilerUsingHeatDemand - percent5, 3);
-                    electricboiler.usingHeatDemand = Math.Round(electricboiler.usingHeatDemand - percent5, 3);
-                }
-                else
-                {
-                    ElectricBoilerUsingHeatDemand = 0;
-                    electricboiler.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Electric boiler");
             }
         }
 
         [RelayCommand]
         private void PlusHeatDemand(string name)
         {
-            if (name == "Gas boiler" && newState.TryGetValue("Gas boiler", out OPTLiveProp gasboiler))
+            ChangesAreBeingMade = true;
+            foreach (var unit in unitState)
             {
-                double maxHeat = gasboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(gasboiler.data.MaxHeat / 20, 3);
-
-
-                if (GasBoilerUsingHeatDemand >= 0 && GasBoilerUsingHeatDemand < maxHeat)
+                if (unit.NameOfUnit == name && unit.UsageInPercentPerHour < 100)
                 {
-                    GasBoilerUsingHeatDemand = Math.Round(GasBoilerUsingHeatDemand + percent5, 3);
-                    gasboiler.usingHeatDemand = Math.Round(gasboiler.usingHeatDemand + percent5, 3);
+                    unit.stateOfUnit = "Green";
+                    unit.operationOfUnit = "ON";
+                    unit.UsageInPercentPerHour += 5;
+                    unit.usingHeatDemand += Math.Round(unit.data.MaxHeat / 20, 3);
+                    unit.isUnitEnabled = true;
+                    UnitUpdate(unit);
                 }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Gas boiler");
-            }
-            else if (name == "Oil boiler" && newState.TryGetValue("Oil boiler", out OPTLiveProp oilboiler))
-            {
-                double maxHeat = oilboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(oilboiler.data.MaxHeat / 20, 3);
-
-                if (OilBoilerUsingHeatDemand >= 0 && OilBoilerUsingHeatDemand < maxHeat)
-                {
-                    OilBoilerUsingHeatDemand = Math.Round(OilBoilerUsingHeatDemand + percent5, 3);
-                    oilboiler.usingHeatDemand = Math.Round(oilboiler.usingHeatDemand + percent5, 3);
-                }
-                else
-                {
-                    OilBoilerUsingHeatDemand = 0;
-                    oilboiler.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Oil boiler");
-            }
-            else if (name == "Gas motor" && newState.TryGetValue("Gas motor", out OPTLiveProp gasmotor))
-            {
-                double maxHeat = gasmotor.data.MaxHeat;
-
-                double percent5 = Math.Round(gasmotor.data.MaxHeat / 20, 3);
-
-                if (GasMotorUsingHeatDemand >= 0 && GasMotorUsingHeatDemand < maxHeat)
-                {
-                    GasMotorUsingHeatDemand = Math.Round(GasMotorUsingHeatDemand + percent5, 3);
-                    gasmotor.usingHeatDemand = Math.Round(gasmotor.usingHeatDemand + percent5, 3);
-                }
-                else
-                {
-                    GasMotorUsingHeatDemand = 0;
-                    gasmotor.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Gas motor");
-            }
-            else if (name == "Electric boiler" && newState.TryGetValue("Electric boiler", out OPTLiveProp electricboiler))
-            {
-                double maxHeat = electricboiler.data.MaxHeat;
-
-                double percent5 = Math.Round(electricboiler.data.MaxHeat / 20, 3);
-
-                if (ElectricBoilerUsingHeatDemand >= 0 && ElectricBoilerUsingHeatDemand < maxHeat)
-                {
-                    ElectricBoilerUsingHeatDemand = Math.Round(ElectricBoilerUsingHeatDemand + percent5, 3);
-                    electricboiler.usingHeatDemand = Math.Round(electricboiler.usingHeatDemand + percent5, 3);
-                }
-                else
-                {
-                    ElectricBoilerUsingHeatDemand = 0;
-                    electricboiler.usingHeatDemand = 0;
-                }
-                SettingsForDynamicDataManualMode();
-                UpdateListFromState("Electric boiler");
             }
         }
 
-
-
-        // relay commands for the low cost and eco friendly buttons
-        [RelayCommand]
-        private void LowCostTrue()
+        private void UnitUpdate(OPTLiveProp unit)
         {
-            LowCost = !LowCost;
-
-            if (LowCost)
+            switch (unit.NameOfUnit)
             {
-                LowCostWeight = "Bold";
-                LowCostBackground = "Green";
-                return;
+                case "Gas boiler":
+                    GasBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    GasBoilerOperationCost = unit.operationCost.ToString("F2");
+                    GasBoilerOperationCO2 = unit.usingCO2Emission.ToString("F2");
+                    GasBoilerUsingHeatDemand = unit.usingHeatDemand.ToString("F2");
+                    GasBoilerState = unit.stateOfUnit;
+                    GasBoilerOperation = unit.operationOfUnit;
+                    break;
+                case "Oil boiler":
+                    OilBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    OilBoilerOperationCost = unit.operationCost.ToString("F2");
+                    OilBoilerOperationCO2 = unit.usingCO2Emission.ToString("F2");
+                    OilBoilerUsingHeatDemand = unit.usingHeatDemand.ToString("F2");
+                    OilBoilerState = unit.stateOfUnit;
+                    OilBoilerOperation = unit.operationOfUnit;
+                    break;
+                case "Gas motor":
+                    GasMotorOperationPercent = unit.UsageInPercentPerHour;
+                    GasMotorOperationCost = unit.operationCost.ToString("F2");
+                    GasMotorOperationCO2 = unit.usingCO2Emission.ToString("F2");
+                    GasMotorUsingHeatDemand = unit.usingHeatDemand.ToString("F2");
+                    GasMotorState = unit.stateOfUnit;
+                    GasMotorOperation = unit.operationOfUnit;
+                    break;
+                case "Electric boiler":
+                    ElectricBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    ElectricBoilerOperationCost = unit.operationCost.ToString("F2");
+                    ElectricBoilerOperationCO2 = unit.usingCO2Emission.ToString("F2");
+                    ElectricBoilerUsingHeatDemand = unit.usingHeatDemand.ToString("F2");
+                    ElectricBoilerState = unit.stateOfUnit;
+                    ElectricBoilerOperation = unit.operationOfUnit;
+                    break;
             }
-
-            if (LowCost != true && ECOFriendly == true)
-            {
-                LowCostWeight = "Normal";
-                LowCostBackground = "Gray";
-                return;
-            }
-            else
-            {
-                LowCost = !LowCost;
-                return;
-            }
+            ProductionCost = optLive.ProductionCostPerHourManualMode(unitState).ToString("F2");
+            CO2Emotions = optLive.CO2EmmitionsPerHourManualMode(unitState).ToString("F2");
+            CurrentProduction = optLive.TotalHeatProductionManualMode(unitState).ToString("F2");
         }
-
-        [RelayCommand]
-        private void ECOFriendlyTrue()
-        {
-            ECOFriendly = !ECOFriendly;
-
-            if (ECOFriendly)
-            {
-                ECOFriendlyFontWeight = "Bold";
-                ECOFriendlyBackground = "Green";
-                return;
-            }
-            if (ECOFriendly != true && LowCost != false)
-            {
-                ECOFriendlyFontWeight = "Normal";
-                ECOFriendlyBackground = "Gray";
-                return;
-            }
-            else
-            {
-                ECOFriendly = !ECOFriendly;
-                return;
-            }
-
-        }
-
-
 
         // relay command for the sidebar toggle
         [RelayCommand]
@@ -628,6 +332,20 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             }
         }
 
+        [RelayCommand]
+        private void ChangeSettings(string chose)
+        {
+            if (chose == "Apply")
+            {
+                ChangesAreBeingMade = false;
+                optLive.StoreUnitState(unitState, seasonSelecter);
+            }
+            else if (chose == "Cancel")
+            {
+                ChangesAreBeingMade = false;
+                Initilizer();
+            }
+        }
 
         [RelayCommand]
         private void AutoMode(string? answer)
@@ -642,47 +360,30 @@ namespace Danfoss_Heating_system.ViewModels.OPT
 
         }
 
-        private OPTLive OPTLive;
-
-        public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
+        public void Initilizer()
         {
-            this.viewChange = viewChange;
-            optLive = new OPTLive("/Assets/data.xlsx");
-            optLive.MachinesManualMode(160, true);
-            HoldChangesNewList();
-            SettingsForDynamicDataManualMode();
-        }
+            // Units initialization
+            unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
 
-        public void SettingsForDynamicDataManualMode()
-        {
-            ProductionCost = (int)optLive.ProductionCostPerHourManualMode(newState);
-            CO2Emotions = (int)optLive.CO2EmmitionsPerHourManualMode(newState);
+            foreach (var item in unitState)
+            {
+                UnitUpdate(item);
+            }
 
+            // Side bar initialization
+            ProductionCost = optLive.ProductionCostPerHourManualMode(unitState).ToString("F2");
+            CO2Emotions = optLive.CO2EmmitionsPerHourManualMode(unitState).ToString("F2");
 
-            var usagePerHour = optLive.UnitUsagePerHourManualMode(newState);
-            GasBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-            OilBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-            GasMotorOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-            ElectricBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+            // Heat demand and prediction initialization
+            CurrentProduction = optLive.TotalHeatProductionManualMode(unitState).ToString("F2");
+            HeatDemandCurrent = optLive.HourInformation(seasonSelecter).HeatDemand.ToString("F2");
+            HeatDemandPrediction = optLive.predictHeatDemandCalculate(seasonSelecter);
 
-            HeatDemandCurrent = optLive.TotalHeatDemandManualMode(newState);
-            HeatDemandPrediction = optLive.predictHeatDemandCalculate(160, true, "Assets/data.xlsx");
-            PreviousHour = optLive.GetHourFromCellIndex(159, true, "Assets/data.xlsx");
-            ActualHour = optLive.GetHourFromCellIndex(160, true, "Assets/data.xlsx");
-            NextHour = optLive.GetHourFromCellIndex(161, true, "Assets/data.xlsx");
+            // Clock initialization
+            PreviousHour = optLive.GetHourFromCellIndex(0, seasonSelecter);
+            ActualHour = optLive.GetHourFromCellIndex(1, seasonSelecter);
+            NextHour = optLive.GetHourFromCellIndex(2, seasonSelecter);
 
-            var operationcost = optLive.UnitsOperationCostsManualMode(newState);
-            GasBoilerOperationCost = operationcost.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-            OilBoilerOperationCost = operationcost.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-            GasMotorOperationCost = operationcost.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-            ElectricBoilerOperationCost = operationcost.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
-
-
-            var co2emissions = optLive.UnitsCO2EmissionManualMode(newState);
-            GasBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-            OilBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-            GasMotorOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-            ElectricBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
-using System.Linq;
 
 
 namespace Danfoss_Heating_system.ViewModels.OPT;
@@ -10,7 +9,6 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 {
     private MainWindowViewModel viewChange;
     private OPTLive OPTLive;
-    private OPTLiveProp OPTLiveProp;
 
     [ObservableProperty]
     private int _sideBarWidth = 0;
@@ -19,9 +17,12 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     // var for the heat demand and prediction
     [ObservableProperty]
-    private double heatDemandCurrent;
+    private string heatDemandCurrent;
     [ObservableProperty]
     private double heatDemandPrediction;
+    [ObservableProperty]
+    private string heatDemandproduction;
+
 
     // production cost and CO2 emissions for side bar
     [ObservableProperty]
@@ -98,13 +99,14 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     private string eCOFriendlyFontWeight = "Normal";
     [ObservableProperty]
     private string eCOFriendlyBackground = "Gray";
-    private bool LowCost = true;
-    private bool ECOFriendly = false;
+
+    private string scenario = "BestCost";
 
     //manual Mode
     [ObservableProperty]
     private bool manualModeVisible = false;
 
+    private bool seasonSelected = true;
 
     [ObservableProperty]
     private string actualHour;
@@ -120,6 +122,7 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     [RelayCommand]
     private void SummerTrue()
     {
+        seasonSelected = false;
         SettingsForDynamicData();
         SummerFontWeight = "Bold";
         SummerBackground = "Green";
@@ -129,6 +132,7 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     [RelayCommand]
     private void WinterTrue()
     {
+        seasonSelected = true;
         SettingsForDynamicData();
         SummerFontWeight = "Normal";
         SummerBackground = "Gray";
@@ -143,53 +147,24 @@ public partial class LiveOptimiserViewModel : ViewModelBase
     [RelayCommand]
     private void LowCostTrue()
     {
-        SettingsForDynamicData();
-        LowCost = !LowCost;
 
-        if (LowCost)
-        {
-            SettingsForDynamicData();
-            LowCostWeight = "Bold";
-            LowCostBackground = "Green";
-            return;
-        }
-        if (LowCost != true && ECOFriendly != false)
-        {
-            LowCostWeight = "Normal";
-            LowCostBackground = "Gray";
-            return;
-        }
-        else
-        {
-            LowCost = !LowCost;
-            return;
-        }
+        scenario = "BestCost";
+        SettingsForDynamicData();
+        LowCostWeight = "Bold";
+        LowCostBackground = "Green";
+        ECOFriendlyFontWeight = "Normal";
+        ECOFriendlyBackground = "Gray";
     }
 
     [RelayCommand]
     private void ECOFriendlyTrue()
     {
-        ECOFriendly = !ECOFriendly;
-
-        if (ECOFriendly)
-        {
-            SettingsForDynamicData();
-            ECOFriendlyFontWeight = "Bold";
-            ECOFriendlyBackground = "Green";
-            return;
-        }
-        if (ECOFriendly != true && LowCost != false)
-        {
-            ECOFriendlyFontWeight = "Normal";
-            ECOFriendlyBackground = "Gray";
-            return;
-        }
-        else
-        {
-            ECOFriendly = !ECOFriendly;
-            return;
-        }
-
+        scenario = "LowestCO2";
+        SettingsForDynamicData();
+        ECOFriendlyFontWeight = "Bold";
+        ECOFriendlyBackground = "Green";
+        LowCostWeight = "Normal";
+        LowCostBackground = "Gray";
     }
 
 
@@ -235,51 +210,57 @@ public partial class LiveOptimiserViewModel : ViewModelBase
 
     public void SettingsForDynamicData()
     {
-        OPTLive.UsingMachines(160, true);
-        ProductionCost = (int)OPTLive.ProductionCostPerHour();
-        CO2Emotions = (int)OPTLive.CO2EmmitionsPerHour();
 
-        var usagePerHour = OPTLive.UnitUsagePerHour();
-        GasBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-        OilBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-        GasMotorOperationPercent = usagePerHour.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-        ElectricBoilerOperationPercent = usagePerHour.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+        var Units = OPTLive.UsingMachines(seasonSelected, scenario);
 
-        HeatDemandCurrent = OPTLive.TotalHeatDemand();
-        HeatDemandPrediction = OPTLive.predictHeatDemandCalculate(160, true, "Assets/data.xlsx");
-        PreviousHour = OPTLive.GetHourFromCellIndex(159, true, "Assets/data.xlsx");
-        ActualHour = OPTLive.GetHourFromCellIndex(160, true, "Assets/data.xlsx");
-        NextHour = OPTLive.GetHourFromCellIndex(161, true, "Assets/data.xlsx");
-        var operationcost = OPTLive.UnitsOperationCosts();
-        GasBoilerOperationCost = operationcost.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-        OilBoilerOperationCost = operationcost.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-        GasMotorOperationCost = operationcost.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-        ElectricBoilerOperationCost = operationcost.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+        foreach (var unit in Units)
+        {
+            switch (unit.NameOfUnit)
+            {
+                case "Gas boiler":
+                    GasBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    GasBoilerOperationCost = (int)unit.operationCost;
+                    GasBoilerOperationCO2 = (int)unit.usingCO2Emission;
+                    GasBoilerState = unit.stateOfUnit;
+                    GasBoilerOperation = unit.operationOfUnit;
+                    break;
+                case "Oil boiler":
+                    OilBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    OilBoilerOperationCost = (int)unit.operationCost;
+                    OilBoilerOperationCO2 = (int)unit.usingCO2Emission;
+                    OilBoilerState = unit.stateOfUnit;
+                    OilBoilerOperation = unit.operationOfUnit;
+                    break;
+                case "Gas motor":
+                    GasMotorOperationPercent = unit.UsageInPercentPerHour;
+                    GasMotorOperationCost = (int)unit.operationCost;
+                    GasMotorOperationCO2 = (int)unit.usingCO2Emission;
+                    GasMotorState = unit.stateOfUnit;
+                    GasMotorOperation = unit.operationOfUnit;
+                    break;
+                case "Electric boiler":
+                    ElectricBoilerOperationPercent = unit.UsageInPercentPerHour;
+                    ElectricBoilerOperationCost = (int)unit.operationCost;
+                    ElectricBoilerOperationCO2 = (int)unit.usingCO2Emission;
+                    ElectricBoilerState = unit.stateOfUnit;
+                    ElectricBoilerOperation = unit.operationOfUnit;
+                    break;
+            }
+        }
+        HeatDemandproduction = OPTLive.productionCost.ToString("F2");
+        HeatDemandCurrent = OPTLive.currentHeatDemand.ToString("F2");
+        HeatDemandPrediction = OPTLive.predictHeatDemandCalculate(seasonSelected);
+
+        PreviousHour = OPTLive.GetHourFromCellIndex(0, seasonSelected);
+        ActualHour = OPTLive.GetHourFromCellIndex(1, seasonSelected);
+        NextHour = OPTLive.GetHourFromCellIndex(2, seasonSelected);
 
 
-        var co2emissions = OPTLive.UnitsCO2Emission();
-        GasBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas boiler").Select(unit => unit.Value).FirstOrDefault();
-        OilBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Oil boiler").Select(unit => unit.Value).FirstOrDefault();
-        GasMotorOperationCO2 = co2emissions.Where(unit => unit.Key == "Gas motor").Select(unit => unit.Value).FirstOrDefault();
-        ElectricBoilerOperationCO2 = co2emissions.Where(unit => unit.Key == "Electric boiler").Select(unit => unit.Value).FirstOrDefault();
+
+        OPTLive.UsingMachines(seasonSelected, scenario);
+        ProductionCost = (int)OPTLive.productionCost;
+        CO2Emotions = (int)OPTLive.CO2Emission;
 
 
-        var stateofUnit = OPTLive.StateOfUnits(160, true, "Assets/data.xlsx");
-
-        stateofUnit.TryGetValue("Gas boiler", out var gasBoilerInfo);
-        GasBoilerState = gasBoilerInfo.Item1;
-        GasBoilerOperation = gasBoilerInfo.Item2;
-
-        stateofUnit.TryGetValue("Oil boiler", out var oilBoilerInfo);
-        OilBoilerState = oilBoilerInfo.Item1;
-        OilBoilerOperation = oilBoilerInfo.Item2;
-
-        stateofUnit.TryGetValue("Gas motor", out var gasMotorInfo);
-        GasMotorState = gasMotorInfo.Item1;
-        GasMotorOperation = gasMotorInfo.Item2;
-
-        stateofUnit.TryGetValue("Electric boiler", out var electricBoilerInfo);
-        ElectricBoilerState = electricBoilerInfo.Item1;
-        ElectricBoilerOperation = electricBoilerInfo.Item2;
     }
 }

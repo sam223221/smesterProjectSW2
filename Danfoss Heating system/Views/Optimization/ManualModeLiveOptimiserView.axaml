@@ -10,7 +10,7 @@
 
 	<Grid 
 		RowDefinitions="2*,*,*" 
-		ColumnDefinitions="*,Auto">
+		ColumnDefinitions="*,Auto" >
 
 		<!-- warning sign when changing back to Auto-->
 		<Border 
@@ -196,10 +196,18 @@
 			</Border>
 			
 			
-			<!-- bulbs under the pictures -->
+			
+			
+			
+			<!-- /////////////////////////// bulbs under the pictures /////////////////////////// -->
+			
+			
+			
+			
+			
+			
 			
 			<!-- Under Gas Boiler -->
-
 			<StackPanel 
 				Orientation="Horizontal"
 				HorizontalAlignment="Center"
@@ -230,7 +238,8 @@
 						Width="70"
 						Height="50"
 						CornerRadius="10"
-						Command="{Binding GasBoilerBehaviourCommand}"
+						Command="{Binding OfButtonForMachinsCommand}"
+						CommandParameter="Gas boiler"
 						>
 						<TextBlock 
 							Text="{Binding GasBoilerOperation}"
@@ -254,39 +263,7 @@
 					BorderBrush="LightGray"
 					BorderThickness="3"
 					CornerRadius="25">
-					<Button Command="{Binding ToggleToolTipVisibilityCommand}" ToolTip.Placement="BottomEdgeAlignedLeft">
-						<ToolTip.Tip>
-							<ToolTip IsVisible="{Binding ToolTipIsVisible}" >
-								<Border Background="#8c8c89" Width="150" Height="70">
-									<StackPanel
-										Orientation="Vertical"
-										Width="120">
-										<TextBlock
-											Text="{Binding GasBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
-											FontSize="13"
-											FontWeight="Bold"
-											Foreground="Black"
-											HorizontalAlignment="Center"/>
-										<TextBlock
-											Text="{Binding GasBoilerOperationPercent, StringFormat='{}{0}%'}"
-											FontSize="13"
-											FontWeight="Bold"
-											Foreground="Black"
-											HorizontalAlignment="Center"/>
-										<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
-											<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Gas boiler">
-												<TextBlock
-												Text="-" VerticalAlignment="Center"
-												HorizontalAlignment="Center"/>
-											</Button>
-											<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Gas boiler">
-												<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-											</Button>
-										</StackPanel>
-									</StackPanel>
-								</Border>
-							</ToolTip>
-						</ToolTip.Tip>
+					<Button Command="{Binding SettingsIsVisibleCommand}" CommandParameter="Gas boiler">
 						<Border Width="30" Height="30" Background="White" BorderBrush="LightGray" BorderThickness="2.7" CornerRadius="25">		
 						<Image Source="/Assets/Images/setting.png" Stretch="Fill" Width="22" Height="22"/>
 						</Border>
@@ -343,7 +320,39 @@
 						Foreground="LightGray"/>					
 				</Border>
 			</StackPanel>
-
+			
+			<Grid Grid.Row="1" Grid.Column="0" ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,60,10,0" IsVisible="{Binding GasBoilerSettings}">
+				<Border Background="#8c8c89" Width="140" Height="70" CornerRadius="10">
+					<StackPanel
+						Orientation="Vertical"
+						Width="120">
+						<TextBlock
+							Text="{Binding GasBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<TextBlock
+							Text="{Binding GasBoilerOperationPercent, StringFormat='{}{0}%'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+							<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Gas boiler">
+								<TextBlock
+								Text="-" VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							</Button>
+							<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Gas boiler">
+								<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+			</Grid>
+			
+			
 			<!--Under Oil BOiler -->
 
 			<StackPanel 
@@ -377,7 +386,8 @@
 						Width="70"
 						Height="50"
 						CornerRadius="10"
-						Command="{Binding OilBoilerBehaviourCommand}"
+						Command="{Binding OfButtonForMachinsCommand}"
+						CommandParameter="Oil boiler"
 						>
 						
 						<TextBlock
@@ -400,39 +410,7 @@
 					BorderBrush="LightGray"
 					BorderThickness="3"
 					CornerRadius="25">
-					<Button Command="{Binding ToggleToolTipVisibilityCommand}" ToolTip.Placement="BottomEdgeAlignedLeft">
-						<ToolTip.Tip>
-							<ToolTip IsVisible="{Binding ToolTipIsVisible}">
-								<Border Background="#8c8c89" Width="140" Height="70">
-								<StackPanel
-									Orientation="Vertical"
-									Width="120">
-									<TextBlock
-										Text="{Binding OilBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
-										FontSize="13"
-										FontWeight="Bold"
-										Foreground="Black"
-										HorizontalAlignment="Center"/>
-									<TextBlock
-										Text="{Binding OilBoilerOperationPercent, StringFormat='{}{0}%'}"
-										FontSize="13"
-										FontWeight="Bold"
-										Foreground="Black"
-										HorizontalAlignment="Center"/>
-									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
-										<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Oil boiler">
-											<TextBlock
-											Text="-" VerticalAlignment="Center"
-											HorizontalAlignment="Center"/>
-										</Button>
-										<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Oil boiler">
-											<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-										</Button>
-									</StackPanel>
-								</StackPanel>
-								</Border> 
-							</ToolTip>
-						</ToolTip.Tip>
+					<Button Command="{Binding SettingsIsVisibleCommand}" CommandParameter="Oil boiler" >
 						<Border Width="30" Height="30" Background="White" BorderBrush="LightGray" BorderThickness="2.7" CornerRadius="25">
 							<Image Source="/Assets/Images/setting.png" Stretch="Fill" Width="22" Height="22"/>
 						</Border>
@@ -483,6 +461,37 @@
 				</Border>
 			</StackPanel>
 
+			<Grid Grid.Row="1" Grid.Column="1" ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,60,10,0" IsVisible="{Binding OilBoilerSettings}">
+				<Border Background="#8c8c89" Width="140" Height="70" CornerRadius="10">
+					<StackPanel
+						Orientation="Vertical"
+						Width="120">
+						<TextBlock
+							Text="{Binding OilBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<TextBlock
+							Text="{Binding OilBoilerOperationPercent, StringFormat='{}{0}%'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+							<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Oil boiler">
+								<TextBlock
+								Text="-" VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							</Button>
+							<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Oil boiler">
+								<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+			</Grid>
+
 			<!-- Under Gas Motor -->
 
 			<StackPanel 
@@ -515,7 +524,8 @@
 						Width="70"
 						Height="50"
 						CornerRadius="10"
-						Command="{Binding GasMotorBehaviourCommand}"
+						Command="{Binding OfButtonForMachinsCommand}"
+						CommandParameter="Gas motor"
 						>
 
 						<TextBlock
@@ -541,39 +551,7 @@
 					ToolTip.Placement="Bottom"
 					ToolTip.IsOpen="True"
 					ToolTip.ShowDelay="0">
-					<Button Command="{Binding ToggleToolTipVisibilityCommand}" ToolTip.Placement="BottomEdgeAlignedLeft">
-					<ToolTip.Tip>
-						<ToolTip IsVisible="{Binding ToolTipIsVisible}">
-						<Border Background="#8c8c89" Width="140" Height="70">
-							<StackPanel
-								Orientation="Vertical"
-								Width="120">
-								<TextBlock
-									Text="{Binding GasMotorUsingHeatDemand, StringFormat='{}{0} MWh'}"
-									FontSize="13"
-									FontWeight="Bold"
-									Foreground="Black"
-									HorizontalAlignment="Center"/>
-								<TextBlock
-									Text="{Binding GasMotorOperationPercent, StringFormat='{}{0}%'}"
-									FontSize="13"
-									FontWeight="Bold"
-									Foreground="Black"
-									HorizontalAlignment="Center"/>
-								<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
-									<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20"  Command="{Binding MinusHeatDemandCommand}" CommandParameter="Gas motor">
-										<TextBlock
-										Text="-" VerticalAlignment="Center"
-										HorizontalAlignment="Center"/>
-									</Button>
-									<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Gas motor">
-										<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-									</Button>
-								</StackPanel>
-							</StackPanel>
-						</Border>
-						</ToolTip>
-					</ToolTip.Tip>
+					<Button Command="{Binding SettingsIsVisibleCommand}" CommandParameter="Gas motor">
 						<Border Width="30" Height="30" Background="White" BorderBrush="LightGray" BorderThickness="2.7" CornerRadius="25">
 					<Image Source="/Assets/Images/setting.png" Stretch="UniformToFill" Height="22" Width="22"/>
 						</Border>
@@ -625,6 +603,37 @@
 				</Border>
 			</StackPanel>
 			
+			<Grid Grid.Row="1" Grid.Column="2" ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,60,10,0" IsVisible="{Binding GasMotorSettings}">
+				<Border Background="#8c8c89" Width="140" Height="70" CornerRadius="10">
+					<StackPanel
+						Orientation="Vertical"
+						Width="120">
+						<TextBlock
+							Text="{Binding GasMotorUsingHeatDemand, StringFormat='{}{0} MWh'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<TextBlock
+							Text="{Binding GasMotorOperationPercent, StringFormat='{}{0}%'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+							<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Gas motor">
+								<TextBlock
+								Text="-" VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							</Button>
+							<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Gas motor">
+								<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+				</Grid>
+			
 			<!-- Under Electric Boiler -->
 
 			<StackPanel 
@@ -657,7 +666,9 @@
 						Width="70"
 						Height="50"
 						CornerRadius="10"
-						Command="{Binding ElectricBoilerBehaviourCommand}">
+						Command="{Binding OfButtonForMachinsCommand}"
+						CommandParameter="Electric boiler"
+						>
 
 						<TextBlock
 							Text="{Binding ElectricBoilerOperation}"
@@ -679,39 +690,7 @@
 					BorderBrush="LightGray"
 					BorderThickness="3"
 					CornerRadius="25">
-					<Button Command="{Binding ToggleToolTipVisibilityCommand}" ToolTip.Placement="BottomEdgeAlignedLeft">
-					<ToolTip.Tip>
-						<ToolTip IsVisible="{Binding ToolTipIsVisible}" >
-							<Border Background="#8c8c89" Width="140" Height="80">
-								<StackPanel
-									Orientation="Vertical"
-									Width="120">
-									<TextBlock
-										Text="{Binding ElectricBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
-										FontSize="13"
-										FontWeight="Bold"
-										Foreground="Black"
-										HorizontalAlignment="Center"/>
-									<TextBlock
-										Text="{Binding ElectricBoilerOperationPercent, StringFormat='{}{0}%'}"
-										FontSize="13"
-										FontWeight="Bold"
-										Foreground="Black"
-										HorizontalAlignment="Center"/>
-									<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
-										<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Electric boiler">
-											<TextBlock
-											Text="-" VerticalAlignment="Center"
-											HorizontalAlignment="Center"/>
-										</Button>
-										<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Electric boiler">
-											<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-										</Button>
-									</StackPanel>
-								</StackPanel>
-							</Border>
-						</ToolTip>
-					</ToolTip.Tip>
+					<Button Command="{Binding SettingsIsVisibleCommand}" CommandParameter="Electric boiler">
 						<Border Width="30" Height="30" Background="White" BorderBrush="LightGray" BorderThickness="2.7" CornerRadius="25">
 					<Image Source="/Assets/Images/setting.png" Stretch="UniformToFill" Width="22" Height="22"/>
 						</Border>
@@ -763,6 +742,38 @@
 						Foreground="LightGray"/>
 				</Border>
 			</StackPanel>
+			
+			<Grid Grid.Row="1" Grid.Column="3" ZIndex="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,60,10,0" IsVisible="{Binding ElectricBoilerSettings}">
+				<Border Background="#8c8c89" Width="140" Height="70" CornerRadius="10">
+					<StackPanel
+						Orientation="Vertical"
+						Width="120">
+						<TextBlock
+							Text="{Binding ElectricBoilerUsingHeatDemand, StringFormat='{}{0} MWh'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<TextBlock
+							Text="{Binding ElectricBoilerOperationPercent, StringFormat='{}{0}%'}"
+							FontSize="13"
+							FontWeight="Bold"
+							Foreground="Black"
+							HorizontalAlignment="Center"/>
+						<StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,5,0,0">
+							<Button Width="40" HorizontalAlignment="Left" Margin="0,0,15,-20" Command="{Binding MinusHeatDemandCommand}" CommandParameter="Electric boiler">
+								<TextBlock
+								Text="-" VerticalAlignment="Center"
+								HorizontalAlignment="Center"/>
+							</Button>
+							<Button Width="40" HorizontalAlignment="Right" Margin="0,0,0,-20" Command="{Binding PlusHeatDemandCommand}" CommandParameter="Electric boiler">
+								<TextBlock Text="+" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+							</Button>
+						</StackPanel>
+					</StackPanel>
+				</Border>
+				</Grid>
+			
 		</Grid>
 		
 		
@@ -802,7 +813,7 @@
 					Margin="20"
 						>
 					<TextBlock 
-						Text="{Binding HeatDemandCurrent}"
+						Text="{Binding CurrentProduction}"
 						FontSize="30"
 						FontWeight="Bold"
 						HorizontalAlignment="Center"
@@ -853,7 +864,7 @@
 				Orientation="Horizontal"
 				HorizontalAlignment="Center">
 
-				<!-- Current Production Area -->
+				<!-- Current heat demand Area -->
 				<StackPanel 
 					Orientation="Vertical"
 					HorizontalAlignment="Center"
@@ -879,7 +890,7 @@
 						Margin="20">
 
 						<TextBlock 
-							Text="{Binding HeatDemandPrediction}"
+							Text="{Binding HeatDemandCurrent}"
 							FontSize="30"
 							FontWeight="Bold"
 							HorizontalAlignment="Center"
@@ -1023,84 +1034,36 @@
 				CornerRadius="50"
 				BorderThickness="2"
 				BorderBrush="Black"
-				Height="920"
+				Height="700"
 				Width="{Binding SideBarWidth}"
 				Margin="10"
 				Background="LightGray">
 			
 			
 				<StackPanel 
-					VerticalAlignment="Top" 
+					VerticalAlignment="Center" 
 					IsVisible="{Binding SideBarOpen}">
-				
-					<!--Graph-->
-					<Border 
-						Height="200"
-						Width="250"
-						BorderThickness="3"
+
+					<Border
 						BorderBrush="Black"
-						Margin="0,30"
-						CornerRadius="25"
-						IsVisible="{Binding SideBarOpen}">
-					
-			</Border>
-				
-				
-				<!-- Buttons for lowest cost and ECO friendly -->
-				<StackPanel 
-					Orientation="Horizontal" 
-					HorizontalAlignment="Center" >
-					
-					<!-- Lowest cost Button -->
-					<Border 
-						Background="{Binding LowCostBackground}"
-						Width="120"
-						Height="40"
-						Margin="5">
-
-						<Button 
-							Background="{Binding LowCostBackground}"
-							Width="120"
-							Height="40"
-							Command="{Binding LowCostTrueCommand}">
-
-							<TextBlock 
-								Text="lowest cost"
-								FontWeight="{Binding LowCostWeight}"
-								HorizontalAlignment="Center"
-								VerticalAlignment="Center"
-								FontSize="16"/>
-						</Button>
+						BorderThickness="3"
+						Background="White"
+						Width="200"
+						Margin="0,0,0,20"
+						CornerRadius="10">
+						<Label
+							ZIndex="1"
+							Foreground="Black"
+							HorizontalAlignment="Center"
+							FontSize="35"
+							FontWeight="Bold">
+							Settings
+						</Label>
 					</Border>
-					<!-- ECO Friuendly Buttton -->
 
-					<Border 
-						Background="{Binding ECOFriendlyBackground}"
-						Width="120"
-						Height="40"
-						Margin="5">
-						
-						<Button 
-							Background="{Binding ECOFriendlyBackground}"
-							Width="120"
-							Height="40"
-							Command="{Binding ECOFriendlyTrueCommand}">
-
-							<TextBlock 
-								Text="ECO friendly"
-								FontWeight="{Binding ECOFriendlyFontWeight}"
-								HorizontalAlignment="Center"
-								VerticalAlignment="Center"
-								FontSize="16"/>
-						</Button>
-					</Border>
-					
-				</StackPanel>
-
-				
-				<!-- Production Cost Information -->
+					<!-- Production Cost Information -->
 				<TextBlock 
-					Text="production cost"
+					Text="Production cost"
 					Foreground="Black"
 					FontSize="20"
 					Margin="10"/>
@@ -1124,7 +1087,7 @@
 
 				<!-- CO2 Emissions Information -->
 				<TextBlock 
-					Text="CO2 emittions"
+					Text="CO2 Emissions"
 					Margin="10"
 					FontSize="20"
 					Foreground="Black"/>
@@ -1342,8 +1305,7 @@
 
 					</Grid>
 
-
-					<Grid ColumnDefinitions="*,*">
+					<Grid ColumnDefinitions="*,*" IsVisible="{Binding ChangesAreBeingMade}">
 
 						<Border
 							Grid.Column="0"
@@ -1354,7 +1316,7 @@
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center"
 							Margin="10">
-							
+
 							<Button
 								Background="Green"
 								Width="100"
@@ -1362,8 +1324,9 @@
 								CornerRadius="20"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
-								Command="">
-								
+								Command="{Binding ChangeSettingsCommand}"
+								CommandParameter="Apply">
+
 								<TextBlock
 									Text="Apply"
 									HorizontalAlignment="Center"
@@ -1382,7 +1345,7 @@
 							HorizontalAlignment="Center"
 							VerticalAlignment="Center"
 							Margin="10">
-							
+
 							<Button
 								Background="Red"
 								Width="100"
@@ -1390,8 +1353,9 @@
 								CornerRadius="20"
 								HorizontalAlignment="Center"
 								VerticalAlignment="Center"
-								Command="">
-								
+								Command="{Binding ChangeSettingsCommand}"
+								CommandParameter="Cancel">
+
 								<TextBlock
 									Text="Cancel"
 									HorizontalAlignment="Center"

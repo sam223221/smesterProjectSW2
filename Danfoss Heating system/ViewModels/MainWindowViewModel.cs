@@ -1,5 +1,4 @@
-﻿using Avalonia;
-using Avalonia.Controls;
+﻿using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
@@ -10,7 +9,6 @@ using Danfoss_Heating_system.ViewModels.UserMainPage;
 using Danfoss_Heating_system.Views;
 using Danfoss_Heating_system.Views.TopBarNavigation;
 using ReactiveUI;
-using System;
 using System.Collections.ObjectModel;
 
 
@@ -56,9 +54,9 @@ namespace Danfoss_Heating_system.ViewModels
         {
             if (userName.UserRole == "Admin")
             {
-                CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
                 window.Width = 800;
                 window.Height = 450;
+                CurrentContent = new AdminView() { DataContext = new AdminMainPageViewModel(this) };
             }
         }
 
@@ -69,11 +67,6 @@ namespace Danfoss_Heating_system.ViewModels
             this.window = window;
             userName = item;
 
-            window.GetObservable(Window.ClientSizeProperty).Subscribe(size =>
-            {
-                ActualWidth = (int)size.Width;
-                ActualHeight = size.Height;
-            });
 
             //sets the view within the window to the current role that is logging in
             switch (item.UserRole)
@@ -130,18 +123,24 @@ namespace Danfoss_Heating_system.ViewModels
         [RelayCommand]
         private void FAQButton()
         {
+            window.Width = 800;
+            window.Height = 450;
             CurrentContent = new FAQView() { DataContext = new FAQViewModel() };
         }
 
         [RelayCommand]
         private void UnitsButton()
         {
+            window.Width = 800;
+            window.Height = 450;
             CurrentContent = new UnitsView() { DataContext = new UnitsViewModel() };
         }
 
         [RelayCommand]
         private void HelpButton()
         {
+            window.Width = 800;
+            window.Height = 450;
             CurrentContent = new HelpView() { DataContext = new HelpViewModel() };
         }
 

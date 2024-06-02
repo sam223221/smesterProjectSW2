@@ -12,11 +12,13 @@ namespace Danfoss_Heating_system.Models;
 internal class OPTLive
 {
     ExcelDataParser excelDataParser;
+
     public string filePath;
+    public double currentHeatDemand;
+    public double productionCost;
+    public double CO2Emission;
 
-    Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> optimalizationDataStatus = new Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)>();
-
-    Dictionary<string, OPTLiveProp> machinesForManualMode = new Dictionary<string, OPTLiveProp>();
+    List<OPTLiveProp> machinesForManualMode = new();
 
     public OPTLive(string filepath)
     {
@@ -25,255 +27,165 @@ internal class OPTLive
         this.excelDataParser = new ExcelDataParser(this.filePath);
     }
 
-    // Optimizer (which units must be turn on)
-    public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> UsingMachines(int hourDemandCell, bool winter)
+
+
+    public List<OPTLiveProp> UsingMachines(bool winter, string scenario)
     {
         var productionUnits = excelDataParser.ParserProductionUnits();
-        var firstFourUnits = productionUnits.Take(4).ToList();
-        double predictedHeatDemand = predictHeatDemandCalculate(hourDemandCell, winter, "/Assets/data.xlsx");
+        double predictedHeatDemand = predictHeatDemandCalculate(winter);
 
-        foreach (var unit in firstFourUnits)
+        string season = winter ? "Winter" : "Summer";
+        var seasonList = excelDataParser.ParserEnergyData().Where(p => p.Season == season).ToList();
+        var energyData = seasonList.Last();
+
+        // Pre-calculate the production cost for the electric boiler and Gas Motor
+        foreach (var unit in productionUnits)
         {
-            var localOPTProp = new OPTLiveProp(unit)
+            if (unit.Name == "Electric boiler")
             {
-                PredictedHeatDemand = predictedHeatDemand
+                unit.ProductionCost += energyData.ElectricityPrice;
+            }
+            if (unit.Name == "Gas motor")
+            {
+                double heatToProduce = Math.Min(energyData.HeatDemand, 3.6);
+                double totalHeatCost = heatToProduce * unit.ProductionCost;
+                double electricityProduced = (heatToProduce / 3.6) * unit.MaxElectricity;
+                double totalElectricityRevenue = electricityProduced * energyData.ElectricityPrice;
+                unit.ProductionCost = totalHeatCost - totalElectricityRevenue;
+            }
+        }
+
+        // Sort production units based on the scenario
+        switch (scenario)
+        {
+            case "BestCost":
+                productionUnits = productionUnits.OrderBy(p => p.ProductionCost).ToList();
+                break;
+
+            case "LowestCO2":
+                productionUnits = productionUnits.OrderBy(p => p.CO2Emission / p.MaxHeat).ToList();
+                break;
+        }
+
+        double remainingHeat = energyData.HeatDemand;
+        var unitsUsed = new List<string>();
+        var usedUnits = new HashSet<string>();
+        var units = new List<OPTLiveProp>();
+        double unitProductionCost = 0;
+        double unitCO2Emission = 0;
+
+        foreach (var unit in productionUnits)
+        {
+            var Unit = new OPTLiveProp()
+            {
+                NameOfUnit = unit.Name,
+                isUnitEnabled = false,
+                operationCost = 0,
+                usingCO2Emission = 0,
+                stateOfUnit = "Red",
+                operationOfUnit = "OFF",
+                UsageInPercentPerHour = 0
             };
 
+            if (remainingHeat <= 0) { units.Add(Unit); continue; }
+            if (usedUnits.Contains(unit.Name)) continue;
 
-            if (unit.MaxHeat <= predictedHeatDemand)
-            {
-                localOPTProp.isUnitEnabled = true;
-                predictedHeatDemand -= unit.MaxHeat;
-                localOPTProp.usingHeatDemand = unit.MaxHeat;
-                localOPTProp.usingCO2Emission = unit.CO2Emission * localOPTProp.usingHeatDemand;
-                localOPTProp.stateOfUnit = "Green";
-            }
+            double heatToProduce = Math.Min(remainingHeat, unit.MaxHeat);
+            remainingHeat -= heatToProduce;
+            unitProductionCost += heatToProduce * unit.ProductionCost;
+            unitCO2Emission += heatToProduce * unit.CO2Emission;
 
-            else if (predictedHeatDemand > 0 && predictedHeatDemand < unit.MaxHeat)
-            {
-                localOPTProp.isUnitEnabled = true;
-                localOPTProp.usingHeatDemand = predictedHeatDemand;
-                predictedHeatDemand = 0;
-                localOPTProp.usingCO2Emission = localOPTProp.usingHeatDemand * unit.CO2Emission;
-                localOPTProp.stateOfUnit = "Green";
-            }
-            else
-            {
-                localOPTProp.isUnitEnabled = false;
-                localOPTProp.stateOfUnit = "Green";
-            }
+            Unit.isUnitEnabled = true;
+            Unit.usingHeatDemand = heatToProduce;
+            Unit.usingCO2Emission = heatToProduce * unit.CO2Emission;
+            Unit.operationCost = heatToProduce * unit.ProductionCost;
+            Unit.stateOfUnit = "Green";
+            Unit.operationOfUnit = "ON";
+            Unit.UsageInPercentPerHour = (int)((heatToProduce / unit.MaxHeat) * 100);
 
-            if (optimalizationDataStatus.ContainsKey(unit.Name))
-            {
-                optimalizationDataStatus[unit.Name] = (localOPTProp.isUnitEnabled, localOPTProp);
-            }
-            else
-            {
-                optimalizationDataStatus.Add(unit.Name, (localOPTProp.isUnitEnabled, localOPTProp));
-
-            }
-
+            unitsUsed.Add($"{unit.Name} {heatToProduce:F2}MW");
+            usedUnits.Add(unit.Name);
+            units.Add(Unit);
         }
-        return optimalizationDataStatus;
+
+        currentHeatDemand = energyData.HeatDemand;
+        CO2Emission = unitCO2Emission;
+        productionCost = unitProductionCost;
+
+        return units;
     }
 
 
-    public Dictionary<string, OPTLiveProp> MachinesManualMode(int hourDemandCell, bool winter)
+
+
+    public List<OPTLiveProp> MachinesInitialize(EnergyData hourInfo, bool isWinter)
     {
 
-        double predictedHeatDemand = predictHeatDemandCalculate(hourDemandCell, winter, "/Assets/data.xlsx");
-
+        var storedUnits = excelDataParser.ParserUnitsState();
         var productionUnits = excelDataParser.ParserProductionUnits();
-        var firstFour = productionUnits.Take(4).ToList();
 
-        foreach (var unit in firstFour)
+        // Pre-calculate the production cost for the electric boiler and Gas Motor
+        foreach (var unit in productionUnits)
         {
-            var optLivePropForManual = new OPTLiveProp(unit)
+            if (unit.Name == "Electric boiler")
             {
-                PredictedHeatDemand = predictedHeatDemand
-            };
-
-            if (!machinesForManualMode.ContainsKey(unit.Name))
-            {
-                optLivePropForManual.isUnitEnabled = true;
-                optLivePropForManual.usingHeatDemand = optLivePropForManual.usingHeatDemand;
-                optLivePropForManual.usingCO2Emission = optLivePropForManual.usingHeatDemand * unit.CO2Emission;
-                optLivePropForManual.stateOfUnit = "Green";
-                optLivePropForManual.operationOfUnit = "ON";
-                optLivePropForManual.UsageInPercentPerHour = 100;
-                optLivePropForManual.operationCost = optLivePropForManual.operationCost;
-                machinesForManualMode.Add(unit.Name, optLivePropForManual);
+                unit.ProductionCost += hourInfo.ElectricityPrice;
             }
-
-        }
-        return machinesForManualMode;
-    }
-
-    public double predictHeatDemandCalculate(int hourDemandCell, bool winter, string excelFilePath)
-    {
-        //Predicted heat demand
-        double predHeatDemand = 0;
-        //Offset of cells in the excel sheet
-        int offset = 4;
-
-        string cellOne = "D4";
-        string cellTwo = "D4";
-        string cellThr = "D4";
-
-        double demand24;
-        double demand48;
-        double demand72;
-
-        //Reference to the excel sheet
-        using (var workbook = new XLWorkbook(this.filePath))
-        {
-            var worksheet = workbook.Worksheet("SDM");
-            CultureInfo DanishInfo = new CultureInfo("da-DK");
-            if (winter)
+            if (unit.Name == "Gas motor")
             {
-                cellOne = "D" + (hourDemandCell - 24).ToString();
-                cellTwo = "D" + (hourDemandCell - 48).ToString();
-                cellThr = "D" + (hourDemandCell - 72).ToString();
-            }
-            else
-            {
-                cellOne = "I" + (hourDemandCell - 24).ToString();
-                cellTwo = "I" + (hourDemandCell - 48).ToString();
-                cellThr = "I" + (hourDemandCell - 72).ToString();
-            }
-
-
-            //This if statement makes the method return 0 as a heat demand if the data is insufficient
-            if (hourDemandCell >= 24 + offset)
-            {
-                //Getting the data from the excel cells
-                double.TryParse(worksheet.Cell(cellOne).GetValue<string>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand24);
-                demand24 = Math.Round(parsedValueDemand24, 2, MidpointRounding.AwayFromZero);
-                double.TryParse(worksheet.Cell(cellTwo).GetValue<string>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand48);
-                demand48 = Math.Round(parsedValueDemand48, 2, MidpointRounding.AwayFromZero);
-                double.TryParse(worksheet.Cell(cellThr).GetValue<string>(), NumberStyles.Any, CultureInfo.InvariantCulture, out double parsedValueDemand72);
-                demand72 = Math.Round(parsedValueDemand72, 2, MidpointRounding.AwayFromZero);
-
-                // This is here so that if we don't have enough heat demand data for past days, the program won't die
-                if (hourDemandCell >= 72 + offset)
-                {
-                    predHeatDemand = (demand24 + demand48 + demand72) / 3;
-                }
-                else if (hourDemandCell >= 48 + offset)
-                {
-                    predHeatDemand = (demand24 + demand48) / 2;
-                }
-                else
-                {
-                    predHeatDemand = demand24;
-                }
+                double heatToProduce = Math.Min(hourInfo.HeatDemand, 3.6);
+                double totalHeatCost = heatToProduce * unit.ProductionCost;
+                double electricityProduced = (heatToProduce / 3.6) * unit.MaxElectricity;
+                double totalElectricityRevenue = electricityProduced * hourInfo.ElectricityPrice;
+                unit.ProductionCost = totalHeatCost - totalElectricityRevenue;
             }
         }
-        double predictedHeatDemand = Math.Round(predHeatDemand, 2, MidpointRounding.AwayFromZero);
-        return predictedHeatDemand;
-    }
 
-
-    // Lowest cost optimizer
-    public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> LowestCost()
-    {
-        return optimalizationDataStatus.OrderBy(unit => unit.Value.OPTProp.data.ProductionCost)
-                 .ToDictionary(unit => unit.Key, unit => unit.Value);
-    }
-
-
-    // Lowest cost for Manual Mode
-
-    public Dictionary<string, OPTLiveProp> LowestCostManualMode(Dictionary<string, OPTLiveProp> newState)
-    {
-        return newState.OrderBy(unit => unit.Value.data.ProductionCost)
-                 .ToDictionary(unit => unit.Key, unit => unit.Value);
-    }
-
-
-    // Most eco friendly
-
-    public Dictionary<string, (bool isEnabled, OPTLiveProp OPTProp)> EcoFriendly()
-    {
-        return optimalizationDataStatus.OrderBy(unit => unit.Value.OPTProp.data.CO2Emission)
-            .ToDictionary(unit => unit.Key, unit => unit.Value);
-    }
-
-
-
-    // Total Production Cost
-
-    public double ProductionCostPerHour()
-    {
-
-        double TotalOneHourCost = 0;
-        foreach (var unit in optimalizationDataStatus)
+        foreach (var storedUnit in storedUnits)
         {
+            var UnitCreation = new OPTLiveProp();
 
-            TotalOneHourCost += unit.Value.OPTProp.usingHeatDemand * unit.Value.OPTProp.data.ProductionCost;
+            UnitCreation.NameOfUnit = storedUnit.NameOfUnit;
+            UnitCreation.stateOfUnit = storedUnit.stateOfUnit;
+            UnitCreation.operationOfUnit = storedUnit.operationOfUnit;
+            UnitCreation.UsageInPercentPerHour = storedUnit.UsageInPercentPerHour;
+            UnitCreation.operationCost = storedUnit.operationCost;
+            UnitCreation.usingCO2Emission = storedUnit.usingCO2Emission;
+            UnitCreation.usingHeatDemand = storedUnit.usingHeatDemand;
+            UnitCreation.isUnitEnabled = storedUnit.isUnitEnabled;
+
+            UnitCreation.data = productionUnits.Find(p => p.Name == storedUnit.NameOfUnit);
+
+            machinesForManualMode.Add(UnitCreation);
+
         }
-        return TotalOneHourCost;
+        return isWinter ? machinesForManualMode.Take(4).ToList() : machinesForManualMode.Skip(4).Take(4).ToList();
     }
+
 
 
     // Total production cost for manual mode
-    public double ProductionCostPerHourManualMode(Dictionary<string, OPTLiveProp> newState)
+    public double ProductionCostPerHourManualMode(List<OPTLiveProp> newState)
     {
 
         double TotalOneHourCost = 0;
         foreach (var unit in newState)
         {
-
-            TotalOneHourCost += unit.Value.usingHeatDemand * unit.Value.data.ProductionCost;
+            TotalOneHourCost += unit.data.ProductionCost * unit.usingHeatDemand;
         }
         return TotalOneHourCost;
-    }
-
-
-    // Total CO2 Emmition 
-    public double CO2EmmitionsPerHour()
-    {
-        double TotalCO2Emmition = 0;
-        foreach (var unit in optimalizationDataStatus)
-        {
-            TotalCO2Emmition += unit.Value.OPTProp.usingCO2Emission;
-        }
-        return TotalCO2Emmition;
     }
 
 
     //Total CO2 Emmition for manual mode
-
-    public double CO2EmmitionsPerHourManualMode(Dictionary<string, OPTLiveProp> newState)
+    public double CO2EmmitionsPerHourManualMode(List<OPTLiveProp> newState)
     {
         double TotalCO2Emmition = 0;
         foreach (var unit in newState)
         {
-            TotalCO2Emmition += unit.Value.usingCO2Emission;
+            TotalCO2Emmition += unit.data.CO2Emission * unit.usingHeatDemand;
         }
         return TotalCO2Emmition;
-    }
-
-
-
-    // Percent of using each unit
-    public Dictionary<string, int> UnitUsagePerHour()
-    {
-        Dictionary<string, int> PercentUsage = new();
-        foreach (var unit in optimalizationDataStatus)
-        {
-            if (unit.Value.OPTProp.usingHeatDemand != 0)
-            {
-                unit.Value.OPTProp.UsageInPercentPerHour = (int)(((double)unit.Value.OPTProp.usingHeatDemand / (double)unit.Value.OPTProp.data.MaxHeat) * 100);
-                PercentUsage.Add(unit.Value.OPTProp.data.Name, unit.Value.OPTProp.UsageInPercentPerHour);
-            }
-            else
-            {
-                PercentUsage.Add(unit.Value.OPTProp.data.Name, 0);
-            }
-        }
-
-        return PercentUsage;
     }
 
     // Percent of using each unit Manual Mode
@@ -296,47 +208,34 @@ internal class OPTLive
         return PercentUsage;
     }
 
-
-    // Total Heat Demand
-    public double TotalHeatDemand()
+    public void StoreUnitState(List<OPTLiveProp> store, bool isWinter)
     {
-        double HeatDemand = 0;
 
-        foreach (var unit in optimalizationDataStatus)
-        {
-            HeatDemand += unit.Value.OPTProp.usingHeatDemand;
-        }
-        double roundedHeatDemand = Math.Round(HeatDemand, 2);
-        return roundedHeatDemand;
+        excelDataParser.UpdateUnitsInWorksheet(store, isWinter);
     }
 
 
     //Total Heat Demand Manual Mode
-    public double TotalHeatDemandManualMode(Dictionary<string, OPTLiveProp> newState)
+    public double TotalHeatProductionManualMode(List<OPTLiveProp> newState)
     {
         double HeatDemand = 0;
 
         foreach (var unit in newState)
         {
-            HeatDemand += unit.Value.usingHeatDemand;
+            HeatDemand += unit.usingHeatDemand;
         }
-        double roundedHeatDemand = Math.Round(HeatDemand, 3);
-        return roundedHeatDemand;
+        return HeatDemand;
     }
-
-    // Units Operation Costs
-    public Dictionary<string, int> UnitsOperationCosts()
+    public EnergyData HourInformation(bool iswinter)
     {
-        Dictionary<string, int> OperationUnitsCosts = new();
+        var season = iswinter ? "Winter" : "Summer";
 
-        foreach (var unit in optimalizationDataStatus)
-        {
-            int price = Convert.ToInt32(unit.Value.OPTProp.usingHeatDemand * unit.Value.OPTProp.data.ProductionCost);
-            OperationUnitsCosts.Add(unit.Value.OPTProp.data.Name, price);
-        }
-        return OperationUnitsCosts;
+        var groupBySeason = excelDataParser.ParserEnergyData().Where(p => p.Season == season).ToList();
+
+        int adjustedIndex = groupBySeason.Count();
+
+        return groupBySeason[adjustedIndex - 1];
     }
-
 
     //Units Operation Costs Manual Mode
     public Dictionary<string, int> UnitsOperationCostsManualMode(Dictionary<string, OPTLiveProp> newState)
@@ -352,75 +251,11 @@ internal class OPTLive
     }
 
 
-    // Units CO2 Emmision
-    public Dictionary<string, int> UnitsCO2Emission()
+
+
+    public double NextHourPredictedDemand(bool isWinter)
     {
-        Dictionary<string, int> unitsCO2Emissions = new();
-
-        foreach (var unit in optimalizationDataStatus)
-        {
-            int co2 = Convert.ToInt32(unit.Value.OPTProp.usingCO2Emission);
-            unitsCO2Emissions.Add(unit.Value.OPTProp.data.Name, co2);
-        }
-        return unitsCO2Emissions;
-    }
-
-
-    // Units CO2 Emmision Manual Mode
-    public Dictionary<string, int> UnitsCO2EmissionManualMode(Dictionary<string, OPTLiveProp> newState)
-    {
-        Dictionary<string, int> unitsCO2Emissions = new();
-
-        foreach (var unit in newState)
-        {
-            int co2 = Convert.ToInt32(unit.Value.usingHeatDemand * unit.Value.data.CO2Emission);
-            unitsCO2Emissions.Add(unit.Value.data.Name, co2);
-        }
-        return unitsCO2Emissions;
-    }
-
-
-
-    public Dictionary<string, (string, string)> StateOfUnits(int currentHour, bool isWinter, string FilePath)
-    {
-        Dictionary<string, (string, string)> StateofUnits = new();
-
-        foreach (var unit in optimalizationDataStatus)
-        {
-            if (unit.Value.isEnabled == true)
-            {
-                unit.Value.OPTProp.stateOfUnit = "Green";
-                unit.Value.OPTProp.operationOfUnit = "ON";
-            }
-
-            else
-            {
-                // finish this
-                double currentDemand = predictHeatDemandCalculate(currentHour, isWinter, FilePath);
-                double nextHourPredictedDemand = NextHourPredictedDemand(currentHour, isWinter, FilePath);
-
-                if (nextHourPredictedDemand - currentDemand > 2)
-                {
-                    unit.Value.OPTProp.stateOfUnit = "Orange";
-                    unit.Value.OPTProp.operationOfUnit = "Heating up";
-                }
-                else
-                {
-                    unit.Value.OPTProp.stateOfUnit = "Gray";
-                    unit.Value.OPTProp.operationOfUnit = "OFF";
-                }
-            }
-            StateofUnits.Add(unit.Value.OPTProp.data.Name, (unit.Value.OPTProp.stateOfUnit, unit.Value.OPTProp.operationOfUnit));
-
-        }
-        return StateofUnits;
-    }
-
-
-
-    public double NextHourPredictedDemand(int hourDemandCell, bool isWinter, string filepath)
-    {
-        double currentDemand = predictHeatDemandCalculate(hourDemandCell, isWinter, filepath);
+        double currentDemand = predictHeatDemandCalculate(isWinter);
 
         // change the numbers
         double changeFactor = isWinter ? 1.05 : 1.05;
@@ -430,22 +265,98 @@ internal class OPTLive
         return nextHourDemand;
     }
 
-    public string GetHourFromCellIndex(int cellIndex, bool winter, string filepath)
+    public string GetHourFromCellIndex(int whichClock, bool winter)
     {
-        int adjustedIndex = cellIndex + 3;
+        string season = winter ? "Winter" : "Summer";
+        var groupBySeason = excelDataParser.ParserEnergyData().Where(p => p.Season == season).ToList();
 
-        using (var workbook = new XLWorkbook(filepath))
+        int adjustedIndex = groupBySeason.Count();
+
+        if (whichClock == 0)
+        {
+            var preHour = groupBySeason[adjustedIndex - 1].TimeFrom.AddHours(-1);
+            return preHour.ToString("HH:mm");
+        }
+        else if (whichClock == 1)
+        {
+            return groupBySeason[adjustedIndex - 1].TimeFrom.ToString("HH:mm");
+        }
+        else
+        {
+            var nextHour = groupBySeason[adjustedIndex - 1].TimeFrom.AddHours(1);
+            return nextHour.ToString("HH:mm");
+        }
+    }
+
+
+
+
+
+
+
+
+    public double predictHeatDemandCalculate(bool winter)
+    {
+        string season = winter ? "Winter" : "Summer";
+        int index = excelDataParser.ParserEnergyData().Where(p => p.Season == season).ToList().Count() + 3;
+
+        //Predicted heat demand
+        double predHeatDemand = 0;
+
+        string cellOne;
+        string cellTwo;
+        string cellThr;
+
+        double demand24;
+        double demand48;
+        double demand72;
+
+        //Reference to the excel sheet
+        using (var workbook = new XLWorkbook(filePath))
         {
             var worksheet = workbook.Worksheet("SDM");
-            string column = winter ? "B" : "G";
-
-            var cellValue = worksheet.Cell(adjustedIndex, column).GetValue<string>().Trim();
-
-            if (DateTime.TryParse(cellValue, out DateTime parsedDate))
+            CultureInfo DanishInfo = new CultureInfo("da-DK");
+            if (winter)
             {
-                return parsedDate.ToString("HH:mm");
+                cellOne = "D" + (index - 24).ToString();
+                cellTwo = "D" + (index - 48).ToString();
+                cellThr = "D" + (index - 72).ToString();
             }
-            return parsedDate.ToString("HH:mm");
+            else
+            {
+                cellOne = "I" + (index - 24).ToString();
+                cellTwo = "I" + (index - 48).ToString();
+                cellThr = "I" + (index - 72).ToString();
+            }
+
+
+            //This if statement makes the method return 0 as a heat demand if the data is insufficient
+            if (index >= 24)
+            {
+                //Getting the data from the excel cells
+                double.TryParse(worksheet.Cell(cellOne).GetValue<string>(), NumberStyles.Any, DanishInfo, out double parsedValueDemand24);
+                demand24 = Math.Round(parsedValueDemand24, 2, MidpointRounding.AwayFromZero);
+                double.TryParse(worksheet.Cell(cellTwo).GetValue<string>(), NumberStyles.Any, DanishInfo, out double parsedValueDemand48);
+                demand48 = Math.Round(parsedValueDemand48, 2, MidpointRounding.AwayFromZero);
+                double.TryParse(worksheet.Cell(cellThr).GetValue<string>(), NumberStyles.Any, DanishInfo, out double parsedValueDemand72);
+                demand72 = Math.Round(parsedValueDemand72, 2, MidpointRounding.AwayFromZero);
+
+                // This is here so that if we don't have enough heat demand data for past days, the program won't die
+                if (index >= 72)
+                {
+                    predHeatDemand = (demand24 + demand48 + demand72) / 3;
+                }
+                else if (index >= 48)
+                {
+                    predHeatDemand = (demand24 + demand48) / 2;
+                }
+                else
+                {
+                    predHeatDemand = demand24;
+                }
+            }
         }
+        double predictedHeatDemand = Math.Round(predHeatDemand, 2, MidpointRounding.AwayFromZero);
+        return predictedHeatDemand;
     }
 }
