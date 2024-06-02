@@ -102,6 +102,7 @@
 
 		
 		<Grid Grid.Row="1" ColumnDefinitions="auto,*">
+			
 			<!-- Side bar -->
 			<Border Grid.Row="1"
 					Grid.Column="0"

@@ -158,6 +158,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [RelayCommand]
         private void SummerTrue()
         {
+            ChangesAreBeingMade = false;
             seasonSelecter = false;
             SummerFontWeight = "Bold";
             SummerBackground = "Green";
@@ -169,6 +170,7 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [RelayCommand]
         private void WinterTrue()
         {
+            ChangesAreBeingMade = false;
             seasonSelecter = true;
             SummerFontWeight = "Normal";
             SummerBackground = "Gray";
@@ -343,7 +345,12 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             else if (chose == "Cancel")
             {
                 ChangesAreBeingMade = false;
-                Initilizer();
+                unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
+
+                foreach (var item in unitState)
+                {
+                    UnitUpdate(item);
+                }
             }
         }
 

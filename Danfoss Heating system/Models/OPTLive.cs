@@ -120,7 +120,8 @@ internal class OPTLive
 
     public List<OPTLiveProp> MachinesInitialize(EnergyData hourInfo, bool isWinter)
     {
-
+        machinesForManualMode.Clear();
+        
         var storedUnits = excelDataParser.ParserUnitsState();
         var productionUnits = excelDataParser.ParserProductionUnits();
 

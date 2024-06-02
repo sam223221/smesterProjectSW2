@@ -242,9 +242,9 @@ namespace Danfoss_Heating_system.Models
 
                 foreach (var row in rows)
                 {
-                    if (row.RowNumber() <= 1 || row.RowNumber() >= 10) continue; // Skipping header rows
-                    if (isWinter && row.RowNumber() >= 6) continue; // Skipping summer rows
-                    if (!isWinter && row.RowNumber() < 6) continue; // Skipping winter rows
+                    if (row.RowNumber() <= 1 || row.RowNumber() > 10) continue; // Skipping header rows
+                    if (isWinter && row.RowNumber() >= 5) continue; // Skipping summer rows
+                    if (!isWinter && row.RowNumber() < 5) continue; // Skipping winter rows
 
 
                     var NameOfUnit = row.Cell(29).GetValue<string>();
