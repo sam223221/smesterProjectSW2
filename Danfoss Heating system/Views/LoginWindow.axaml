@@ -59,7 +59,7 @@
 				 Watermark="Password" 
 				 Background="Gray" 
 				 Foreground="White"
-				 PasswordChar="☭"
+				 PasswordChar="*"
 				 />
 
 		<!--SignIn successful sign-->
