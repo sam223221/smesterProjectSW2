@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Danfoss_Heating_system.Models;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Danfoss_Heating_system.ViewModels.OPT
 {
@@ -31,7 +32,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string cO2Emotions;
 
-
         // color states of the boilers and motors
         [ObservableProperty]
         private string gasBoilerState = "Red";
@@ -42,7 +42,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string electricBoilerState = "Red";
 
-
         // color states of the summer and winter buttons
         [ObservableProperty]
         private string summerFontWeight = "Normal";
@@ -52,7 +51,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         private string winterFontWeight = "Bold";
         [ObservableProperty]
         private string winterBackground = "Green";
-
 
         // operation states of the boilers and motors
         [ObservableProperty]
@@ -123,7 +121,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private bool autoModeSwitch = false;
 
-
         [ObservableProperty]
         private string actualHour;
 
@@ -133,18 +130,12 @@ namespace Danfoss_Heating_system.ViewModels.OPT
         [ObservableProperty]
         private string nextHour;
 
-
         [ObservableProperty]
         private bool changesAreBeingMade = false;
 
         private bool seasonSelecter = true;
 
-
-
-
-
-        private OPTLive OPTLive;
-        List<OPTLiveProp> unitState = new();
+        private List<OPTLiveProp> unitState = new();
 
         public ManualModeLiveOptimiserViewModel(MainWindowViewModel viewChange)
         {
@@ -152,7 +143,6 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             optLive = new OPTLive("/Assets/data.xlsx");
             Initilizer();
         }
-
 
         // relay commands for the summer and winter buttons
         [RelayCommand]
@@ -165,8 +155,8 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             WinterFontWeight = "Normal";
             WinterBackground = "Gray";
             Initilizer();
-
         }
+
         [RelayCommand]
         private void WinterTrue()
         {
@@ -179,38 +169,105 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             Initilizer();
         }
 
-
         [RelayCommand]
-        private void OnOfButtonForMachins(string name)
+        private async void OnOfButtonForMachins(string name)
         {
             ChangesAreBeingMade = true;
+            List<Task> tasks = new List<Task>();
             foreach (var unit in unitState)
             {
-                if (unit.NameOfUnit == name && unit.isUnitEnabled == false)
+                if (unit.NameOfUnit == name)
                 {
-                    unit.UsageInPercentPerHour = 100;
-                    unit.stateOfUnit = "Green";
-                    unit.operationOfUnit = "ON";
-                    unit.operationCost = unit.data.MaxHeat * unit.data.ProductionCost;
-                    unit.usingCO2Emission = unit.data.MaxHeat * unit.data.CO2Emission;
-                    unit.usingHeatDemand = unit.data.MaxHeat;
-                    unit.isUnitEnabled = true;
-                    UnitUpdate(unit);
-                }
-                else if (unit.NameOfUnit == name && unit.isUnitEnabled == true)
-                {
-                    unit.UsageInPercentPerHour = 0;
-                    unit.stateOfUnit = "Red";
-                    unit.operationOfUnit = "OFF";
-                    unit.operationCost = 0;
-                    unit.usingCO2Emission = 0;
-                    unit.usingHeatDemand = 0;
-                    unit.isUnitEnabled = false;
-                    UnitUpdate(unit);
+                    tasks.Add(Task.Run(() => ToggleUnitState(unit)));
                 }
             }
+            await Task.WhenAll(tasks);
+            UpdateSharedProperties();
         }
 
+        private void ToggleUnitState(OPTLiveProp unit)
+        {
+            if (unit.isUnitEnabled == false)
+            {
+                unit.UsageInPercentPerHour = 100;
+                unit.stateOfUnit = "Green";
+                unit.operationOfUnit = "ON";
+                unit.operationCost = unit.data.MaxHeat * unit.data.ProductionCost;
+                unit.usingCO2Emission = unit.data.MaxHeat * unit.data.CO2Emission;
+                unit.usingHeatDemand = unit.data.MaxHeat;
+                unit.isUnitEnabled = true;
+            }
+            else
+            {
+                unit.UsageInPercentPerHour = 0;
+                unit.stateOfUnit = "Red";
+                unit.operationOfUnit = "OFF";
+                unit.operationCost = 0;
+                unit.usingCO2Emission = 0;
+                unit.usingHeatDemand = 0;
+                unit.isUnitEnabled = false;
+            }
+            UnitUpdate(unit);
+        }
+
+        [RelayCommand]
+        private async void MinusHeatDemand(string name)
+        {
+            ChangesAreBeingMade = true;
+            List<Task> tasks = new List<Task>();
+            foreach (var unit in unitState)
+            {
+                if (unit.NameOfUnit == name && unit.isUnitEnabled == true)
+                {
+                    tasks.Add(Task.Run(() => DecreaseHeatDemand(unit)));
+                }
+            }
+            await Task.WhenAll(tasks);
+            UpdateSharedProperties();
+        }
+
+        private void DecreaseHeatDemand(OPTLiveProp unit)
+        {
+            unit.UsageInPercentPerHour -= 5;
+            unit.usingHeatDemand -= Math.Round(unit.data.MaxHeat / 20, 3);
+
+            if (unit.UsageInPercentPerHour < 5)
+            {
+                unit.stateOfUnit = "Red";
+                unit.isUnitEnabled = false;
+            }
+            else
+            {
+                unit.isUnitEnabled = true;
+            }
+            UnitUpdate(unit);
+        }
+
+        [RelayCommand]
+        private async void PlusHeatDemand(string name)
+        {
+            ChangesAreBeingMade = true;
+            List<Task> tasks = new List<Task>();
+            foreach (var unit in unitState)
+            {
+                if (unit.NameOfUnit == name && unit.UsageInPercentPerHour < 100)
+                {
+                    tasks.Add(Task.Run(() => IncreaseHeatDemand(unit)));
+                }
+            }
+            await Task.WhenAll(tasks);
+            UpdateSharedProperties();
+        }
+
+        private void IncreaseHeatDemand(OPTLiveProp unit)
+        {
+            unit.stateOfUnit = "Green";
+            unit.operationOfUnit = "ON";
+            unit.UsageInPercentPerHour += 5;
+            unit.usingHeatDemand += Math.Round(unit.data.MaxHeat / 20, 3);
+            unit.isUnitEnabled = true;
+            UnitUpdate(unit);
+        }
 
         [RelayCommand]
         private void SettingsIsVisible(string unitName)
@@ -232,48 +289,76 @@ namespace Danfoss_Heating_system.ViewModels.OPT
             };
         }
 
-
         [RelayCommand]
-        private void MinusHeatDemand(string name)
+        private void ChangeSettings(string chose)
         {
-            ChangesAreBeingMade = true;
-            foreach (var unit in unitState)
+            if (chose == "Apply")
             {
-                if (unit.NameOfUnit == name && unit.isUnitEnabled == true)
-                {
-                    unit.UsageInPercentPerHour -= 5;
-                    unit.usingHeatDemand -= Math.Round(unit.data.MaxHeat / 20, 3);
+                ChangesAreBeingMade = false;
+                optLive.StoreUnitState(unitState, seasonSelecter);
+            }
+            else if (chose == "Cancel")
+            {
+                ChangesAreBeingMade = false;
+                unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
 
-                    if (unit.UsageInPercentPerHour < 5)
-                    {
-                        unit.stateOfUnit = "Red";
-                        unit.isUnitEnabled = false;
-                    }
-                    else
-                    {
-                        unit.isUnitEnabled = true;
-                    }
-                    UnitUpdate(unit);
+                foreach (var item in unitState)
+                {
+                    UnitUpdate(item);
                 }
             }
         }
 
         [RelayCommand]
-        private void PlusHeatDemand(string name)
+        private void AutoMode(string? answer)
         {
-            ChangesAreBeingMade = true;
-            foreach (var unit in unitState)
+            AutoModeSwitch = !AutoModeSwitch;
+
+            if (answer == "yes")
             {
-                if (unit.NameOfUnit == name && unit.UsageInPercentPerHour < 100)
-                {
-                    unit.stateOfUnit = "Green";
-                    unit.operationOfUnit = "ON";
-                    unit.UsageInPercentPerHour += 5;
-                    unit.usingHeatDemand += Math.Round(unit.data.MaxHeat / 20, 3);
-                    unit.isUnitEnabled = true;
-                    UnitUpdate(unit);
-                }
+                viewChange.CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(viewChange) };
+                return;
             }
+
+        }
+
+        [RelayCommand]
+        private void SideBarToggle()
+        {
+            SideBarOpen = !SideBarOpen;
+            if (SideBarOpen)
+            {
+                SideBarWidth = 300;
+            }
+            else
+            {
+                SideBarWidth = 0;
+            }
+        }
+
+        public void Initilizer()
+        {
+            // Units initialization
+            unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
+
+            foreach (var item in unitState)
+            {
+                UnitUpdate(item);
+            }
+
+            // Side bar initialization
+            ProductionCost = optLive.ProductionCostPerHourManualMode(unitState).ToString("F2");
+            CO2Emotions = optLive.CO2EmmitionsPerHourManualMode(unitState).ToString("F2");
+
+            // Heat demand and prediction initialization
+            CurrentProduction = optLive.TotalHeatProductionManualMode(unitState).ToString("F2");
+            HeatDemandCurrent = optLive.HourInformation(seasonSelecter).HeatDemand.ToString("F2");
+            HeatDemandPrediction = optLive.predictHeatDemandCalculate(seasonSelecter);
+
+            // Clock initialization
+            PreviousHour = optLive.GetHourFromCellIndex(0, seasonSelecter);
+            ActualHour = optLive.GetHourFromCellIndex(1, seasonSelecter);
+            NextHour = optLive.GetHourFromCellIndex(2, seasonSelecter);
         }
 
         private void UnitUpdate(OPTLiveProp unit)
@@ -313,84 +398,13 @@ namespace Danfoss_Heating_system.ViewModels.OPT
                     ElectricBoilerOperation = unit.operationOfUnit;
                     break;
             }
+        }
+
+        private void UpdateSharedProperties()
+        {
             ProductionCost = optLive.ProductionCostPerHourManualMode(unitState).ToString("F2");
             CO2Emotions = optLive.CO2EmmitionsPerHourManualMode(unitState).ToString("F2");
             CurrentProduction = optLive.TotalHeatProductionManualMode(unitState).ToString("F2");
-        }
-
-        // relay command for the sidebar toggle
-        [RelayCommand]
-        private void SideBarToggle()
-        {
-
-            SideBarOpen = !SideBarOpen;
-            if (SideBarOpen)
-            {
-                SideBarWidth = 300;
-            }
-            else
-            {
-                SideBarWidth = 0;
-            }
-        }
-
-        [RelayCommand]
-        private void ChangeSettings(string chose)
-        {
-            if (chose == "Apply")
-            {
-                ChangesAreBeingMade = false;
-                optLive.StoreUnitState(unitState, seasonSelecter);
-            }
-            else if (chose == "Cancel")
-            {
-                ChangesAreBeingMade = false;
-                unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
-
-                foreach (var item in unitState)
-                {
-                    UnitUpdate(item);
-                }
-            }
-        }
-
-        [RelayCommand]
-        private void AutoMode(string? answer)
-        {
-            AutoModeSwitch = !AutoModeSwitch;
-
-            if (answer == "yes")
-            {
-                viewChange.CurrentContent = new LiveOptimiser() { DataContext = new LiveOptimiserViewModel(viewChange) };
-                return;
-            }
-
-        }
-
-        public void Initilizer()
-        {
-            // Units initialization
-            unitState = optLive.MachinesInitialize(optLive.HourInformation(seasonSelecter), seasonSelecter);
-
-            foreach (var item in unitState)
-            {
-                UnitUpdate(item);
-            }
-
-            // Side bar initialization
-            ProductionCost = optLive.ProductionCostPerHourManualMode(unitState).ToString("F2");
-            CO2Emotions = optLive.CO2EmmitionsPerHourManualMode(unitState).ToString("F2");
-
-            // Heat demand and prediction initialization
-            CurrentProduction = optLive.TotalHeatProductionManualMode(unitState).ToString("F2");
-            HeatDemandCurrent = optLive.HourInformation(seasonSelecter).HeatDemand.ToString("F2");
-            HeatDemandPrediction = optLive.predictHeatDemandCalculate(seasonSelecter);
-
-            // Clock initialization
-            PreviousHour = optLive.GetHourFromCellIndex(0, seasonSelecter);
-            ActualHour = optLive.GetHourFromCellIndex(1, seasonSelecter);
-            NextHour = optLive.GetHourFromCellIndex(2, seasonSelecter);
-
         }
     }
 }
