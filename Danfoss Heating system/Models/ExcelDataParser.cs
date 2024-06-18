@@ -13,8 +13,8 @@ namespace Danfoss_Heating_system.Models
         private string filePath;
         public ExcelDataParser(string exfilePath)
         {
-            string relativePath = @"..\..\..\Assets\data.xlsx";
-            this.filePath = Path.GetFullPath(relativePath);
+            
+            this.filePath = exfilePath;
         }
 
         public List<EnergyData> ParseQuotes()

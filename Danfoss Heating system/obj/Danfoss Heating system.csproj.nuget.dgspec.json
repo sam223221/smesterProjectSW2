@@ -81,10 +81,6 @@
             "CommunityToolkit.Mvvm": {
               "target": "Package",
               "version": "[8.2.2, )"
-            },
-            "Microsoft.PowerShell.5.ReferenceAssemblies": {
-              "target": "Package",
-              "version": "[1.1.0, )"
             }
           },
           "imports": [
